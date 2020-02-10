@@ -260,7 +260,7 @@
             // 
             // pBoxDeleteProduct
             // 
-            this.pBoxDeleteProduct.Image = global::AuctionGame_Aministrador.Properties.Resources.leftArrow;
+            this.pBoxDeleteProduct.Image = global::AuctionGame_Admin.Properties.Resources.leftArrow;
             this.pBoxDeleteProduct.Location = new System.Drawing.Point(217, 289);
             this.pBoxDeleteProduct.Name = "pBoxDeleteProduct";
             this.pBoxDeleteProduct.Size = new System.Drawing.Size(50, 50);
@@ -271,7 +271,7 @@
             // 
             // pBoxAddProduct
             // 
-            this.pBoxAddProduct.Image = global::AuctionGame_Aministrador.Properties.Resources.rightArrow;
+            this.pBoxAddProduct.Image = global::AuctionGame_Admin.Properties.Resources.rightArrow;
             this.pBoxAddProduct.Location = new System.Drawing.Point(217, 228);
             this.pBoxAddProduct.Name = "pBoxAddProduct";
             this.pBoxAddProduct.Size = new System.Drawing.Size(50, 50);
