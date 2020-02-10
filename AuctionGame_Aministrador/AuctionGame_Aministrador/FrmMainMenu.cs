@@ -175,7 +175,7 @@ namespace AuctionGame_Aministrador
             {
                 OpenChildForm(childRoles);
             }
-            var form = new FrmRole();
+            var form = new FrmRole(childRoles);
             form.Show();
         }
         private void btnVirtualPlayers_Click(object sender, EventArgs e)
