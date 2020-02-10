@@ -146,7 +146,7 @@ namespace AuctionGame_Aministrador
             {
                 OpenChildForm(childFamilies);
             }
-            var form = new FrmFamily();
+            var form = new FrmFamily(childFamilies);
             form.Show();
         }
 
