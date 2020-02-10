@@ -117,7 +117,7 @@ namespace AuctionGame_Aministrador
             {
                 OpenChildForm(childProducts);
             }
-            var form = new FrmProduct();
+            var form = new FrmProduct(childProducts);
             form.Show();
         }
         #endregion
