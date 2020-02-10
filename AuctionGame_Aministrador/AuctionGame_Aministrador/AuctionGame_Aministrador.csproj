@@ -89,6 +89,7 @@
     </Compile>
     <Compile Include="DataControl.cs" />
     <Compile Include="DbConection.cs" />
+    <Compile Include="Family.cs" />
     <Compile Include="FrmFamily.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -142,6 +143,15 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Time.cs" />
     <Compile Include="TimesValues.cs" />
+    <EmbeddedResource Include="ChildMainFamily.resx">
+      <DependentUpon>ChildMainFamily.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChildMainProducts.resx">
+      <DependentUpon>ChildMainProducts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmFamily.resx">
+      <DependentUpon>FrmFamily.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmMainMenu.resx">
       <DependentUpon>FrmMainMenu.cs</DependentUpon>
     </EmbeddedResource>
