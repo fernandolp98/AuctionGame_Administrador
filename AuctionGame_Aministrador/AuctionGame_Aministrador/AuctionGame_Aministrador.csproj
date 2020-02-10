@@ -33,6 +33,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MySql.Data, Version=8.0.19.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Servicio Social\AuctionGame\AuctionGame\Resources\Referencias\MySql.Data.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -46,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BetweenValues.cs" />
     <Compile Include="ChildMainFamily.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -82,6 +87,8 @@
     <Compile Include="ChildMainVirtualPlayers.Designer.cs">
       <DependentUpon>ChildMainVirtualPlayers.cs</DependentUpon>
     </Compile>
+    <Compile Include="DataControl.cs" />
+    <Compile Include="DbConection.cs" />
     <Compile Include="FrmFamily.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -130,10 +137,16 @@
     <Compile Include="FrmVirtualPlayer.Designer.cs">
       <DependentUpon>FrmVirtualPlayer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Product.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Time.cs" />
+    <Compile Include="TimesValues.cs" />
     <EmbeddedResource Include="FrmMainMenu.resx">
       <DependentUpon>FrmMainMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmProduct.resx">
+      <DependentUpon>FrmProduct.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -143,6 +156,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -156,6 +170,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\leftArrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\no-foto.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\rightArrow.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
