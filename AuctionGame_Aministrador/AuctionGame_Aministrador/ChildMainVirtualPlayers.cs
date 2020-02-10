@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace AuctionGame_Aministrador
 {
-    public partial class Form1 : Form
+    public partial class ChildMainVirtualPlayers : Form
     {
-        public Form1()
+        public ChildMainVirtualPlayers()
         {
             InitializeComponent();
         }

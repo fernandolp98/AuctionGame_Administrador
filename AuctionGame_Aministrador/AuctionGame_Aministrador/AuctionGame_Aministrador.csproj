@@ -46,14 +46,95 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
+    <Compile Include="ChildMainFamily.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="ChildMainFamily.Designer.cs">
+      <DependentUpon>ChildMainFamily.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChildMainProducts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChildMainProducts.Designer.cs">
+      <DependentUpon>ChildMainProducts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChildMainRole.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChildMainRole.Designer.cs">
+      <DependentUpon>ChildMainRole.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChildMainRoutines.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChildMainRoutines.Designer.cs">
+      <DependentUpon>ChildMainRoutines.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChildMainUsers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChildMainUsers.Designer.cs">
+      <DependentUpon>ChildMainUsers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChildMainVirtualPlayers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChildMainVirtualPlayers.Designer.cs">
+      <DependentUpon>ChildMainVirtualPlayers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmFamily.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmFamily.Designer.cs">
+      <DependentUpon>FrmFamily.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmMainMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMainMenu.Designer.cs">
+      <DependentUpon>FrmMainMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmProduct.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmProduct.Designer.cs">
+      <DependentUpon>FrmProduct.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmRole.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmRole.Designer.cs">
+      <DependentUpon>FrmRole.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmRoutine.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmRoutine.Designer.cs">
+      <DependentUpon>FrmRoutine.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmStatistics.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmStatistics.Designer.cs">
+      <DependentUpon>FrmStatistics.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ChildMainStatistics.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ChildMainStatistics.Designer.cs">
+      <DependentUpon>ChildMainStatistics.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmVirtualPlayer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmVirtualPlayer.Designer.cs">
+      <DependentUpon>FrmVirtualPlayer.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FrmMainMenu.resx">
+      <DependentUpon>FrmMainMenu.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
