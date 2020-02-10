@@ -167,7 +167,7 @@
             // 
             this.pboxProducto.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.pboxProducto.BackColor = System.Drawing.Color.White;
-            this.pboxProducto.Image = global::AuctionGame_Aministrador.Properties.Resources.no_foto;
+            this.pboxProducto.Image = global::AuctionGame_Admin.Properties.Resources.no_foto;
             this.pboxProducto.Location = new System.Drawing.Point(307, 67);
             this.pboxProducto.Name = "pboxProducto";
             this.pboxProducto.Size = new System.Drawing.Size(130, 170);
