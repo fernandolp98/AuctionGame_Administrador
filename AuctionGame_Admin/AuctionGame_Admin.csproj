@@ -168,6 +168,9 @@
     <EmbeddedResource Include="ChildMainProducts.resx">
       <DependentUpon>ChildMainProducts.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ChildMainRoutines.resx">
+      <DependentUpon>ChildMainRoutines.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ChildMainVirtualBidders.resx">
       <DependentUpon>ChildMainVirtualBidders.cs</DependentUpon>
     </EmbeddedResource>
@@ -182,6 +185,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmRole.resx">
       <DependentUpon>FrmRole.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmRoutine.resx">
+      <DependentUpon>FrmRoutine.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmVirtualBidder.resx">
       <DependentUpon>FrmVirtualBidder.cs</DependentUpon>
@@ -229,6 +235,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Edit.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -30,58 +30,50 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.btnSearchVirtualBidder = new System.Windows.Forms.Button();
-            this.cboSearchVirtualBidder = new System.Windows.Forms.ComboBox();
-            this.txbVirtualBidder = new System.Windows.Forms.TextBox();
-            this.dgvVirtualBidders = new System.Windows.Forms.DataGridView();
-            this.clmIdFamily = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmIdBidder = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmNameFamily = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmWallet = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmNameFamily = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmIdBidder = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmIdFamily = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvVirtualBidders = new System.Windows.Forms.DataGridView();
+            this.txbSearchVirtualBidders = new System.Windows.Forms.TextBox();
+            this.cboSearchVirtualBidders = new System.Windows.Forms.ComboBox();
+            this.btnSearchVirtualBidders = new System.Windows.Forms.Button();
             this.btnDeleteVirtualBidder = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVirtualBidders)).BeginInit();
             this.SuspendLayout();
             // 
-            // btnSearchVirtualBidder
+            // clmWallet
             // 
-            this.btnSearchVirtualBidder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSearchVirtualBidder.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(82)))), ((int)(((byte)(118)))));
-            this.btnSearchVirtualBidder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSearchVirtualBidder.ForeColor = System.Drawing.Color.White;
-            this.btnSearchVirtualBidder.Location = new System.Drawing.Point(538, 72);
-            this.btnSearchVirtualBidder.Name = "btnSearchVirtualBidder";
-            this.btnSearchVirtualBidder.Size = new System.Drawing.Size(150, 30);
-            this.btnSearchVirtualBidder.TabIndex = 23;
-            this.btnSearchVirtualBidder.Text = "Buscar";
-            this.btnSearchVirtualBidder.UseVisualStyleBackColor = false;
+            this.clmWallet.HeaderText = "Billetera";
+            this.clmWallet.Name = "clmWallet";
+            this.clmWallet.ReadOnly = true;
             // 
-            // cboSearchVirtualBidder
+            // clmDescription
             // 
-            this.cboSearchVirtualBidder.FormattingEnabled = true;
-            this.cboSearchVirtualBidder.Items.AddRange(new object[] {
-            "Mostrar Todo",
-            "Nombre",
-            "Puntos",
-            "Productos"});
-            this.cboSearchVirtualBidder.Location = new System.Drawing.Point(13, 74);
-            this.cboSearchVirtualBidder.Name = "cboSearchVirtualBidder";
-            this.cboSearchVirtualBidder.Size = new System.Drawing.Size(169, 29);
-            this.cboSearchVirtualBidder.TabIndex = 22;
+            this.clmDescription.HeaderText = "Descripción";
+            this.clmDescription.Name = "clmDescription";
+            this.clmDescription.ReadOnly = true;
             // 
-            // txbVirtualBidder
+            // clmNameFamily
             // 
-            this.txbVirtualBidder.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txbVirtualBidder.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbVirtualBidder.ForeColor = System.Drawing.Color.Silver;
-            this.txbVirtualBidder.Location = new System.Drawing.Point(188, 74);
-            this.txbVirtualBidder.Name = "txbVirtualBidder";
-            this.txbVirtualBidder.Size = new System.Drawing.Size(344, 29);
-            this.txbVirtualBidder.TabIndex = 21;
-            this.txbVirtualBidder.Tag = "Buscar,alfanumerico";
-            this.txbVirtualBidder.Text = "Buscar";
+            this.clmNameFamily.HeaderText = "Nombre";
+            this.clmNameFamily.Name = "clmNameFamily";
+            this.clmNameFamily.ReadOnly = true;
+            // 
+            // clmIdBidder
+            // 
+            this.clmIdBidder.HeaderText = "Nº de Apostador";
+            this.clmIdBidder.Name = "clmIdBidder";
+            this.clmIdBidder.ReadOnly = true;
+            // 
+            // clmIdFamily
+            // 
+            this.clmIdFamily.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.clmIdFamily.HeaderText = "ID";
+            this.clmIdFamily.Name = "clmIdFamily";
+            this.clmIdFamily.ReadOnly = true;
+            this.clmIdFamily.Visible = false;
             // 
             // dgvVirtualBidders
             // 
@@ -130,37 +122,45 @@
             this.dgvVirtualBidders.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvVirtualBidders_CellClick);
             this.dgvVirtualBidders.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvVirtualBidders_CellDoubleClick);
             // 
-            // clmIdFamily
+            // txbSearchVirtualBidders
             // 
-            this.clmIdFamily.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.clmIdFamily.HeaderText = "ID";
-            this.clmIdFamily.Name = "clmIdFamily";
-            this.clmIdFamily.ReadOnly = true;
-            this.clmIdFamily.Visible = false;
+            this.txbSearchVirtualBidders.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txbSearchVirtualBidders.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbSearchVirtualBidders.ForeColor = System.Drawing.Color.Silver;
+            this.txbSearchVirtualBidders.Location = new System.Drawing.Point(188, 74);
+            this.txbSearchVirtualBidders.Name = "txbSearchVirtualBidders";
+            this.txbSearchVirtualBidders.Size = new System.Drawing.Size(344, 29);
+            this.txbSearchVirtualBidders.TabIndex = 21;
+            this.txbSearchVirtualBidders.Tag = "Buscar,alfanumerico";
+            this.txbSearchVirtualBidders.Text = "Buscar";
             // 
-            // clmIdBidder
+            // cboSearchVirtualBidders
             // 
-            this.clmIdBidder.HeaderText = "Nº de Apostador";
-            this.clmIdBidder.Name = "clmIdBidder";
-            this.clmIdBidder.ReadOnly = true;
+            this.cboSearchVirtualBidders.FormattingEnabled = true;
+            this.cboSearchVirtualBidders.Items.AddRange(new object[] {
+            "Mostrar Todo",
+            "Nombre",
+            "Puntos",
+            "Productos"});
+            this.cboSearchVirtualBidders.Location = new System.Drawing.Point(13, 74);
+            this.cboSearchVirtualBidders.Name = "cboSearchVirtualBidders";
+            this.cboSearchVirtualBidders.Size = new System.Drawing.Size(169, 29);
+            this.cboSearchVirtualBidders.TabIndex = 22;
             // 
-            // clmNameFamily
+            // btnSearchVirtualBidders
             // 
-            this.clmNameFamily.HeaderText = "Nombre";
-            this.clmNameFamily.Name = "clmNameFamily";
-            this.clmNameFamily.ReadOnly = true;
-            // 
-            // clmDescription
-            // 
-            this.clmDescription.HeaderText = "Descripción";
-            this.clmDescription.Name = "clmDescription";
-            this.clmDescription.ReadOnly = true;
-            // 
-            // clmWallet
-            // 
-            this.clmWallet.HeaderText = "Billetera";
-            this.clmWallet.Name = "clmWallet";
-            this.clmWallet.ReadOnly = true;
+            this.btnSearchVirtualBidders.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSearchVirtualBidders.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(82)))), ((int)(((byte)(118)))));
+            this.btnSearchVirtualBidders.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSearchVirtualBidders.ForeColor = System.Drawing.Color.White;
+            this.btnSearchVirtualBidders.Location = new System.Drawing.Point(538, 72);
+            this.btnSearchVirtualBidders.Name = "btnSearchVirtualBidders";
+            this.btnSearchVirtualBidders.Size = new System.Drawing.Size(150, 30);
+            this.btnSearchVirtualBidders.TabIndex = 23;
+            this.btnSearchVirtualBidders.Text = "Buscar";
+            this.btnSearchVirtualBidders.UseVisualStyleBackColor = false;
             // 
             // btnDeleteVirtualBidder
             // 
@@ -184,9 +184,9 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(213)))), ((int)(((byte)(225)))), ((int)(((byte)(232)))));
             this.ClientSize = new System.Drawing.Size(784, 661);
             this.Controls.Add(this.btnDeleteVirtualBidder);
-            this.Controls.Add(this.btnSearchVirtualBidder);
-            this.Controls.Add(this.cboSearchVirtualBidder);
-            this.Controls.Add(this.txbVirtualBidder);
+            this.Controls.Add(this.btnSearchVirtualBidders);
+            this.Controls.Add(this.cboSearchVirtualBidders);
+            this.Controls.Add(this.txbSearchVirtualBidders);
             this.Controls.Add(this.dgvVirtualBidders);
             this.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -202,15 +202,15 @@
 
         #endregion
 
-        private System.Windows.Forms.Button btnSearchVirtualBidder;
-        private System.Windows.Forms.ComboBox cboSearchVirtualBidder;
-        private System.Windows.Forms.TextBox txbVirtualBidder;
-        private System.Windows.Forms.DataGridView dgvVirtualBidders;
-        private System.Windows.Forms.Button btnDeleteVirtualBidder;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmIdFamily;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmIdBidder;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmNameFamily;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmDescription;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmWallet;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmDescription;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmNameFamily;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmIdBidder;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmIdFamily;
+        private System.Windows.Forms.DataGridView dgvVirtualBidders;
+        private System.Windows.Forms.TextBox txbSearchVirtualBidders;
+        private System.Windows.Forms.ComboBox cboSearchVirtualBidders;
+        private System.Windows.Forms.Button btnSearchVirtualBidders;
+        private System.Windows.Forms.Button btnDeleteVirtualBidder;
     }
 }

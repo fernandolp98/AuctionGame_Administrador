@@ -93,13 +93,13 @@ namespace AuctionGame_Admin
 
         private void btnSearchFamily_Click(object sender, System.EventArgs e)
         {
-            var option = cboSearchFamily.SelectedIndex;
+            var option = cboSearchFamilies.SelectedIndex;
             var query = "SELECT * FROM families_view";
             switch (option)
             {
-                case 1: query += $" WHERE families_view.nameFamily LIKE '{txbSearchFamily.Text}%'"; break;
-                case 2: query += $" WHERE families_view.points = {txbSearchFamily.Text}"; break;
-                case 3: query += $" WHERE families_view.products = {txbSearchFamily.Text}"; break;
+                case 1: query += $" WHERE families_view.nameFamily LIKE '{txbSearchFamilies.Text}%'"; break;
+                case 2: query += $" WHERE families_view.points = {txbSearchFamilies.Text}"; break;
+                case 3: query += $" WHERE families_view.products = {txbSearchFamilies.Text}"; break;
             }
             UpdateFamilies(query);
         }
