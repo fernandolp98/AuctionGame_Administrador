@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace AuctionGame_Aministrador
+namespace AuctionGame_Admin
 {
     public partial class FrmProduct : Form
     {
@@ -74,9 +74,7 @@ namespace AuctionGame_Aministrador
             try
             {
                 var txb = (TextBox)sender;
-                var txbTag = (string)txb.Tag;
-                var type = txbTag.Split(',')[1];
-                DataControl.Validar(txb, type);
+                DataControl.Validar(txb);
             }
             catch (Exception exception)
             {
@@ -102,7 +100,7 @@ namespace AuctionGame_Aministrador
 
                 if (!_edit) //Si no va a editar un producto ya existente
                 {
-                    if (DB_CONNECTION.existencia($@"SELECT * FROM product WHERE idProduct = {newIdProduct} LIMIT 1", 1))
+                    if (DbConnection.existencia($@"SELECT * FROM product WHERE idProduct = {newIdProduct} LIMIT 1", 1))
                     {
                         MessageBox.Show(@"El código introducido ya existe.");
                         return;
@@ -115,7 +113,7 @@ namespace AuctionGame_Aministrador
                         $"{newInitialPrice}, " +
                         $"{newPointsValue}, " +
                         $"'{newImageB64}')";
-                    if (DB_CONNECTION.ejecutar(query)) //Si se ejecuta la consulta en la base de datos correctamente
+                    if (DbConnection.ejecutar(query)) //Si se ejecuta la consulta en la base de datos correctamente
                     {
                         _father?.UpdateProducts("");
                         if (MessageBox.Show(@"¡Se ha registrado el producto exitosamente! ¿Desea agregar otro?",
@@ -142,7 +140,7 @@ namespace AuctionGame_Aministrador
                 }
                 else if (_edit) //Si va a editar un producto ya existente
                 {
-                    if (DB_CONNECTION.existencia($@"SELECT * FROM product WHERE idProduct = {newIdProduct} LIMIT 2", 2))
+                    if (DbConnection.existencia($@"SELECT * FROM product WHERE idProduct = {newIdProduct} LIMIT 2", 2))
                     {
                         MessageBox.Show(@"El código introducido ya existe.");
                         return;
@@ -155,7 +153,7 @@ namespace AuctionGame_Aministrador
                         $"points = {newPointsValue}, " +
                         $"pathImage = '{newImageB64}' " +
                         $"WHERE idProduct = {_product.IdProduct}";
-                    if (DB_CONNECTION.ejecutar(query)) //Si se ejecuta la consulta en la base de datos correctamente
+                    if (DbConnection.ejecutar(query)) //Si se ejecuta la consulta en la base de datos correctamente
                     {
                         _father?.UpdateProducts("");
                         if (!Question(@"¡Se ha modificado el producto exitosamente! ¿Desea Salir?",

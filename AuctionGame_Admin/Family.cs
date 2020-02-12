@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Data;
 
-namespace AuctionGame_Aministrador
+namespace AuctionGame_Admin
 {
     public class Family
     {
@@ -29,7 +29,7 @@ namespace AuctionGame_Aministrador
                            "LEFT JOIN product " +
                            "ON product.idProduct = family_has_product.PRODUCT_idProduct " +
                            $"WHERE family_has_product.FAMILY_idFamily = {this.IdFamily}";
-            var productsDataTable = DB_CONNECTION.consultar_datos(query);
+            var productsDataTable = DbConnection.consultar_datos(query);
             if (productsDataTable == null) return;
             foreach (DataRow row in productsDataTable.Rows)
             {
@@ -43,7 +43,7 @@ namespace AuctionGame_Aministrador
                            "LEFT JOIN family " +
                            "ON family.idFamily = routine_has_family.FAMILY_idFamily " +
                            $"WHERE routine_has_family.ROUTINE_idRoutine = {idRoutine}";
-            var familiesDataTable = DB_CONNECTION.consultar_datos(query);
+            var familiesDataTable = DbConnection.consultar_datos(query);
             if (familiesDataTable == null) return families;
             for (var index = 0; index < familiesDataTable.Rows.Count; index++)
             {
@@ -58,7 +58,7 @@ namespace AuctionGame_Aministrador
         public static Family GetFamilyById(int id)
         {
             var query = $@"SELECT * FROM family WHERE idFamily = {id}";
-            var familyDt = DB_CONNECTION.consultar_datos(query);
+            var familyDt = DbConnection.consultar_datos(query);
             if (familyDt == null) return null;
             var rowFamily = familyDt.Rows[0];
             var family = new Family()
@@ -76,7 +76,7 @@ namespace AuctionGame_Aministrador
             var query = "SELECT product.idProduct FROM product " +
                             "WHERE NOT EXISTS (SELECT 1 FROM family_has_product WHERE product.idProduct = family_has_product.PRODUCT_idProduct " +
                             $"AND family_has_product.FAMILY_idFamily = {this.IdFamily}) ";
-            var productsDt = DB_CONNECTION.consultar_datos(query);
+            var productsDt = DbConnection.consultar_datos(query);
             if (productsDt == null) return products;
             for (var index = 0; index < productsDt.Rows.Count; index++)
             {
@@ -91,7 +91,7 @@ namespace AuctionGame_Aministrador
             var query = "SELECT product.idProduct FROM product " +
                             "WHERE EXISTS (SELECT 1 FROM family_has_product WHERE product.idProduct = family_has_product.PRODUCT_idProduct " +
                             $"AND family_has_product.FAMILY_idFamily = {IdFamily}) ";
-            var productsDt = DB_CONNECTION.consultar_datos(query);
+            var productsDt = DbConnection.consultar_datos(query);
             if (productsDt == null) return products;
             for (var index = 0; index < productsDt.Rows.Count; index++)
             {

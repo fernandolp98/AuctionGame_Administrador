@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace AuctionGame_Aministrador
+namespace AuctionGame_Admin
 {
     public partial class ChildMainFamily : Form
     {
@@ -21,7 +21,7 @@ namespace AuctionGame_Aministrador
 
             if (string.IsNullOrEmpty(query))
                 query = "SELECT * FROM families_view";
-            var families = DB_CONNECTION.consultar_datos(query);
+            var families = DbConnection.consultar_datos(query);
             dgvFamilies.Rows.Clear();
             if (families == null) return;
             var bFamily = int.TryParse(dgvFamilies.Tag.ToString(), out var currentIdFamily);
@@ -80,7 +80,7 @@ namespace AuctionGame_Aministrador
             if (!Question($@"¿Está seguro de eliminar el producto {currentNameProduct}?",
                 @"Estás a punto de eliminar un producto")) return;
             var query = $"DELETE FROM family WHERE idFamily = {currentIdproduct}";
-            if (DB_CONNECTION.ejecutar(query))
+            if (DbConnection.ejecutar(query))
             {
                 MessageBox.Show(@"Se eliminó correctamente");
                 UpdateFamilies("");

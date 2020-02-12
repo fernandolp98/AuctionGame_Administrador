@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace AuctionGame_Aministrador
+namespace AuctionGame_Admin
 {
     public partial class FrmRole : Form
     {
@@ -111,7 +111,7 @@ namespace AuctionGame_Aministrador
                                    $"{roundsTop}, " +
                                    $"{increaseBidDown}, " +
                                    $"{increaseBidTop})";
-                    var rolId = DB_CONNECTION.consultar_datos(query);
+                    var rolId = DbConnection.consultar_datos(query);
                     if (rolId != null)
                     {
                         _role = new Role(int.Parse(rolId.Rows[0][0].ToString()));
@@ -149,13 +149,12 @@ namespace AuctionGame_Aministrador
                                    $"`bidIncrease_Down` = {increaseBidDown}, " +
                                    $"`bidIncrease_Top` =  {increaseBidTop} " +
                                    $"WHERE idRole = {_role.IdRole}";
-                    if (DB_CONNECTION.ejecutar(query))
+                    if (DbConnection.ejecutar(query))
                     {
                         _father?.UpdateRoles("");
                         if (!Question($"¡Se ha modificado el rol exitosamente! ¿Desea Salir?",
                             @"Rol Guardado")) return;
                         this.Close();
-
                     }
                 }
             }
@@ -166,8 +165,8 @@ namespace AuctionGame_Aministrador
         private void txbOfersForRoundDown_Validated(object sender, EventArgs e)
         {
             var txb = (TextBox)sender;
-            if (DataControl.Validar(txb, "numeroEntero")) return;
-            if (DataControl.Validar(txbOffersForRoundTop, "numeroEntero")) return;
+            if (DataControl.Validar(txb)) return;
+            if (DataControl.Validar(txbOffersForRoundTop)) return;
             var down = int.Parse(txbOfersForRoundDown.Text);
             var top = int.Parse(txbOffersForRoundTop.Text);
             if (down <= top) return;
@@ -178,8 +177,8 @@ namespace AuctionGame_Aministrador
         private void txbOffersForRoundTop_Validated(object sender, EventArgs e)
         {
             var txb = (TextBox)sender;
-            if (DataControl.Validar(txb, "numeroEntero")) return;
-            if (DataControl.Validar(txbOfersForRoundDown, "numeroEntero")) return;
+            if (DataControl.Validar(txb)) return;
+            if (DataControl.Validar(txbOfersForRoundDown)) return;
             var down = int.Parse(txbOfersForRoundDown.Text);
             var top = int.Parse(txbOffersForRoundTop.Text);
             if (top >= down) return;
@@ -189,8 +188,8 @@ namespace AuctionGame_Aministrador
         private void txbRoundsDown_Validated(object sender, EventArgs e)
         {
             var txb = (TextBox)sender;
-            if (DataControl.Validar(txb, "numeroEntero")) return;
-            if (DataControl.Validar(txbRoundsTop, "numeroEntero")) return;
+            if (DataControl.Validar(txb)) return;
+            if (DataControl.Validar(txbRoundsTop)) return;
             var down = int.Parse(txbRoundsDown.Text);
             var top = int.Parse(txbRoundsTop.Text);
             if (down <= top) return;
@@ -201,8 +200,8 @@ namespace AuctionGame_Aministrador
         private void txbRoundsTop_Validated(object sender, EventArgs e)
         {
             var txb = (TextBox)sender;
-            if (DataControl.Validar(txb, "numeroEntero")) return;
-            if (DataControl.Validar(txbRoundsDown, "numeroEntero")) return;
+            if (DataControl.Validar(txb)) return;
+            if (DataControl.Validar(txbRoundsDown)) return;
             var down = int.Parse(txbRoundsDown.Text);
             var top = int.Parse(txbRoundsTop.Text);
             if (top >= down) return;
@@ -213,8 +212,8 @@ namespace AuctionGame_Aministrador
         private void txbIncreaseForBidDown_Validated(object sender, EventArgs e)
         {
             var txb = (TextBox)sender;
-            if (DataControl.Validar(txb, "numeroEntero")) return;
-            if (DataControl.Validar(txbBidIncreaseBidTop, "numeroEntero")) return;
+            if (DataControl.Validar(txb)) return;
+            if (DataControl.Validar(txbBidIncreaseBidTop)) return;
             var down = int.Parse(txbBidIncreaseDown.Text);
             var top = int.Parse(txbBidIncreaseBidTop.Text);
             if (down <= top) return;
@@ -225,8 +224,8 @@ namespace AuctionGame_Aministrador
         private void txbIncreaseForBidTop_Validated(object sender, EventArgs e)
         {
             var txb = (TextBox)sender;
-            if (DataControl.Validar(txb, "numeroEntero")) return;
-            if (DataControl.Validar(txbBidIncreaseDown, "numeroEntero")) return;
+            if (DataControl.Validar(txb)) return;
+            if (DataControl.Validar(txbBidIncreaseDown)) return;
             var down = int.Parse(txbBidIncreaseDown.Text);
             var top = int.Parse(txbBidIncreaseBidTop.Text);
             if (top >= down) return;
@@ -257,6 +256,5 @@ namespace AuctionGame_Aministrador
         }
 
         #endregion
-
     }
 }

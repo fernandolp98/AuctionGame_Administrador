@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace AuctionGame_Aministrador
+namespace AuctionGame_Admin
 {
     public partial class FrmFamily : Form
     {
@@ -113,8 +113,7 @@ namespace AuctionGame_Aministrador
             {
                 var txb = (TextBox)sender;
                 var txbTag = (string)txb.Tag;
-                var type = txbTag.Split(',')[1];
-                DataControl.Validar(txb, type);
+                DataControl.Validar(txb);
             }
             catch (Exception exception)
             {
@@ -137,7 +136,7 @@ namespace AuctionGame_Aministrador
                 {
                     var query =
                         $"SELECT insert_family('{newNameFamily}', {newPointsValue})";
-                    var idFamilyDt = DB_CONNECTION.consultar_datos(query);
+                    var idFamilyDt = DbConnection.consultar_datos(query);
                     if (idFamilyDt != null) //Si se ejecuta la consulta en la base de datos correctamente
                     {
                         _family = Family.GetFamilyById(int.Parse(idFamilyDt.Rows[0][0].ToString()));
@@ -166,7 +165,7 @@ namespace AuctionGame_Aministrador
                         $"nameFamily = '{newNameFamily}', " +
                         $"points = {newPointsValue} " +
                         $"WHERE idFamily = {_family.IdFamily}";
-                    if (DB_CONNECTION.ejecutar(query)) //Si se ejecuta la consulta en la base de datos correctamente
+                    if (DbConnection.ejecutar(query)) //Si se ejecuta la consulta en la base de datos correctamente
                     {
                         var added = AddNewProducts();
                         var removed = RemoveOldProduct();
@@ -202,7 +201,7 @@ namespace AuctionGame_Aministrador
             {
                 var idProduct = _newProducts[index];
                 var query = $"INSERT INTO family_has_product (FAMILY_idFamily, PRODUCT_idProduct) VALUES ({_family.IdFamily}, {idProduct})";
-                if (DB_CONNECTION.ejecutar(query))
+                if (DbConnection.ejecutar(query))
                 {
                     _newProducts.Remove(idProduct);
                     _productRegistered.Add(idProduct);
@@ -226,7 +225,7 @@ namespace AuctionGame_Aministrador
             {
                 var idProduct = _deletedProducts[index];
                 var query = $"DELETE FROM family_has_product WHERE FAMILY_idFamily = {_family.IdFamily} AND PRODUCT_idProduct = {idProduct}";
-                if (DB_CONNECTION.ejecutar(query))
+                if (DbConnection.ejecutar(query))
                 {
                     _deletedProducts.Remove(idProduct);
                     _productsAvailable.Add(idProduct);

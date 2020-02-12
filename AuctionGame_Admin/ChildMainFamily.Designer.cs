@@ -1,4 +1,4 @@
-﻿namespace AuctionGame_Aministrador
+﻿namespace AuctionGame_Admin
 {
     partial class ChildMainFamily
     {

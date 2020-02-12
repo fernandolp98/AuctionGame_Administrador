@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace AuctionGame_Aministrador
+namespace AuctionGame_Admin
 {
     static class Program
     {

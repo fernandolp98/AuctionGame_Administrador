@@ -1,6 +1,6 @@
-﻿namespace AuctionGame_Aministrador
+﻿namespace AuctionGame_Admin
 {
-    partial class ChildMainVirtualPlayers
+    partial class ChildMainVirtualBidders
     {
         /// <summary>
         /// Required designer variable.
@@ -28,17 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnSearchVirtualBidder = new System.Windows.Forms.Button();
             this.cboSearchVirtualBidder = new System.Windows.Forms.ComboBox();
             this.txbVirtualBidder = new System.Windows.Forms.TextBox();
             this.dgvVirtualBidders = new System.Windows.Forms.DataGridView();
             this.clmIdFamily = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmIdBidder = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmNameFamily = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmPoints = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmProducts = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnDeleteFamily = new System.Windows.Forms.Button();
+            this.clmDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmWallet = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnDeleteVirtualBidder = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVirtualBidders)).BeginInit();
             this.SuspendLayout();
             // 
@@ -70,8 +71,8 @@
             // 
             // txbVirtualBidder
             // 
-            this.txbVirtualBidder.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.txbVirtualBidder.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txbVirtualBidder.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbVirtualBidder.ForeColor = System.Drawing.Color.Silver;
@@ -88,27 +89,28 @@
             this.dgvVirtualBidders.AllowUserToDeleteRows = false;
             this.dgvVirtualBidders.AllowUserToOrderColumns = true;
             this.dgvVirtualBidders.AllowUserToResizeRows = false;
-            this.dgvVirtualBidders.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.dgvVirtualBidders.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvVirtualBidders.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvVirtualBidders.BackgroundColor = System.Drawing.Color.White;
             this.dgvVirtualBidders.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvVirtualBidders.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(82)))), ((int)(((byte)(118)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 12F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(61)))), ((int)(((byte)(98)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvVirtualBidders.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(82)))), ((int)(((byte)(118)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 12F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(61)))), ((int)(((byte)(98)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvVirtualBidders.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvVirtualBidders.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvVirtualBidders.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.clmIdFamily,
+            this.clmIdBidder,
             this.clmNameFamily,
-            this.clmPoints,
-            this.clmProducts});
+            this.clmDescription,
+            this.clmWallet});
             this.dgvVirtualBidders.EnableHeadersVisualStyles = false;
             this.dgvVirtualBidders.Location = new System.Drawing.Point(13, 116);
             this.dgvVirtualBidders.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -116,15 +118,17 @@
             this.dgvVirtualBidders.Name = "dgvVirtualBidders";
             this.dgvVirtualBidders.ReadOnly = true;
             this.dgvVirtualBidders.RowHeadersVisible = false;
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(117)))), ((int)(((byte)(176)))));
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.White;
-            this.dgvVirtualBidders.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(117)))), ((int)(((byte)(176)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
+            this.dgvVirtualBidders.RowsDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvVirtualBidders.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvVirtualBidders.ShowCellToolTips = false;
             this.dgvVirtualBidders.Size = new System.Drawing.Size(758, 420);
             this.dgvVirtualBidders.TabIndex = 20;
             this.dgvVirtualBidders.Tag = "-1";
+            this.dgvVirtualBidders.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvVirtualBidders_CellClick);
+            this.dgvVirtualBidders.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvVirtualBidders_CellDoubleClick);
             // 
             // clmIdFamily
             // 
@@ -134,45 +138,52 @@
             this.clmIdFamily.ReadOnly = true;
             this.clmIdFamily.Visible = false;
             // 
+            // clmIdBidder
+            // 
+            this.clmIdBidder.HeaderText = "Nº de Apostador";
+            this.clmIdBidder.Name = "clmIdBidder";
+            this.clmIdBidder.ReadOnly = true;
+            // 
             // clmNameFamily
             // 
             this.clmNameFamily.HeaderText = "Nombre";
             this.clmNameFamily.Name = "clmNameFamily";
             this.clmNameFamily.ReadOnly = true;
             // 
-            // clmPoints
+            // clmDescription
             // 
-            this.clmPoints.HeaderText = "Puntos";
-            this.clmPoints.Name = "clmPoints";
-            this.clmPoints.ReadOnly = true;
+            this.clmDescription.HeaderText = "Descripción";
+            this.clmDescription.Name = "clmDescription";
+            this.clmDescription.ReadOnly = true;
             // 
-            // clmProducts
+            // clmWallet
             // 
-            this.clmProducts.HeaderText = "Productos";
-            this.clmProducts.Name = "clmProducts";
-            this.clmProducts.ReadOnly = true;
+            this.clmWallet.HeaderText = "Billetera";
+            this.clmWallet.Name = "clmWallet";
+            this.clmWallet.ReadOnly = true;
             // 
-            // btnDeleteFamily
+            // btnDeleteVirtualBidder
             // 
-            this.btnDeleteFamily.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDeleteFamily.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(47)))), ((int)(((byte)(59)))));
-            this.btnDeleteFamily.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDeleteFamily.ForeColor = System.Drawing.Color.White;
-            this.btnDeleteFamily.Location = new System.Drawing.Point(621, 612);
-            this.btnDeleteFamily.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnDeleteFamily.Name = "btnDeleteFamily";
-            this.btnDeleteFamily.Size = new System.Drawing.Size(150, 35);
-            this.btnDeleteFamily.TabIndex = 24;
-            this.btnDeleteFamily.Text = "Eliminar";
-            this.btnDeleteFamily.UseVisualStyleBackColor = false;
+            this.btnDeleteVirtualBidder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDeleteVirtualBidder.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(47)))), ((int)(((byte)(59)))));
+            this.btnDeleteVirtualBidder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDeleteVirtualBidder.ForeColor = System.Drawing.Color.White;
+            this.btnDeleteVirtualBidder.Location = new System.Drawing.Point(621, 612);
+            this.btnDeleteVirtualBidder.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnDeleteVirtualBidder.Name = "btnDeleteVirtualBidder";
+            this.btnDeleteVirtualBidder.Size = new System.Drawing.Size(150, 35);
+            this.btnDeleteVirtualBidder.TabIndex = 24;
+            this.btnDeleteVirtualBidder.Text = "Eliminar";
+            this.btnDeleteVirtualBidder.UseVisualStyleBackColor = false;
+            this.btnDeleteVirtualBidder.Click += new System.EventHandler(this.btnDeleteVirtualBidder_Click);
             // 
-            // ChildMenuVirtualBidder
+            // ChildMainVirtualBidders
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(213)))), ((int)(((byte)(225)))), ((int)(((byte)(232)))));
             this.ClientSize = new System.Drawing.Size(784, 661);
-            this.Controls.Add(this.btnDeleteFamily);
+            this.Controls.Add(this.btnDeleteVirtualBidder);
             this.Controls.Add(this.btnSearchVirtualBidder);
             this.Controls.Add(this.cboSearchVirtualBidder);
             this.Controls.Add(this.txbVirtualBidder);
@@ -180,8 +191,9 @@
             this.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.Name = "ChildMenuVirtualBidder";
+            this.Name = "ChildMainVirtualBidders";
             this.Text = "ChildVirtualBidders";
+            this.Load += new System.EventHandler(this.ChildMainVirtualPlayers_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvVirtualBidders)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -194,10 +206,11 @@
         private System.Windows.Forms.ComboBox cboSearchVirtualBidder;
         private System.Windows.Forms.TextBox txbVirtualBidder;
         private System.Windows.Forms.DataGridView dgvVirtualBidders;
+        private System.Windows.Forms.Button btnDeleteVirtualBidder;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmIdFamily;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmIdBidder;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmNameFamily;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmPoints;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmProducts;
-        private System.Windows.Forms.Button btnDeleteFamily;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmDescription;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmWallet;
     }
 }

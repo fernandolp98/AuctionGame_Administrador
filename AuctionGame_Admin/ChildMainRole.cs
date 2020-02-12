@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace AuctionGame_Aministrador
+namespace AuctionGame_Admin
 {
     public partial class ChildMainRole : Form
     {
@@ -21,7 +21,7 @@ namespace AuctionGame_Aministrador
 
             if (string.IsNullOrEmpty(query))
                 query = "SELECT * FROM roles_view";
-            var roles = DB_CONNECTION.consultar_datos(query);
+            var roles = DbConnection.consultar_datos(query);
             dgvRoles.Rows.Clear();
             if (roles == null) return;
             var bRole = int.TryParse(dgvRoles.Tag.ToString(), out var currentIdFamily);
@@ -80,7 +80,7 @@ namespace AuctionGame_Aministrador
                 //Se deben validar los jugadors virtuales y si existen decidir si eliminarlos o escoger otro rol...
             }
             var query = $"DELETE FROM role WHERE idRole = {currentIdproduct}";
-            if (DB_CONNECTION.ejecutar(query))
+            if (DbConnection.ejecutar(query))
             {
                 MessageBox.Show(@"Se eliminó correctamente");
                 UpdateRoles("");

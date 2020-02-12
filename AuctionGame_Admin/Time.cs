@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace AuctionGame_Aministrador
+namespace AuctionGame_Admin
 {
     class Time : IComparable<Time>
     {
@@ -28,7 +28,7 @@ namespace AuctionGame_Aministrador
                     break;
             }
             var timeArray = stringTime.Split(':');
-            var hours = 0;
+            var hours = 0;m:
             var minutes = 0;
             var seconds = 0;
             var error = true;

@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 
-namespace AuctionGame_Aministrador
-{
+namespace AuctionGame_Admin
+{ 
     public class Product : IEquatable<Product>
     {
         public int IdProduct;
@@ -46,7 +46,7 @@ namespace AuctionGame_Aministrador
                         $"product.points, " +
                         $"CONVERT(pathImage USING UTF8) " +
                         $"FROM product WHERE idProduct = {idProduct}";
-            var productDataTable = DB_CONNECTION.consultar_datos(query);
+            var productDataTable = DbConnection.consultar_datos(query);
             if (productDataTable == null) return product;
             foreach (DataRow row in productDataTable.Rows)
             {
@@ -66,7 +66,7 @@ namespace AuctionGame_Aministrador
                         $"product.points, " +
                         $"CONVERT(pathImage USING UTF8) " +
                         $"FROM product";
-            var consult = DB_CONNECTION.consultar_datos(query);
+            var consult = DbConnection.consultar_datos(query);
             if (consult == null) return products;
             for (var index = 0; index < consult.Rows.Count; index++)
             {
@@ -101,7 +101,7 @@ namespace AuctionGame_Aministrador
                             "ON product.idProduct = family_has_product.PRODUCT_idProduct " +
                             $"WHERE ROUTINE_idRoutine = {idRoutine} ";
 
-            var consult = DB_CONNECTION.consultar_datos(query);
+            var consult = DbConnection.consultar_datos(query);
             if (consult == null) return products;
             for (var index = 0; index < consult.Rows.Count; index++)
             {
