@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace AuctionGame_Admin
 {
-    public partial class FrmAddParamsForRoutine : Form
+    public partial class FrmParamsForRoutine : Form
     {
-        public FrmAddParamsForRoutine()
+        public FrmParamsForRoutine()
         {
             InitializeComponent();
         }

@@ -106,6 +106,12 @@
     <Compile Include="DataControl.cs" />
     <Compile Include="DbConection.cs" />
     <Compile Include="Family.cs" />
+    <Compile Include="FrmParamsForRoutine.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmParamsForRoutine.Designer.cs">
+      <DependentUpon>FrmParamsForRoutine.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmFamily.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -179,6 +185,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmMainMenu.resx">
       <DependentUpon>FrmMainMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmParamsForRoutine.resx">
+      <DependentUpon>FrmParamsForRoutine.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmProduct.resx">
       <DependentUpon>FrmProduct.cs</DependentUpon>
