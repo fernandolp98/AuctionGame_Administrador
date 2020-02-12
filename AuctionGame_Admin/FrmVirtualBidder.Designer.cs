@@ -32,7 +32,7 @@
             this.txbNameVirtualBidder = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.txbWallet = new System.Windows.Forms.TextBox();
+            this.txbWalletVirtualBidder = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.cboRole = new System.Windows.Forms.ComboBox();
@@ -107,19 +107,19 @@
             this.label2.TabIndex = 45;
             this.label2.Text = "Nombre:";
             // 
-            // txbWallet
+            // txbWalletVirtualBidder
             // 
-            this.txbWallet.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic);
-            this.txbWallet.ForeColor = System.Drawing.Color.Silver;
-            this.txbWallet.Location = new System.Drawing.Point(119, 230);
-            this.txbWallet.Name = "txbWallet";
-            this.txbWallet.Size = new System.Drawing.Size(120, 29);
-            this.txbWallet.TabIndex = 44;
-            this.txbWallet.Tag = "Cartera,moneda";
-            this.txbWallet.Text = "Cartera";
-            this.txbWallet.Enter += new System.EventHandler(this.Txb_Enter);
-            this.txbWallet.Leave += new System.EventHandler(this.Txb_Leave);
-            this.txbWallet.Validated += new System.EventHandler(this.Txb_Validated);
+            this.txbWalletVirtualBidder.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic);
+            this.txbWalletVirtualBidder.ForeColor = System.Drawing.Color.Silver;
+            this.txbWalletVirtualBidder.Location = new System.Drawing.Point(119, 230);
+            this.txbWalletVirtualBidder.Name = "txbWalletVirtualBidder";
+            this.txbWalletVirtualBidder.Size = new System.Drawing.Size(120, 29);
+            this.txbWalletVirtualBidder.TabIndex = 44;
+            this.txbWalletVirtualBidder.Tag = "Cartera,moneda";
+            this.txbWalletVirtualBidder.Text = "Cartera";
+            this.txbWalletVirtualBidder.Enter += new System.EventHandler(this.Txb_Enter);
+            this.txbWalletVirtualBidder.Leave += new System.EventHandler(this.Txb_Leave);
+            this.txbWalletVirtualBidder.Validated += new System.EventHandler(this.Txb_Validated);
             // 
             // label9
             // 
@@ -201,7 +201,7 @@
             this.Controls.Add(this.txbNameVirtualBidder);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.txbWallet);
+            this.Controls.Add(this.txbWalletVirtualBidder);
             this.Controls.Add(this.label9);
             this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
@@ -221,7 +221,7 @@
         private System.Windows.Forms.TextBox txbNameVirtualBidder;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txbWallet;
+        private System.Windows.Forms.TextBox txbWalletVirtualBidder;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cboRole;

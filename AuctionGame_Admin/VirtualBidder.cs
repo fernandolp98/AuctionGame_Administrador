@@ -28,10 +28,11 @@ namespace AuctionGame_Admin
             return true;//Puja
         }
 
-        public static List<VirtualBidder> GetAllVirtualBidders()
+        public static List<VirtualBidder> GetAllVirtualBidders(string query)
         {
+            if(string.IsNullOrEmpty(query))
+                query = "SELECT * FROM virtual_bidders_view";
             var virtualBidders = new List<VirtualBidder>();
-            var query = "SELECT * FROM virtual_bidders_view";
             var virtualBiddersDt = DbConnection.consultar_datos(query);
             if (virtualBiddersDt == null) return null;
             foreach (DataRow row in virtualBiddersDt.Rows)

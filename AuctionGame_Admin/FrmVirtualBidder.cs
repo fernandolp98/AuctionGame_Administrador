@@ -13,9 +13,9 @@ namespace AuctionGame_Admin
 {
     public partial class FrmVirtualBidder : Form
     {
-        private readonly VirtualBidder _virtualBidder;
+        private VirtualBidder _virtualBidder;
         private readonly ChildMainVirtualBidders _father;
-        private readonly bool _edit;
+        private bool _edit;
         public FrmVirtualBidder(VirtualBidder role, Form father)
         {
             InitializeComponent();
@@ -42,7 +42,7 @@ namespace AuctionGame_Admin
                 cboRole.SelectedValue = _virtualBidder.Role.IdRole;
                 DataControl.Text(txbNameVirtualBidder, _virtualBidder.NameBidder);
                 DataControl.Text(txbDescriptionVirtuaBidder, _virtualBidder.DescriptionBidder);
-                DataControl.Text(txbWallet, _virtualBidder.Wallet.ToString(CultureInfo.CurrentCulture));
+                DataControl.Text(txbWalletVirtualBidder, _virtualBidder.Wallet.ToString(CultureInfo.CurrentCulture));
         }
 
         private void LoadRoles()
@@ -68,7 +68,7 @@ namespace AuctionGame_Admin
             {
                 txbNameVirtualBidder,
                 txbDescriptionVirtuaBidder,
-                txbWallet
+                txbWalletVirtualBidder
             };
             return DataControl.Validar(textboxes);
         }
@@ -76,55 +76,59 @@ namespace AuctionGame_Admin
         {
             if (ValidaData())
             {
-                //var newName = txbNameVirtualBidder.Text;
-                //var newDescription = txbDescriptionVirtuaBidder.Text;
+                var newNameVirtualBidder = txbNameVirtualBidder.Text;
+                var newDescriptionVirtualBidder = txbDescriptionVirtuaBidder.Text;
+                var newWalletVirtualBidder = txbWalletVirtualBidder.Text;
+                var newIdRoleVirtualBidder = ((Role)cboRole.SelectedItem).IdRole;
 
-                //if (!_edit) //Si no va a editar un producto ya existente
-                //{
-                //    var query =
-                //        $"SELECT insert_family('{newNameFamily}', {newPointsValue})";
-                //    var idFamilyDt = DbConnection.consultar_datos(query);
-                //    if (idFamilyDt != null) //Si se ejecuta la consulta en la base de datos correctamente
-                //    {
-                //        //_family = Family.GetFamilyById(int.Parse(idFamilyDt.Rows[0][0].ToString()));
-                //        _father?.UpdateVirtualBidders();
-                //        if (Question(@"¡Se ha registrado la familia exitosamente! ¿Desea agregar otra?", @"Familia agregada"))
-                //        {
-
-                //            txbDescriptionVirtuaBidder.Clear();
-                //            txbNameVirtualBidder.Clear();
-                //        }
-                //        else
-                //        {
-                //            _edit = true;
-                //        }
-                //    }
-                //    else
-                //    {
-                //        MessageBox.Show(@"Ocurrió un problema al registrar la familia.");
-                //    }
-                //}
-                //else if (_edit) //Si va a editar un producto ya existente
-                //{
-                //    var query =
-                //        $"UPDATE family set " +
-                //        $"nameFamily = '{newNameFamily}', " +
-                //        $"points = {newPointsValue} " +
-                //        $"WHERE idFamily = {_family.IdFamily}";
-                //    if (DbConnection.ejecutar(query)) //Si se ejecuta la consulta en la base de datos correctamente
-                //    {
-                //        var added = AddNewProducts();
-                //        var removed = RemoveOldProduct();
-                //        _father?.UpdateFamilies("");
-                //        if (!Question($"¡Se ha modificado la familia exitosamente!\nProductos Agregados: {added}\nProductos Eliminados: {removed}\n¿Desea Salir?",
-                //            @"Familia Modificada")) return;
-                //        this.Close();
-                //    }
-                //    else
-                //    {
-                //        MessageBox.Show(@"Ocurrió un problema modificando la familia.");
-                //    }
-                //}
+                if (!_edit) 
+                {
+                    var query =
+                        $"SELECT insert_virtual_bidder(" +
+                        $"'{newNameVirtualBidder}', " +
+                        $"{newDescriptionVirtualBidder}, " +
+                        $"{newWalletVirtualBidder}, " +
+                        $"{newIdRoleVirtualBidder})";
+                    var idVirtualBidderDt = DbConnection.consultar_datos(query);
+                    if (idVirtualBidderDt != null) 
+                    {
+                        _virtualBidder = VirtualBidder.GetVirtualBidderById(int.Parse(idVirtualBidderDt.Rows[0][0].ToString()));
+                        _father?.UpdateVirtualBidders(null);
+                        if (Question(@"¡Se ha registrado el jugador virtual exitosamente! ¿Desea agregar otro?", @"Jugador Virtual Agregado"))
+                        {
+                            txbDescriptionVirtuaBidder.Clear();
+                            txbNameVirtualBidder.Clear();
+                            txbWalletVirtualBidder.Clear();
+                        }
+                        else
+                        {
+                            _edit = true;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show(@"Ocurrió un problema al registrar el jugador virtual.");
+                    }
+                }
+                else if (_edit) //Si va a editar un producto ya existente
+                {
+                    var query =
+                        $"CALL update_virtual_bidder (" +
+                        $"nameBidder = '{newNameVirtualBidder}', " +
+                        $"wallet = {newWalletVirtualBidder} " +
+                        $"ROLE_idRole " +
+                        $"WHERE idFamily = {_virtualBidder.IdVirtualBidder})";
+                    if (DbConnection.ejecutar(query)) //Si se ejecuta la consulta en la base de datos correctamente
+                    {
+                        _father?.UpdateVirtualBidders(null);
+                        if (Question($"¡Se ha modificado el jugador virtual exitosamente! ¿Desea Salir?",
+                            @"Jugador Virtual Modificado")) this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show(@"Ocurrió un problema modificando la familia.");
+                    }
+                }
             }
             else
             {

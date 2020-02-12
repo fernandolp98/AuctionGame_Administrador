@@ -12,16 +12,16 @@ namespace AuctionGame_Admin
 
         private void ChildMainVirtualPlayers_Load(object sender, EventArgs e)
         {
-            UpdateVirtualBidders();
+            UpdateVirtualBidders(null);
         }
         private bool Question(string question, string caption)
         {
             return MessageBox.Show(question, caption, MessageBoxButtons.YesNoCancel) == DialogResult.Yes;
         }
-        public void UpdateVirtualBidders()
+        public void UpdateVirtualBidders(string query)
         {
             dgvVirtualBidders.Rows.Clear();
-            var virtualBidders = VirtualBidder.GetAllVirtualBidders();
+            var virtualBidders = VirtualBidder.GetAllVirtualBidders(query);
 
             if (virtualBidders == null) return;
             foreach (var vb in virtualBidders)
@@ -48,7 +48,7 @@ namespace AuctionGame_Admin
             if (DbConnection.ejecutar(query))
             {
                 MessageBox.Show(@"Se eliminó correctamente");
-                UpdateVirtualBidders();
+                UpdateVirtualBidders(null);
             }
             else
             {
