@@ -30,50 +30,19 @@
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.clmWallet = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmNameFamily = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmIdBidder = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmIdFamily = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvVirtualBidders = new System.Windows.Forms.DataGridView();
             this.txbSearchVirtualBidders = new System.Windows.Forms.TextBox();
             this.cboSearchVirtualBidders = new System.Windows.Forms.ComboBox();
             this.btnSearchVirtualBidders = new System.Windows.Forms.Button();
             this.btnDeleteVirtualBidder = new System.Windows.Forms.Button();
+            this.clmIdFamily = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmIdBidder = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmNameFamily = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmRoleVirtualBidder = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmWallet = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVirtualBidders)).BeginInit();
             this.SuspendLayout();
-            // 
-            // clmWallet
-            // 
-            this.clmWallet.HeaderText = "Billetera";
-            this.clmWallet.Name = "clmWallet";
-            this.clmWallet.ReadOnly = true;
-            // 
-            // clmDescription
-            // 
-            this.clmDescription.HeaderText = "Descripción";
-            this.clmDescription.Name = "clmDescription";
-            this.clmDescription.ReadOnly = true;
-            // 
-            // clmNameFamily
-            // 
-            this.clmNameFamily.HeaderText = "Nombre";
-            this.clmNameFamily.Name = "clmNameFamily";
-            this.clmNameFamily.ReadOnly = true;
-            // 
-            // clmIdBidder
-            // 
-            this.clmIdBidder.HeaderText = "Nº de Apostador";
-            this.clmIdBidder.Name = "clmIdBidder";
-            this.clmIdBidder.ReadOnly = true;
-            // 
-            // clmIdFamily
-            // 
-            this.clmIdFamily.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.clmIdFamily.HeaderText = "ID";
-            this.clmIdFamily.Name = "clmIdFamily";
-            this.clmIdFamily.ReadOnly = true;
-            this.clmIdFamily.Visible = false;
             // 
             // dgvVirtualBidders
             // 
@@ -102,6 +71,7 @@
             this.clmIdBidder,
             this.clmNameFamily,
             this.clmDescription,
+            this.clmRoleVirtualBidder,
             this.clmWallet});
             this.dgvVirtualBidders.EnableHeadersVisualStyles = false;
             this.dgvVirtualBidders.Location = new System.Drawing.Point(13, 116);
@@ -177,6 +147,45 @@
             this.btnDeleteVirtualBidder.UseVisualStyleBackColor = false;
             this.btnDeleteVirtualBidder.Click += new System.EventHandler(this.btnDeleteVirtualBidder_Click);
             // 
+            // clmIdFamily
+            // 
+            this.clmIdFamily.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.clmIdFamily.HeaderText = "ID";
+            this.clmIdFamily.Name = "clmIdFamily";
+            this.clmIdFamily.ReadOnly = true;
+            this.clmIdFamily.Visible = false;
+            this.clmIdFamily.Width = 30;
+            // 
+            // clmIdBidder
+            // 
+            this.clmIdBidder.HeaderText = "Nº de Apostador";
+            this.clmIdBidder.Name = "clmIdBidder";
+            this.clmIdBidder.ReadOnly = true;
+            // 
+            // clmNameFamily
+            // 
+            this.clmNameFamily.HeaderText = "Nombre";
+            this.clmNameFamily.Name = "clmNameFamily";
+            this.clmNameFamily.ReadOnly = true;
+            // 
+            // clmDescription
+            // 
+            this.clmDescription.HeaderText = "Descripción";
+            this.clmDescription.Name = "clmDescription";
+            this.clmDescription.ReadOnly = true;
+            // 
+            // clmRoleVirtualBidder
+            // 
+            this.clmRoleVirtualBidder.HeaderText = "Rol";
+            this.clmRoleVirtualBidder.Name = "clmRoleVirtualBidder";
+            this.clmRoleVirtualBidder.ReadOnly = true;
+            // 
+            // clmWallet
+            // 
+            this.clmWallet.HeaderText = "Billetera";
+            this.clmWallet.Name = "clmWallet";
+            this.clmWallet.ReadOnly = true;
+            // 
             // ChildMainVirtualBidders
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
@@ -201,16 +210,16 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmWallet;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmDescription;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmNameFamily;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmIdBidder;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmIdFamily;
         private System.Windows.Forms.DataGridView dgvVirtualBidders;
         private System.Windows.Forms.TextBox txbSearchVirtualBidders;
         private System.Windows.Forms.ComboBox cboSearchVirtualBidders;
         private System.Windows.Forms.Button btnSearchVirtualBidders;
         private System.Windows.Forms.Button btnDeleteVirtualBidder;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmIdFamily;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmIdBidder;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmNameFamily;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmDescription;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmRoleVirtualBidder;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmWallet;
     }
 }

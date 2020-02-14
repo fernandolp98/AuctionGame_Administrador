@@ -30,9 +30,9 @@ namespace AuctionGame_Admin
         #region Conexion y Desconexón Base de Datos
         public static bool consulta_conexion()
         {
-            if (connection.State == System.Data.ConnectionState.Open)
-                return true;
-            return false;
+            var bEstado = conectar();
+            connection.Close();
+            return bEstado;
         }
 
         private static bool conectar()

@@ -86,7 +86,7 @@ namespace AuctionGame_Admin
                     var query =
                         $"SELECT insert_virtual_bidder(" +
                         $"'{newNameVirtualBidder}', " +
-                        $"{newDescriptionVirtualBidder}, " +
+                        $"'{newDescriptionVirtualBidder}', " +
                         $"{newWalletVirtualBidder}, " +
                         $"{newIdRoleVirtualBidder})";
                     var idVirtualBidderDt = DbConnection.consultar_datos(query);
@@ -114,10 +114,11 @@ namespace AuctionGame_Admin
                 {
                     var query =
                         $"CALL update_virtual_bidder (" +
-                        $"nameBidder = '{newNameVirtualBidder}', " +
-                        $"wallet = {newWalletVirtualBidder} " +
-                        $"ROLE_idRole " +
-                        $"WHERE idFamily = {_virtualBidder.IdVirtualBidder})";
+                        $"{_virtualBidder.IdVirtualBidder}, " +
+                        $"'{newNameVirtualBidder}', " +
+                        $"'{newDescriptionVirtualBidder}', " +
+                        $"{newWalletVirtualBidder}, " +
+                        $"{newIdRoleVirtualBidder})";
                     if (DbConnection.ejecutar(query)) //Si se ejecuta la consulta en la base de datos correctamente
                     {
                         _father?.UpdateVirtualBidders(null);
@@ -126,7 +127,7 @@ namespace AuctionGame_Admin
                     }
                     else
                     {
-                        MessageBox.Show(@"Ocurrió un problema modificando la familia.");
+                        MessageBox.Show(@"Ocurrió un problema modificando el jugador virtual.");
                     }
                 }
             }
