@@ -51,9 +51,9 @@ DROP TABLE IF EXISTS `auction_has_bidder`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `auction_has_bidder` (
   `AUCTION_idAuction` int NOT NULL,
-  `BIDDER_idBidd` int NOT NULL,
-  PRIMARY KEY (`AUCTION_idAuction`,`BIDDER_idBidd`),
-  KEY `fk_AUCTION_has_BIDDER_BIDDER1_idx` (`BIDDER_idBidd`),
+  `BIDDER_idBidder` int NOT NULL,
+  PRIMARY KEY (`AUCTION_idAuction`,`BIDDER_idBidder`),
+  KEY `fk_AUCTION_has_BIDDER_BIDDER1_idx` (`BIDDER_idBidder`),
   KEY `fk_AUCTION_has_BIDDER_AUCTION1_idx` (`AUCTION_idAuction`),
   CONSTRAINT `fk_AUCTION_has_BIDDER_AUCTION1` FOREIGN KEY (`AUCTION_idAuction`) REFERENCES `auction` (`idAuction`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -447,10 +447,10 @@ DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `idUser` int NOT NULL AUTO_INCREMENT,
   `idStats` int NOT NULL,
-  `BIDDER_idBidd` int NOT NULL,
+  `BIDDER_idBidder` int NOT NULL,
   PRIMARY KEY (`idUser`),
-  KEY `FK_BIDDER_idBidd` (`BIDDER_idBidd`),
-  CONSTRAINT `FK_BIDDER_idBidd` FOREIGN KEY (`BIDDER_idBidd`) REFERENCES `bidder` (`idBidder`) ON UPDATE CASCADE
+  KEY `FK_BIDDER_idBidder` (`BIDDER_idBidder`),
+  CONSTRAINT `FK_BIDDER_idBidder` FOREIGN KEY (`BIDDER_idBidder`) REFERENCES `bidder` (`idBidder`) ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -468,13 +468,13 @@ UNLOCK TABLES;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
 /*!50003 SET character_set_client  = utf8mb4 */ ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
 DELIMITER ;;
 /*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `user_AFTER_DELETE` AFTER DELETE ON `user` FOR EACH ROW BEGIN
 
-DELETE FROM `auctiongame`.`bidder` WHERE `idBidd` = OLD.`BIDDER_idBidd`;
+DELETE FROM `auctiongame`.`bidder` WHERE `idBidd` = OLD.`BIDDER_idBidder`;
 DELETE FROM `auctiongame`.`statistical_data` WHERE `idSTATISCAL` = OLD.`idStats`;
 
 END */;;
@@ -519,13 +519,13 @@ UNLOCK TABLES;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
 /*!50003 SET character_set_client  = utf8mb4 */ ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
 DELIMITER ;;
 /*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `virtual_bidder_AFTER_DELETE` AFTER DELETE ON `virtual_bidder` FOR EACH ROW BEGIN
 
-DELETE FROM `auctiongame`.`bidder` WHERE `idBidd` = OLD.`BIDDER_idBidd`;
+DELETE FROM `auctiongame`.`bidder` WHERE `idBidd` = OLD.`BIDDER_idBidder`;
 
 END */;;
 DELIMITER ;
@@ -564,7 +564,7 @@ SET character_set_client = @saved_cs_client;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
 /*!50003 SET character_set_client  = utf8mb4 */ ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
@@ -585,7 +585,7 @@ DELIMITER ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
 /*!50003 SET character_set_client  = utf8mb4 */ ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
@@ -633,7 +633,7 @@ DELIMITER ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
 /*!50003 SET character_set_client  = utf8mb4 */ ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
@@ -654,7 +654,7 @@ DELIMITER ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
 /*!50003 SET character_set_client  = utf8mb4 */ ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
@@ -680,7 +680,7 @@ DELIMITER ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
 /*!50003 SET character_set_client  = utf8mb4 */ ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
 DELIMITER ;;
@@ -690,7 +690,7 @@ BEGIN
     SET @idBidd = LAST_INSERT_ID();
     INSERT INTO statistical_data VALUES();
     SET @idStats = LAST_INSERT_ID();
-	INSERT INTO user (idStats, BIDDER_idBidd) VALUES (@idStats, @idBidd);
+	INSERT INTO user (idStats, BIDDER_idBidder) VALUES (@idStats, @idBidd);
 END ;;
 DELIMITER ;
 /*!50003 SET sql_mode              = @saved_sql_mode */ ;
@@ -703,7 +703,7 @@ DELIMITER ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
 /*!50003 SET character_set_client  = utf8mb4 */ ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
@@ -723,7 +723,7 @@ DELIMITER ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
 /*!50003 SET character_set_client  = utf8mb4 */ ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
 DELIMITER ;;
@@ -761,7 +761,7 @@ DELIMITER ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
 /*!50003 SET character_set_client  = utf8mb4 */ ;
 /*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
@@ -797,7 +797,7 @@ DELIMITER ;
 /*!50001 SET @saved_col_connection     = @@collation_connection */;
 /*!50001 SET character_set_client      = utf8mb4 */;
 /*!50001 SET character_set_results     = utf8mb4 */;
-/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
+/*!50001 SET collation_connection      = utf8mb4_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
 /*!50001 VIEW `families_view` AS select `family`.`idFamily` AS `idFamily`,`family`.`nameFamily` AS `nameFamily`,`family`.`points` AS `points`,count(`family_has_product`.`FAMILY_idFamily`) AS `products` from (`family` left join `family_has_product` on((`family`.`idFamily` = `family_has_product`.`FAMILY_idFamily`))) group by `family`.`idFamily` */;
@@ -815,7 +815,7 @@ DELIMITER ;
 /*!50001 SET @saved_col_connection     = @@collation_connection */;
 /*!50001 SET character_set_client      = utf8mb4 */;
 /*!50001 SET character_set_results     = utf8mb4 */;
-/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
+/*!50001 SET collation_connection      = utf8mb4_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
 /*!50001 VIEW `roles_view` AS select `role`.`idRole` AS `idRole`,`role`.`nameRole` AS `nameRole`,`role`.`descriptionRole` AS `descriptionRole`,concat(concat_ws(':',floor((`role`.`timeToBid_Down` / 60)),(`role`.`timeToBid_Down` % 60)),' - ',concat_ws(':',floor((`role`.`timeToBid_Top` / 60)),(`role`.`timeToBid_Top` % 60))) AS `timeToBid`,concat(`role`.`offersForRound_Down`,' - ',`role`.`offersForRound_Top`) AS `offersForRound`,concat(`role`.`rounds_Down`,' - ',`role`.`rounds_Top`) AS `rounds`,concat(`role`.`bidIncrease_Down`,' - ',`role`.`bidIncrease_Top`) AS `BidIncrease` from `role` */;
@@ -833,7 +833,7 @@ DELIMITER ;
 /*!50001 SET @saved_col_connection     = @@collation_connection */;
 /*!50001 SET character_set_client      = utf8mb4 */;
 /*!50001 SET character_set_results     = utf8mb4 */;
-/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
+/*!50001 SET collation_connection      = utf8mb4_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
 /*!50001 VIEW `virtual_bidders_view` AS select `virtual_bidder`.`IdVirtualBidder` AS `idVirtualBidder`,`virtual_bidder`.`BIDDER_idBidder` AS `BIDDER_idBidder`,`bidder`.`nameBidder` AS `nameBidder`,`virtual_bidder`.`descriptionBidder` AS `descriptionBidder`,`bidder`.`wallet` AS `wallet`,`virtual_bidder`.`ROLE_idRole` AS `ROLE_idRole` from (`virtual_bidder` left join `bidder` on((`virtual_bidder`.`BIDDER_idBidder` = `bidder`.`idBidder`))) */;

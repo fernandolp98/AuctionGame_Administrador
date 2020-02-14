@@ -16,17 +16,17 @@ namespace AuctionGame_Admin
         private VirtualBidder _virtualBidder;
         private readonly ChildMainVirtualBidders _father;
         private bool _edit;
-        public FrmVirtualBidder(VirtualBidder role, Form father)
+        public FrmVirtualBidder(VirtualBidder role, ChildMainVirtualBidders father)
         {
             InitializeComponent();
-            _father = (ChildMainVirtualBidders)father;
+            _father = father;
             this._virtualBidder = role;
             _edit = true;
         }
-        public FrmVirtualBidder(Form father)
+        public FrmVirtualBidder(ChildMainVirtualBidders father)
         {
             InitializeComponent();
-            _father = (ChildMainVirtualBidders)father;
+            _father = father;
             _edit = false;
         }
 

@@ -54,11 +54,8 @@ namespace AuctionGame_Admin
         public static List<VirtualBidder> GetVirtualBiddersByRoutine(int idRoutine)
         {
             var virtualBidders = new List<VirtualBidder>();
-            var query = "SELECT virtual_bidder.*, bidder.nameBidder, bidder.wallet FROM routine_has_virtual_bidder " +
-                           "INNER JOIN virtual_bidder " +
-                           "ON virtual_bidder.IdVirtualBidd = routine_has_virtual_bidder.VIRTUAL_BIDDER_idVIrtualBidder " +
-                           "INNER JOIN bidder on virtual_bidder.BIDDER_idBidd = bidder.idBidd " +
-                           $"WHERE routine_has_virtual_bidder.ROUTINE_idRoutine = {idRoutine}";
+            var query = "SELECT * FROM virtual_bidders_per_routine " +
+                           $"WHERE ROUTINE_idRoutine = {idRoutine}";
             var virtualBiddersDt = DbConnection.consultar_datos(query);
 
             if (virtualBiddersDt == null) return null;
@@ -67,11 +64,11 @@ namespace AuctionGame_Admin
                 var virtualBidder = new VirtualBidder()
                 {
                     IdVirtualBidder = (int)row[0],
-                    IdBidder = (int)row[1],
-                    NameBidder = (string)row[2],
-                    DescriptionBidder = (string)row[3],
-                    Wallet = (decimal)row[4],
-                    Role = new Role((int)row[5])
+                    DescriptionBidder = (string)row[1],
+                    IdBidder = (int)row[2],
+                    Role = new Role((int)row[3]),
+                    NameBidder = (string)row[4],
+                    Wallet = (decimal)row[5],
                 }; virtualBidders.Add(virtualBidder);
             }
             return virtualBidders;

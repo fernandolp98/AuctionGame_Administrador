@@ -34,14 +34,14 @@
             this.btnSearchRoutines = new System.Windows.Forms.Button();
             this.cboSearchRoutines = new System.Windows.Forms.ComboBox();
             this.txbSeacrhRoutines = new System.Windows.Forms.TextBox();
-            this.dgvVirtualBidders = new System.Windows.Forms.DataGridView();
+            this.dgvRoutines = new System.Windows.Forms.DataGridView();
             this.clmIdFamily = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmNameFamily = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmFamilies = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmProducts = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmVirtualBidders = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvVirtualBidders)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvRoutines)).BeginInit();
             this.SuspendLayout();
             // 
             // btnDeleteRoutine
@@ -98,19 +98,19 @@
             this.txbSeacrhRoutines.Tag = "Buscar,alfanumerico";
             this.txbSeacrhRoutines.Text = "Buscar";
             // 
-            // dgvVirtualBidders
+            // dgvRoutines
             // 
-            this.dgvVirtualBidders.AllowUserToAddRows = false;
-            this.dgvVirtualBidders.AllowUserToDeleteRows = false;
-            this.dgvVirtualBidders.AllowUserToOrderColumns = true;
-            this.dgvVirtualBidders.AllowUserToResizeRows = false;
-            this.dgvVirtualBidders.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.dgvRoutines.AllowUserToAddRows = false;
+            this.dgvRoutines.AllowUserToDeleteRows = false;
+            this.dgvRoutines.AllowUserToOrderColumns = true;
+            this.dgvRoutines.AllowUserToResizeRows = false;
+            this.dgvRoutines.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvVirtualBidders.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvVirtualBidders.BackgroundColor = System.Drawing.Color.White;
-            this.dgvVirtualBidders.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dgvVirtualBidders.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            this.dgvRoutines.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvRoutines.BackgroundColor = System.Drawing.Color.White;
+            this.dgvRoutines.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvRoutines.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(82)))), ((int)(((byte)(118)))));
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 12F);
@@ -118,31 +118,33 @@
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(61)))), ((int)(((byte)(98)))));
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvVirtualBidders.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvVirtualBidders.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvVirtualBidders.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvRoutines.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvRoutines.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvRoutines.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.clmIdFamily,
             this.clmNameFamily,
             this.clmDescription,
             this.clmFamilies,
             this.clmProducts,
             this.clmVirtualBidders});
-            this.dgvVirtualBidders.EnableHeadersVisualStyles = false;
-            this.dgvVirtualBidders.Location = new System.Drawing.Point(13, 116);
-            this.dgvVirtualBidders.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.dgvVirtualBidders.MultiSelect = false;
-            this.dgvVirtualBidders.Name = "dgvVirtualBidders";
-            this.dgvVirtualBidders.ReadOnly = true;
-            this.dgvVirtualBidders.RowHeadersVisible = false;
+            this.dgvRoutines.EnableHeadersVisualStyles = false;
+            this.dgvRoutines.Location = new System.Drawing.Point(13, 116);
+            this.dgvRoutines.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dgvRoutines.MultiSelect = false;
+            this.dgvRoutines.Name = "dgvRoutines";
+            this.dgvRoutines.ReadOnly = true;
+            this.dgvRoutines.RowHeadersVisible = false;
             dataGridViewCellStyle2.ForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(117)))), ((int)(((byte)(176)))));
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.White;
-            this.dgvVirtualBidders.RowsDefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvVirtualBidders.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvVirtualBidders.ShowCellToolTips = false;
-            this.dgvVirtualBidders.Size = new System.Drawing.Size(758, 420);
-            this.dgvVirtualBidders.TabIndex = 25;
-            this.dgvVirtualBidders.Tag = "-1";
+            this.dgvRoutines.RowsDefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvRoutines.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvRoutines.ShowCellToolTips = false;
+            this.dgvRoutines.Size = new System.Drawing.Size(758, 420);
+            this.dgvRoutines.TabIndex = 25;
+            this.dgvRoutines.Tag = "-1";
+            this.dgvRoutines.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRoutines_CellClick);
+            this.dgvRoutines.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRoutines_CellDoubleClick);
             // 
             // clmIdFamily
             // 
@@ -151,7 +153,6 @@
             this.clmIdFamily.Name = "clmIdFamily";
             this.clmIdFamily.ReadOnly = true;
             this.clmIdFamily.Visible = false;
-            this.clmIdFamily.Width = 30;
             // 
             // clmNameFamily
             // 
@@ -193,13 +194,14 @@
             this.Controls.Add(this.btnSearchRoutines);
             this.Controls.Add(this.cboSearchRoutines);
             this.Controls.Add(this.txbSeacrhRoutines);
-            this.Controls.Add(this.dgvVirtualBidders);
+            this.Controls.Add(this.dgvRoutines);
             this.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "ChildMainRoutines";
             this.Text = "ChildMainRoutines";
-            ((System.ComponentModel.ISupportInitialize)(this.dgvVirtualBidders)).EndInit();
+            this.Load += new System.EventHandler(this.ChildMainRoutines_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvRoutines)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -211,7 +213,7 @@
         private System.Windows.Forms.Button btnSearchRoutines;
         private System.Windows.Forms.ComboBox cboSearchRoutines;
         private System.Windows.Forms.TextBox txbSeacrhRoutines;
-        private System.Windows.Forms.DataGridView dgvVirtualBidders;
+        private System.Windows.Forms.DataGridView dgvRoutines;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmIdFamily;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmNameFamily;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmDescription;

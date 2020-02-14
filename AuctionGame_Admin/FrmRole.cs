@@ -8,17 +8,17 @@ namespace AuctionGame_Admin
         private bool _edit;
         private readonly ChildMainRole _father;
         private Role _role;
-        public FrmRole(Role role, Form father)
+        public FrmRole(Role role, ChildMainRole father)
         {
             InitializeComponent();
-            _father = (ChildMainRole)father;
+            _father = father;
             this._role = role;
             _edit = true;
         }
-        public FrmRole(Form father)
+        public FrmRole(ChildMainRole father)
         {
             InitializeComponent();
-            _father = (ChildMainRole)father;
+            _father = father;
             _edit = false;
         }
         private void FrmRole_Load(object sender, EventArgs e)

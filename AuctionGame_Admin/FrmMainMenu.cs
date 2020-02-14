@@ -231,7 +231,7 @@ namespace AuctionGame_Admin
             {
                 OpenChildForm(childRoutines);
             }
-            var form = new FrmRoutine();
+            var form = new FrmRoutine(childRoutines);
             form.Show();
         }
         private void btnUsers_Click(object sender, EventArgs e)

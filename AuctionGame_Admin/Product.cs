@@ -84,22 +84,10 @@ namespace AuctionGame_Admin
             return products;
         }
 
-        public static List<Product> ProductsByRoutine(int idRoutine)
+        public static List<Product> GetSingleProductsByRoutine(int idRoutine)
         {
             var products = new List<Product>();
-            var query = $"SELECT product.idProduct, product.nameProduct, product.startinPrice, product.points, CONVERT(pathImage USING UTF8) " +
-                            "FROM routine_has_product " +
-                            "LEFT JOIN product " +
-                            "ON product.idProduct = routine_has_product.PRODUCT_idProduct " +
-                            $"WHERE ROUTINE_idRoutine = {idRoutine} " +
-                            "UNION " +
-                            "SELECT product.idProduct, product.nameProduct, product.startinPrice, product.points, CONVERT(pathImage USING UTF8) " +
-                            "FROM routine_has_family " +
-                            "LEFT JOIN family_has_product " +
-                            "ON routine_has_family.FAMILY_idFamily = family_has_product.FAMILY_idFamily " +
-                            "LEFT JOIN product " +
-                            "ON product.idProduct = family_has_product.PRODUCT_idProduct " +
-                            $"WHERE ROUTINE_idRoutine = {idRoutine} ";
+            var query = $"SELECT * FROM single_products_per_routine WHERE ROUTINE_idRoutine = {idRoutine}";
 
             var consult = DbConnection.consultar_datos(query);
             if (consult == null) return products;
@@ -110,6 +98,28 @@ namespace AuctionGame_Admin
                 var name = (string) row[1];
                 var price = (decimal) row[2];
                 var points = (int) row[3];
+                var image = DataControl.Base64StringToImage((string)row[4]);
+
+
+                var p = new Product(id, name, price, points, image);
+                products.Add(p);
+            }
+            return products;
+        }
+        public static List<Product> GetProductPerFamilyByRoutine(int idRoutine)
+        {
+            var products = new List<Product>();
+            var query = $"SELECT * FROM products_per_family_per_routine WHERE ROUTINE_idRoutine = {idRoutine}";
+
+            var consult = DbConnection.consultar_datos(query);
+            if (consult == null) return products;
+            for (var index = 0; index < consult.Rows.Count; index++)
+            {
+                var row = consult.Rows[index];
+                var id = (int)row[0];
+                var name = (string)row[1];
+                var price = (decimal)row[2];
+                var points = (int)row[3];
                 var image = DataControl.Base64StringToImage((string)row[4]);
 
 

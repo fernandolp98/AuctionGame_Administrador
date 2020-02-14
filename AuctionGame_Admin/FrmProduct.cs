@@ -16,11 +16,11 @@ namespace AuctionGame_Admin
         private readonly Product _product;
         private readonly bool _edit;
         private readonly ChildMainProducts _father;
-        public FrmProduct(Form f)
+        public FrmProduct(ChildMainProducts father)
         {
             InitializeComponent();
             _edit = false;
-            _father = (ChildMainProducts)f;
+            _father = father;
 
         }
         public FrmProduct()
@@ -28,12 +28,12 @@ namespace AuctionGame_Admin
             InitializeComponent();
             _edit = false;
         }
-        public FrmProduct(Product p, Form f)
+        public FrmProduct(Product product, ChildMainProducts father)
         {
             InitializeComponent();
-            _product = p;
+            _product = product;
             _edit = true;
-            _father = (ChildMainProducts)f;
+            _father = father;
         }
 
         private void frmProducto_Load(object sender, EventArgs e)

@@ -22,20 +22,20 @@ namespace AuctionGame_Admin
         private readonly List<int> _deletedProducts;//Productos de los registrados a eliminar
 
 
-        public FrmFamily(ChildMainFamily f)
+        public FrmFamily(ChildMainFamily family)
         {
             InitializeComponent();
             _edit = false;
-            this._father = f;
+            this._father = family;
             _productRegistered = new List<int>();
             _productsAvailable = new List<int>();
             _newProducts = new List<int>();
             _deletedProducts = new List<int>();
         }
-        public FrmFamily(Family f, ChildMainFamily faher)
+        public FrmFamily(Family family, ChildMainFamily faher)
         {
             InitializeComponent();
-            _family = f;
+            _family = family;
             _edit = true;
             this._father = faher;
             _newProducts = new List<int>();
