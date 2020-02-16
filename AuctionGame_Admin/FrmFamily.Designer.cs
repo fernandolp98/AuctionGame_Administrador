@@ -1,4 +1,4 @@
-﻿namespace AuctionGame_Aministrador
+﻿namespace AuctionGame_Admin
 {
     partial class FrmFamily
     {
@@ -77,11 +77,12 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(82)))), ((int)(((byte)(118)))));
             this.label3.Location = new System.Drawing.Point(33, 105);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(61, 21);
+            this.label3.Size = new System.Drawing.Size(67, 21);
             this.label3.TabIndex = 8;
             this.label3.Text = "Puntos:";
             // 
@@ -91,11 +92,12 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(82)))), ((int)(((byte)(118)))));
             this.label2.Location = new System.Drawing.Point(23, 66);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(71, 21);
+            this.label2.Size = new System.Drawing.Size(77, 21);
             this.label2.TabIndex = 7;
             this.label2.Text = "Nombre:";
             // 
@@ -285,7 +287,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(202)))), ((int)(((byte)(216)))));
-            this.ClientSize = new System.Drawing.Size(484, 451);
+            this.ClientSize = new System.Drawing.Size(484, 456);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.pBoxDeleteProduct);

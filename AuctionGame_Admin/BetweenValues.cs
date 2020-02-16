@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace AuctionGame_Aministrador
+namespace AuctionGame_Admin
 {
     public class BetwenValues
     {

@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
-namespace AuctionGame_Aministrador
+
+namespace AuctionGame_Admin
 {
     public class ConfigDb
     {
@@ -24,7 +21,7 @@ namespace AuctionGame_Aministrador
             database = db;
         }
     }
-    static class DB_CONNECTION
+    static class DbConnection
     {
         public static ConfigDb configuracion = new ConfigDb("root", "root", "localhost", "3306", "auctionGame");
         private static MySqlConnection connection = new MySqlConnection();
@@ -33,9 +30,9 @@ namespace AuctionGame_Aministrador
         #region Conexion y Desconexón Base de Datos
         public static bool consulta_conexion()
         {
-            if (connection.State == System.Data.ConnectionState.Open)
-                return true;
-            return false;
+            var bEstado = conectar();
+            connection.Close();
+            return bEstado;
         }
 
         private static bool conectar()

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Data;
 
-namespace AuctionGame_Aministrador
+namespace AuctionGame_Admin
 {
     public class Role
     {
@@ -14,7 +14,7 @@ namespace AuctionGame_Aministrador
         public BetwenValues BidIncrease { get; }//valor que puede incrementar en su oferta
         public Role(int roleId)
         {
-            var values = DB_CONNECTION.consultar_datos($"SELECT * FROM role WHERE idRole = {roleId}");
+            var values = DbConnection.consultar_datos($"SELECT * FROM role WHERE idRole = {roleId}");
             if (values != null)
             {
                 this.IdRole = roleId;
@@ -47,7 +47,7 @@ namespace AuctionGame_Aministrador
         {
             var roles = new List<Role>();
             var query = "SELECT idRole FROM role";
-            var consult = DB_CONNECTION.consultar_datos(query);
+            var consult = DbConnection.consultar_datos(query);
             if (consult == null) return roles;
             foreach (DataRow row in consult.Rows)
             {

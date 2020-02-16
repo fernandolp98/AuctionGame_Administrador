@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace AuctionGame_Aministrador
+namespace AuctionGame_Admin
 {
     public partial class FrmMainMenu : Form
     {
@@ -180,30 +180,30 @@ namespace AuctionGame_Aministrador
         }
         private void btnVirtualPlayers_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new ChildMainVirtualPlayers());
+            OpenChildForm(new ChildMainVirtualBidders());
 
         }
 
         private void btnAddVirtualPlayer_Click(object sender, EventArgs e)
         {
-            var childVirtualPlayers = new ChildMainVirtualPlayers();
+            var childVirtualPlayers = new ChildMainVirtualBidders();
             if (pnlDashboard.Controls.Count > 0)//Si el panel principal contiene un Formulario hijo
             {
 
-                if (pnlDashboard.Controls[0].GetType() != typeof(ChildMainVirtualPlayers))//Si el tipo de formulario es diferente a ChildMenuProducts
+                if (pnlDashboard.Controls[0].GetType() != typeof(ChildMainVirtualBidders))//Si el tipo de formulario es diferente a ChildMenuProducts
                 {
                     OpenChildForm(childVirtualPlayers);//Agrega un nuevo formulario de childMenuProducts
                 }
                 else
                 {
-                    childVirtualPlayers = (ChildMainVirtualPlayers)pnlDashboard.Controls[0];
+                    childVirtualPlayers = (ChildMainVirtualBidders)pnlDashboard.Controls[0];
                 }
             }
             else
             {
                 OpenChildForm(childVirtualPlayers);
             }
-            var form = new FrmVirtualPlayer();
+            var form = new FrmVirtualBidder(childVirtualPlayers);
             form.Show();
         }
 
@@ -231,7 +231,7 @@ namespace AuctionGame_Aministrador
             {
                 OpenChildForm(childRoutines);
             }
-            var form = new FrmVirtualPlayer();
+            var form = new FrmRoutine(childRoutines);
             form.Show();
         }
         private void btnUsers_Click(object sender, EventArgs e)

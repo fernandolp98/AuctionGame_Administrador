@@ -66,6 +66,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BetweenValues.cs" />
+    <Compile Include="Bidder.cs" />
     <Compile Include="ChildMainFamily.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -96,15 +97,27 @@
     <Compile Include="ChildMainUsers.Designer.cs">
       <DependentUpon>ChildMainUsers.cs</DependentUpon>
     </Compile>
-    <Compile Include="ChildMainVirtualPlayers.cs">
+    <Compile Include="ChildMainVirtualBidders.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ChildMainVirtualPlayers.Designer.cs">
-      <DependentUpon>ChildMainVirtualPlayers.cs</DependentUpon>
+    <Compile Include="ChildMainVirtualBidders.Designer.cs">
+      <DependentUpon>ChildMainVirtualBidders.cs</DependentUpon>
     </Compile>
     <Compile Include="DataControl.cs" />
     <Compile Include="DbConection.cs" />
     <Compile Include="Family.cs" />
+    <Compile Include="FrmFamiliesForRoutine.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmFamiliesForRoutine.Designer.cs">
+      <DependentUpon>FrmFamiliesForRoutine.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmProductsForRoutine.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmProductsForRoutine.Designer.cs">
+      <DependentUpon>FrmProductsForRoutine.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmFamily.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -147,23 +160,41 @@
     <Compile Include="ChildMainStatistics.Designer.cs">
       <DependentUpon>ChildMainStatistics.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmVirtualPlayer.cs">
+    <Compile Include="FrmVirtualBidder.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmVirtualPlayer.Designer.cs">
-      <DependentUpon>FrmVirtualPlayer.cs</DependentUpon>
+    <Compile Include="FrmVirtualBidder.Designer.cs">
+      <DependentUpon>FrmVirtualBidder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmVurtualBiddersForRoutine.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmVurtualBiddersForRoutine.Designer.cs">
+      <DependentUpon>FrmVurtualBiddersForRoutine.cs</DependentUpon>
     </Compile>
     <Compile Include="Product.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Role.cs" />
+    <Compile Include="Routine.cs" />
+    <Compile Include="Statistical.cs" />
     <Compile Include="Time.cs" />
     <Compile Include="TimesValues.cs" />
+    <Compile Include="VirtualBidder.cs" />
     <EmbeddedResource Include="ChildMainFamily.resx">
       <DependentUpon>ChildMainFamily.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ChildMainProducts.resx">
       <DependentUpon>ChildMainProducts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChildMainRoutines.resx">
+      <DependentUpon>ChildMainRoutines.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChildMainVirtualBidders.resx">
+      <DependentUpon>ChildMainVirtualBidders.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmFamiliesForRoutine.resx">
+      <DependentUpon>FrmFamiliesForRoutine.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmFamily.resx">
       <DependentUpon>FrmFamily.cs</DependentUpon>
@@ -171,8 +202,23 @@
     <EmbeddedResource Include="FrmMainMenu.resx">
       <DependentUpon>FrmMainMenu.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmProductsForRoutine.resx">
+      <DependentUpon>FrmProductsForRoutine.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmProduct.resx">
       <DependentUpon>FrmProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmRole.resx">
+      <DependentUpon>FrmRole.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmRoutine.resx">
+      <DependentUpon>FrmRoutine.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmVirtualBidder.resx">
+      <DependentUpon>FrmVirtualBidder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmVurtualBiddersForRoutine.resx">
+      <DependentUpon>FrmVurtualBiddersForRoutine.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -217,6 +263,15 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\guardar-el-archivo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\editUnabled.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -9,7 +9,7 @@ using System.Windows.Forms;
 //Color Rojo Poccel: System.Drawing.ColorTranslator.FromHtml("#DF2F3B");
 
 
-namespace AuctionGame_Aministrador
+namespace AuctionGame_Admin
 {
     static class DataControl
     {
@@ -120,6 +120,12 @@ namespace AuctionGame_Aministrador
             {
                 ((MaskedTextBox)o).ForeColor = Color.Red;
             }
+        }
+
+        public static bool Validar(TextBox txb)
+        {
+            var type = ((string)txb.Tag).Split(',')[1]; 
+            return Validar(txb, type);
         }
         public static bool Validar(TextBox txb, string type)
         {

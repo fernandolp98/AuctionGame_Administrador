@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace AuctionGame_Aministrador
+namespace AuctionGame_Admin
 {
     public partial class ChildMainProducts : Form
     {
@@ -27,7 +27,7 @@ namespace AuctionGame_Aministrador
         {
             if (string.IsNullOrEmpty(query))
                 query = "SELECT product.idProduct, product.nameProduct, product.startinPrice, product.points, CONVERT(pathImage USING UTF8) FROM product";
-            var products = DB_CONNECTION.consultar_datos(query); //Obtiene una consulta de los productos de la base de datos
+            var products = DbConnection.consultar_datos(query); //Obtiene una consulta de los productos de la base de datos
             dgvProducts.Rows.Clear();//Limpia las filas de la tabla producto
             if (products == null) return;
             var bProducts = int.TryParse(dgvProducts.Tag.ToString(), out var currentIdProduct);
@@ -59,7 +59,7 @@ namespace AuctionGame_Aministrador
             if (!Question($@"¿Está seguro de eliminar el producto {currentNameProduct} ({currentIdproduct})?",
                 @"Estás a punto de eliminar un producto")) return;
             var query = $"DELETE FROM product WHERE idProduct = {currentIdproduct}"; //Query  para eliminar producto seleccionado
-            if (DB_CONNECTION.ejecutar(query))//Ejecuta el query en la base de datos
+            if (DbConnection.ejecutar(query))//Ejecuta el query en la base de datos
             {
                 MessageBox.Show(@"Se eliminó correctamente");
                 UpdateProducts("");
