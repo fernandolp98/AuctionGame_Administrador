@@ -106,11 +106,17 @@
     <Compile Include="DataControl.cs" />
     <Compile Include="DbConection.cs" />
     <Compile Include="Family.cs" />
-    <Compile Include="FrmParamsForRoutine.cs">
+    <Compile Include="FrmFamiliesForRoutine.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmParamsForRoutine.Designer.cs">
-      <DependentUpon>FrmParamsForRoutine.cs</DependentUpon>
+    <Compile Include="FrmFamiliesForRoutine.Designer.cs">
+      <DependentUpon>FrmFamiliesForRoutine.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmProductsForRoutine.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmProductsForRoutine.Designer.cs">
+      <DependentUpon>FrmProductsForRoutine.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmFamily.cs">
       <SubType>Form</SubType>
@@ -181,14 +187,17 @@
     <EmbeddedResource Include="ChildMainVirtualBidders.resx">
       <DependentUpon>ChildMainVirtualBidders.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmFamiliesForRoutine.resx">
+      <DependentUpon>FrmFamiliesForRoutine.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmFamily.resx">
       <DependentUpon>FrmFamily.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmMainMenu.resx">
       <DependentUpon>FrmMainMenu.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmParamsForRoutine.resx">
-      <DependentUpon>FrmParamsForRoutine.cs</DependentUpon>
+    <EmbeddedResource Include="FrmProductsForRoutine.resx">
+      <DependentUpon>FrmProductsForRoutine.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmProduct.resx">
       <DependentUpon>FrmProduct.cs</DependentUpon>
@@ -248,6 +257,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\guardar-el-archivo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\editUnabled.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

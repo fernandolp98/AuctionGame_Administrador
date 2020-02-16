@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace AuctionGame_Admin
@@ -13,6 +9,9 @@ namespace AuctionGame_Admin
     public partial class FrmRoutine : Form
     {
         private readonly Routine _routine;
+        private readonly Color _enableColor = Color.FromArgb(26, 82, 118);
+
+
         private bool _edit;
         private readonly ChildMainRoutines _father;
         public FrmRoutine(Routine routine, ChildMainRoutines father)
@@ -21,7 +20,8 @@ namespace AuctionGame_Admin
             _routine = routine;
             _father = father;
             _edit = true;
-        }
+
+    }
         public FrmRoutine(ChildMainRoutines father)
         {
             InitializeComponent();
@@ -33,34 +33,70 @@ namespace AuctionGame_Admin
         {
             if (_routine == null) return;
             LoadRoutine();
+            gboxFamilies.Enabled = true;
+            pboxEditFamiliesPerRoutine.Image = Properties.Resources.Edit;
+            dgvFamilies.ColumnHeadersDefaultCellStyle.BackColor = _enableColor;
+            gboxProducts.Enabled = true;
+            pboxEditProductsPerRoutine.Image = Properties.Resources.Edit;
+            dgvProducts.ColumnHeadersDefaultCellStyle.BackColor = _enableColor;
+            gboxVirtualBidders.Enabled = true;
+            pboxEditVirtualBiddersPerRoutine.Image = Properties.Resources.Edit;
+            dgvVirtualBidders.ColumnHeadersDefaultCellStyle.BackColor = _enableColor;
+
+
         }
         private void LoadRoutine()
         {
-            txbNameRoutine.Text = _routine.NameRoutine;
-            txbDescriptionRoutine.Text = _routine.DescriptionRoutine;
-            var productPerFamilyByRoutine = Product.GetProductPerFamilyByRoutine(_routine.IdRoutine);
-            foreach(var family in _routine.Families)
+            DataControl.Text(txbNameRoutine, _routine.NameRoutine);
+            DataControl.Text(txbDescriptionRoutine, _routine.DescriptionRoutine);
+            UpdateFamilies();
+            UpdateProducts();
+            UpdateVirtualBidders();
+        }
+        public void UpdateFamilies()
+        {
+            dgvFamilies.Rows.Clear();
+            foreach (var family in _routine.Families)
             {
                 dgvFamilies.Rows.Add(family.IdFamily, family.NameFamily, family.Points, family.Products.Count());
-                foreach(var product in family.Products)
-                {
-                    if (_routine.Products.Contains(product))
-                        dgvProducts.Rows.Add(product.IdProduct, product.Name, product.Price, product.Points, true, true);
-                    else
-                        dgvProducts.Rows.Add(product.IdProduct, product.Name, product.Price, product.Points, false, true);
-
-                }
             }
-            foreach(var product in _routine.Products)
+        }
+        public void UpdateProducts()
+        { 
+            dgvProducts.Rows.Clear();
+            foreach (var product in _routine.AllProducts)
             {
-                if(!productPerFamilyByRoutine.Contains(product))
-                    dgvProducts.Rows.Add(product.IdProduct, product.Name, product.Price, product.Points, true, false);
-
+                dgvProducts.Rows.Add(product.IdProduct,
+                    product.Name, product.Price,
+                    product.Points,
+                    _routine.SingleProducts.Contains(product),
+                    _routine.ProductsByFamily.Contains(product));
             }
+        }
+        private void UpdateVirtualBidders()
+        {
+            dgvVirtualBidders.Rows.Clear();
             foreach (var virtualBidder in _routine.VirtualBidders)
             {
                 dgvVirtualBidders.Rows.Add(virtualBidder.IdVirtualBidder, virtualBidder.NameBidder, virtualBidder.Wallet, virtualBidder.Role.NameRole);
             }
+        }
+
+        private void pboxEditProductsPerRoutine_Click(object sender, EventArgs e)
+        {
+            var form = new FrmProductsForRoutine(_routine, this);
+            form.Show();
+        }
+
+        private void pboxEditFamiliesPerRoutine_Click(object sender, EventArgs e)
+        {
+            var form = new FrmFamiliesForRoutine(_routine, this);
+            form.Show();
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }

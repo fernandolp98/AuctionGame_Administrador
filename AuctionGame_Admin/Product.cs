@@ -28,10 +28,8 @@ namespace AuctionGame_Admin
         }
         public bool Equals(Product product)
         {
-            //¿Se trata de la misma instancia?
             if (ReferenceEquals(this, product)) return true;
 
-            //Realizar comparaciones
             return product != null && (this.IdProduct.CompareTo(product.IdProduct) == 0 && this.Name.Equals(product.Name));
         }
 
@@ -39,13 +37,7 @@ namespace AuctionGame_Admin
         public static Product GetProductById(int idProduct)
         {
             var product = new Product();
-            var query = $"SELECT " +
-                        $"product.idProduct, " +
-                        $"product.nameProduct, " +
-                        $"product.startinPrice, " +
-                        $"product.points, " +
-                        $"CONVERT(pathImage USING UTF8) " +
-                        $"FROM product WHERE idProduct = {idProduct}";
+            var query = $"SELECT * FROM products_view WHERE idProduct = {idProduct}";
             var productDataTable = DbConnection.consultar_datos(query);
             if (productDataTable == null) return product;
             foreach (DataRow row in productDataTable.Rows)
@@ -59,13 +51,7 @@ namespace AuctionGame_Admin
         public static List<Product> GetAllProducts()
         {
             var products = new List<Product>();
-            var query = "SELECT " +
-                        $"product.idProduct, " +
-                        $"product.nameProduct, " +
-                        $"product.startinPrice, " +
-                        $"product.points, " +
-                        $"CONVERT(pathImage USING UTF8) " +
-                        $"FROM product";
+            var query = "SELECT * FROM products_view";
             var consult = DbConnection.consultar_datos(query);
             if (consult == null) return products;
             for (var index = 0; index < consult.Rows.Count; index++)
@@ -81,51 +67,6 @@ namespace AuctionGame_Admin
                 products.Add(p);
             }
 
-            return products;
-        }
-
-        public static List<Product> GetSingleProductsByRoutine(int idRoutine)
-        {
-            var products = new List<Product>();
-            var query = $"SELECT * FROM single_products_per_routine WHERE ROUTINE_idRoutine = {idRoutine}";
-
-            var consult = DbConnection.consultar_datos(query);
-            if (consult == null) return products;
-            for (var index = 0; index < consult.Rows.Count; index++)
-            {
-                var row = consult.Rows[index];
-                var id = (int) row[0];
-                var name = (string) row[1];
-                var price = (decimal) row[2];
-                var points = (int) row[3];
-                var image = DataControl.Base64StringToImage((string)row[4]);
-
-
-                var p = new Product(id, name, price, points, image);
-                products.Add(p);
-            }
-            return products;
-        }
-        public static List<Product> GetProductPerFamilyByRoutine(int idRoutine)
-        {
-            var products = new List<Product>();
-            var query = $"SELECT * FROM products_per_family_per_routine WHERE ROUTINE_idRoutine = {idRoutine}";
-
-            var consult = DbConnection.consultar_datos(query);
-            if (consult == null) return products;
-            for (var index = 0; index < consult.Rows.Count; index++)
-            {
-                var row = consult.Rows[index];
-                var id = (int)row[0];
-                var name = (string)row[1];
-                var price = (decimal)row[2];
-                var points = (int)row[3];
-                var image = DataControl.Base64StringToImage((string)row[4]);
-
-
-                var p = new Product(id, name, price, points, image);
-                products.Add(p);
-            }
             return products;
         }
     }

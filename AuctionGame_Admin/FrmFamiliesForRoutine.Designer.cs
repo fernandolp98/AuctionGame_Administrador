@@ -1,6 +1,6 @@
 ﻿namespace AuctionGame_Admin
 {
-    partial class FrmParamsForRoutine
+    partial class FrmFamiliesForRoutine
     {
         /// <summary>
         /// Required designer variable.
@@ -35,16 +35,16 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
-            this.pBoxDeleteProduct = new System.Windows.Forms.PictureBox();
-            this.pBoxAddProduct = new System.Windows.Forms.PictureBox();
+            this.pBoxDelete = new System.Windows.Forms.PictureBox();
+            this.pBoxAdd = new System.Windows.Forms.PictureBox();
             this.dgvRegistered = new System.Windows.Forms.DataGridView();
-            this.dgvAvailable = new System.Windows.Forms.DataGridView();
-            this.clmidAvailableProduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmAvailable = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmIdRegisteredColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmRegistered = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.pBoxDeleteProduct)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pBoxAddProduct)).BeginInit();
+            this.dgvAvailable = new System.Windows.Forms.DataGridView();
+            this.clmidAvailableFamily = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmAvailable = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.pBoxDelete)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pBoxAdd)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRegistered)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAvailable)).BeginInit();
             this.SuspendLayout();
@@ -61,6 +61,7 @@
             this.btnCancelar.TabIndex = 15;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = false;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // btnSave
             // 
@@ -74,26 +75,29 @@
             this.btnSave.TabIndex = 16;
             this.btnSave.Text = "Guardar";
             this.btnSave.UseVisualStyleBackColor = false;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // pBoxDeleteProduct
+            // pBoxDelete
             // 
-            this.pBoxDeleteProduct.Image = global::AuctionGame_Admin.Properties.Resources.leftArrow;
-            this.pBoxDeleteProduct.Location = new System.Drawing.Point(217, 225);
-            this.pBoxDeleteProduct.Name = "pBoxDeleteProduct";
-            this.pBoxDeleteProduct.Size = new System.Drawing.Size(50, 50);
-            this.pBoxDeleteProduct.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pBoxDeleteProduct.TabIndex = 20;
-            this.pBoxDeleteProduct.TabStop = false;
+            this.pBoxDelete.Image = global::AuctionGame_Admin.Properties.Resources.leftArrow;
+            this.pBoxDelete.Location = new System.Drawing.Point(217, 225);
+            this.pBoxDelete.Name = "pBoxDelete";
+            this.pBoxDelete.Size = new System.Drawing.Size(50, 50);
+            this.pBoxDelete.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pBoxDelete.TabIndex = 20;
+            this.pBoxDelete.TabStop = false;
+            this.pBoxDelete.Click += new System.EventHandler(this.pBoxDelete_Click);
             // 
-            // pBoxAddProduct
+            // pBoxAdd
             // 
-            this.pBoxAddProduct.Image = global::AuctionGame_Admin.Properties.Resources.rightArrow;
-            this.pBoxAddProduct.Location = new System.Drawing.Point(217, 164);
-            this.pBoxAddProduct.Name = "pBoxAddProduct";
-            this.pBoxAddProduct.Size = new System.Drawing.Size(50, 50);
-            this.pBoxAddProduct.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pBoxAddProduct.TabIndex = 19;
-            this.pBoxAddProduct.TabStop = false;
+            this.pBoxAdd.Image = global::AuctionGame_Admin.Properties.Resources.rightArrow;
+            this.pBoxAdd.Location = new System.Drawing.Point(217, 164);
+            this.pBoxAdd.Name = "pBoxAdd";
+            this.pBoxAdd.Size = new System.Drawing.Size(50, 50);
+            this.pBoxAdd.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pBoxAdd.TabIndex = 19;
+            this.pBoxAdd.TabStop = false;
+            this.pBoxAdd.Click += new System.EventHandler(this.pBoxAdd_Click);
             // 
             // dgvRegistered
             // 
@@ -138,6 +142,20 @@
             this.dgvRegistered.Size = new System.Drawing.Size(197, 246);
             this.dgvRegistered.TabIndex = 18;
             this.dgvRegistered.Tag = "-1";
+            this.dgvRegistered.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRegistered_CellDoubleClick);
+            // 
+            // clmIdRegisteredColumn
+            // 
+            this.clmIdRegisteredColumn.HeaderText = "ID";
+            this.clmIdRegisteredColumn.Name = "clmIdRegisteredColumn";
+            this.clmIdRegisteredColumn.ReadOnly = true;
+            this.clmIdRegisteredColumn.Visible = false;
+            // 
+            // clmRegistered
+            // 
+            this.clmRegistered.HeaderText = "Agregados";
+            this.clmRegistered.Name = "clmRegistered";
+            this.clmRegistered.ReadOnly = true;
             // 
             // dgvAvailable
             // 
@@ -162,7 +180,7 @@
             this.dgvAvailable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvAvailable.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvAvailable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.clmidAvailableProduct,
+            this.clmidAvailableFamily,
             this.clmAvailable});
             this.dgvAvailable.EnableHeadersVisualStyles = false;
             this.dgvAvailable.Location = new System.Drawing.Point(13, 84);
@@ -179,13 +197,14 @@
             this.dgvAvailable.Size = new System.Drawing.Size(197, 246);
             this.dgvAvailable.TabIndex = 17;
             this.dgvAvailable.Tag = "-1";
+            this.dgvAvailable.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAvailable_CellDoubleClick);
             // 
-            // clmidAvailableProduct
+            // clmidAvailableFamily
             // 
-            this.clmidAvailableProduct.HeaderText = "ID";
-            this.clmidAvailableProduct.Name = "clmidAvailableProduct";
-            this.clmidAvailableProduct.ReadOnly = true;
-            this.clmidAvailableProduct.Visible = false;
+            this.clmidAvailableFamily.HeaderText = "ID";
+            this.clmidAvailableFamily.Name = "clmidAvailableFamily";
+            this.clmidAvailableFamily.ReadOnly = true;
+            this.clmidAvailableFamily.Visible = false;
             // 
             // clmAvailable
             // 
@@ -193,36 +212,24 @@
             this.clmAvailable.Name = "clmAvailable";
             this.clmAvailable.ReadOnly = true;
             // 
-            // clmIdRegisteredColumn
-            // 
-            this.clmIdRegisteredColumn.HeaderText = "ID";
-            this.clmIdRegisteredColumn.Name = "clmIdRegisteredColumn";
-            this.clmIdRegisteredColumn.ReadOnly = true;
-            this.clmIdRegisteredColumn.Visible = false;
-            // 
-            // clmRegistered
-            // 
-            this.clmRegistered.HeaderText = "Agregados";
-            this.clmRegistered.Name = "clmRegistered";
-            this.clmRegistered.ReadOnly = true;
-            // 
-            // FrmParamsForRoutine
+            // FrmFamiliesForRoutine
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(202)))), ((int)(((byte)(216)))));
             this.ClientSize = new System.Drawing.Size(484, 387);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnSave);
-            this.Controls.Add(this.pBoxDeleteProduct);
-            this.Controls.Add(this.pBoxAddProduct);
+            this.Controls.Add(this.pBoxDelete);
+            this.Controls.Add(this.pBoxAdd);
             this.Controls.Add(this.dgvRegistered);
             this.Controls.Add(this.dgvAvailable);
             this.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Name = "FrmParamsForRoutine";
+            this.Name = "FrmFamiliesForRoutine";
             this.Text = "Parametros para Rutina";
-            ((System.ComponentModel.ISupportInitialize)(this.pBoxDeleteProduct)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pBoxAddProduct)).EndInit();
+            this.Load += new System.EventHandler(this.FrmParamsForRoutine_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pBoxDelete)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pBoxAdd)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRegistered)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAvailable)).EndInit();
             this.ResumeLayout(false);
@@ -233,13 +240,13 @@
 
         private System.Windows.Forms.Button btnCancelar;
         private System.Windows.Forms.Button btnSave;
-        private System.Windows.Forms.PictureBox pBoxDeleteProduct;
-        private System.Windows.Forms.PictureBox pBoxAddProduct;
+        private System.Windows.Forms.PictureBox pBoxDelete;
+        private System.Windows.Forms.PictureBox pBoxAdd;
         private System.Windows.Forms.DataGridView dgvRegistered;
         private System.Windows.Forms.DataGridView dgvAvailable;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmIdRegisteredColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmRegistered;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmidAvailableProduct;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmidAvailableFamily;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmAvailable;
     }
 }

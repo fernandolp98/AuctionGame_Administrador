@@ -51,29 +51,6 @@ namespace AuctionGame_Admin
             return virtualBidders;
         }
 
-        public static List<VirtualBidder> GetVirtualBiddersByRoutine(int idRoutine)
-        {
-            var virtualBidders = new List<VirtualBidder>();
-            var query = "SELECT * FROM virtual_bidders_per_routine " +
-                           $"WHERE ROUTINE_idRoutine = {idRoutine}";
-            var virtualBiddersDt = DbConnection.consultar_datos(query);
-
-            if (virtualBiddersDt == null) return null;
-            foreach (DataRow row in virtualBiddersDt.Rows)
-            {
-                var virtualBidder = new VirtualBidder()
-                {
-                    IdVirtualBidder = (int)row[0],
-                    DescriptionBidder = (string)row[1],
-                    IdBidder = (int)row[2],
-                    Role = new Role((int)row[3]),
-                    NameBidder = (string)row[4],
-                    Wallet = (decimal)row[5],
-                }; virtualBidders.Add(virtualBidder);
-            }
-            return virtualBidders;
-        }
-
         public static VirtualBidder GetVirtualBidderById(int idVirtualBidder)
         {
             var query = $"SELECT * FROM virtual_bidders_view WHERE idVirtualBidder = {idVirtualBidder}";
