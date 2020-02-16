@@ -108,7 +108,7 @@ namespace AuctionGame_Admin
         {
             var products = new List<Product>();
             var query =
-                $"SELECT * FROM single_products_per_routine UNION SELECT * FROM products_per_family_per_routine WHERE ROUTINE_idRoutine = {IdRoutine}";
+                $"SELECT * FROM single_products_per_routine WHERE ROUTINE_idRoutine = {IdRoutine} UNION SELECT * FROM products_per_family_per_routine WHERE ROUTINE_idRoutine = {IdRoutine}";
 
             var consult = DbConnection.consultar_datos(query);
             if (consult == null) return products;

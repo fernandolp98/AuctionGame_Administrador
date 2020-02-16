@@ -8,7 +8,7 @@ namespace AuctionGame_Admin
 {
     public partial class FrmRoutine : Form
     {
-        private readonly Routine _routine;
+        private Routine _routine;
         private readonly Color _enableColor = Color.FromArgb(26, 82, 118);
 
 
@@ -33,6 +33,11 @@ namespace AuctionGame_Admin
         {
             if (_routine == null) return;
             LoadRoutine();
+            UpdateControls();
+        }
+
+        private void UpdateControls()
+        {
             gboxFamilies.Enabled = true;
             pboxEditFamiliesPerRoutine.Image = Properties.Resources.Edit;
             dgvFamilies.ColumnHeadersDefaultCellStyle.BackColor = _enableColor;
@@ -42,8 +47,6 @@ namespace AuctionGame_Admin
             gboxVirtualBidders.Enabled = true;
             pboxEditVirtualBiddersPerRoutine.Image = Properties.Resources.Edit;
             dgvVirtualBidders.ColumnHeadersDefaultCellStyle.BackColor = _enableColor;
-
-
         }
         private void LoadRoutine()
         {
@@ -52,6 +55,28 @@ namespace AuctionGame_Admin
             UpdateFamilies();
             UpdateProducts();
             UpdateVirtualBidders();
+        }
+        private bool Question(string question, string caption)
+        {
+            return MessageBox.Show(question, caption, MessageBoxButtons.YesNoCancel) == DialogResult.Yes;
+        }
+        private void Txb_Enter(object sender, EventArgs e)
+        {
+            DataControl.PlaceHolder_Enter((TextBox)sender);
+        }
+
+        private void Txb_Leave(object sender, EventArgs e)
+        {
+            DataControl.placeHolder_Leave((TextBox)sender);
+        }
+        private bool ValidData()
+        {
+            var textboxes = new object[]
+            {
+                txbNameRoutine,
+                txbDescriptionRoutine
+            };
+            return DataControl.Validar(textboxes);
         }
         public void UpdateFamilies()
         {
@@ -101,6 +126,53 @@ namespace AuctionGame_Admin
         private void btnExit_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void pboxSaveRoutine_Click(object sender, EventArgs e)
+        {
+            if (ValidData())
+            {
+
+
+                var nameRoutine = txbNameRoutine.Text;
+                var descriptionRoutine = txbDescriptionRoutine.Text;
+                if (!_edit)
+                {
+                    var query = $"SELECT insert_routine " +
+                                   $"('{nameRoutine}', " +
+                                   $"'{descriptionRoutine}')";
+                    var rolId = DbConnection.consultar_datos(query);
+                    if (rolId != null)
+                    {
+                        _routine = Routine.GetRoutineById(int.Parse(rolId.Rows[0][0].ToString()));
+                        _father?.UpdateRoutines(null);
+                        if (Question(@"¡Se ha registrado la rutina exitosamente! ¿Desea agregar otra?", @"Rutina agregada"))
+                        {
+                            txbNameRoutine.Clear();
+                            txbDescriptionRoutine.Clear();
+                        }
+                        else
+                        {
+                            _edit = true;
+                            UpdateControls();
+                        }
+                    }
+                }
+                else if (_edit)
+                {
+                    var query = $"UPDATE `routine` SET " +
+                                   $"`nameRoutine` = '{nameRoutine}', " +
+                                   $"`descriptionRoutine` = '{descriptionRoutine}' " +
+                                   $"WHERE idRoutine = {_routine.IdRoutine}";
+                    if (DbConnection.ejecutar(query))
+                    {
+                        _father?.UpdateRoutines("");
+                        if (!Question($"¡Se ha modificado la rutina exitosamente! ¿Desea Salir?",
+                            @"Rutina Guardada")) return;
+                        this.Close();
+                    }
+                }
+            }
         }
     }
 }

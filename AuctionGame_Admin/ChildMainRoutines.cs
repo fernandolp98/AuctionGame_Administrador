@@ -19,11 +19,12 @@ namespace AuctionGame_Admin
 
         private void ChildMainRoutines_Load(object sender, EventArgs e)
         {
-            UpdateRoutines();
+            UpdateRoutines(null);
         }
-        public void UpdateRoutines()
+        public void UpdateRoutines(string query)
         {
-            var query = "SELECT * FROM routines_view";
+            if(string.IsNullOrEmpty(query))
+                query = "SELECT * FROM routines_view";
             var table = DbConnection.consultar_datos(query);
             dgvRoutines.Rows.Clear();
             if (table != null)
