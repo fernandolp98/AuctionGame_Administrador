@@ -73,7 +73,7 @@ namespace AuctionGame_Admin
                     _routine.ProductsByFamily.Contains(product));
             }
         }
-        private void UpdateVirtualBidders()
+        public void UpdateVirtualBidders()
         {
             dgvVirtualBidders.Rows.Clear();
             foreach (var virtualBidder in _routine.VirtualBidders)
@@ -93,7 +93,11 @@ namespace AuctionGame_Admin
             var form = new FrmFamiliesForRoutine(_routine, this);
             form.Show();
         }
-
+        private void pboxEditVirtualBiddersPerRoutine_Click(object sender, EventArgs e)
+        {
+            var form = new FrmVurtualBiddersForRoutine(_routine, this);
+            form.Show();
+        }
         private void btnExit_Click(object sender, EventArgs e)
         {
             this.Close();

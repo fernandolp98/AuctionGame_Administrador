@@ -36,17 +36,20 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             this.gboxGeneralInformation = new System.Windows.Forms.GroupBox();
+            this.pboxSaveRoutine = new System.Windows.Forms.PictureBox();
             this.txbDescriptionRoutine = new System.Windows.Forms.TextBox();
             this.txbNameRoutine = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.gboxFamilies = new System.Windows.Forms.GroupBox();
+            this.pboxEditFamiliesPerRoutine = new System.Windows.Forms.PictureBox();
             this.dgvFamilies = new System.Windows.Forms.DataGridView();
             this.clmIdFamily = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmNameFamily = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmFamilyPoints = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmFamilyProducts = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.gboxProducts = new System.Windows.Forms.GroupBox();
+            this.pboxEditProductsPerRoutine = new System.Windows.Forms.PictureBox();
             this.dgvProducts = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -55,27 +58,24 @@
             this.clmSingleProduct = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.clmAddedByFamily = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.gboxVirtualBidders = new System.Windows.Forms.GroupBox();
+            this.pboxEditVirtualBiddersPerRoutine = new System.Windows.Forms.PictureBox();
             this.dgvVirtualBidders = new System.Windows.Forms.DataGridView();
             this.clmIdVirtualBidder = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmNameVirtualBidder = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmWalletVirtualBidder = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmRoleVirtualBidder = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnExit = new System.Windows.Forms.Button();
-            this.pboxEditVirtualBiddersPerRoutine = new System.Windows.Forms.PictureBox();
-            this.pboxEditProductsPerRoutine = new System.Windows.Forms.PictureBox();
-            this.pboxEditFamiliesPerRoutine = new System.Windows.Forms.PictureBox();
-            this.pboxSaveRoutine = new System.Windows.Forms.PictureBox();
             this.gboxGeneralInformation.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pboxSaveRoutine)).BeginInit();
             this.gboxFamilies.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pboxEditFamiliesPerRoutine)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFamilies)).BeginInit();
             this.gboxProducts.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pboxEditProductsPerRoutine)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).BeginInit();
             this.gboxVirtualBidders.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvVirtualBidders)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pboxEditVirtualBiddersPerRoutine)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pboxEditProductsPerRoutine)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pboxEditFamiliesPerRoutine)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pboxSaveRoutine)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvVirtualBidders)).BeginInit();
             this.SuspendLayout();
             // 
             // gboxGeneralInformation
@@ -92,6 +92,17 @@
             this.gboxGeneralInformation.TabIndex = 1;
             this.gboxGeneralInformation.TabStop = false;
             this.gboxGeneralInformation.Text = "Información General";
+            // 
+            // pboxSaveRoutine
+            // 
+            this.pboxSaveRoutine.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.pboxSaveRoutine.Image = global::AuctionGame_Admin.Properties.Resources.guardar_el_archivo;
+            this.pboxSaveRoutine.Location = new System.Drawing.Point(496, 124);
+            this.pboxSaveRoutine.Name = "pboxSaveRoutine";
+            this.pboxSaveRoutine.Size = new System.Drawing.Size(30, 30);
+            this.pboxSaveRoutine.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pboxSaveRoutine.TabIndex = 28;
+            this.pboxSaveRoutine.TabStop = false;
             // 
             // txbDescriptionRoutine
             // 
@@ -163,6 +174,18 @@
             this.gboxFamilies.TabStop = false;
             this.gboxFamilies.Text = "Familias";
             // 
+            // pboxEditFamiliesPerRoutine
+            // 
+            this.pboxEditFamiliesPerRoutine.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.pboxEditFamiliesPerRoutine.Image = global::AuctionGame_Admin.Properties.Resources.editUnabled;
+            this.pboxEditFamiliesPerRoutine.Location = new System.Drawing.Point(500, 122);
+            this.pboxEditFamiliesPerRoutine.Name = "pboxEditFamiliesPerRoutine";
+            this.pboxEditFamiliesPerRoutine.Size = new System.Drawing.Size(30, 30);
+            this.pboxEditFamiliesPerRoutine.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pboxEditFamiliesPerRoutine.TabIndex = 27;
+            this.pboxEditFamiliesPerRoutine.TabStop = false;
+            this.pboxEditFamiliesPerRoutine.Click += new System.EventHandler(this.pboxEditFamiliesPerRoutine_Click);
+            // 
             // dgvFamilies
             // 
             this.dgvFamilies.AllowUserToAddRows = false;
@@ -211,7 +234,6 @@
             this.clmIdFamily.Name = "clmIdFamily";
             this.clmIdFamily.ReadOnly = true;
             this.clmIdFamily.Visible = false;
-            this.clmIdFamily.Width = 30;
             // 
             // clmNameFamily
             // 
@@ -243,6 +265,18 @@
             this.gboxProducts.TabIndex = 17;
             this.gboxProducts.TabStop = false;
             this.gboxProducts.Text = "Productos";
+            // 
+            // pboxEditProductsPerRoutine
+            // 
+            this.pboxEditProductsPerRoutine.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.pboxEditProductsPerRoutine.Image = global::AuctionGame_Admin.Properties.Resources.editUnabled;
+            this.pboxEditProductsPerRoutine.Location = new System.Drawing.Point(500, 122);
+            this.pboxEditProductsPerRoutine.Name = "pboxEditProductsPerRoutine";
+            this.pboxEditProductsPerRoutine.Size = new System.Drawing.Size(30, 30);
+            this.pboxEditProductsPerRoutine.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pboxEditProductsPerRoutine.TabIndex = 28;
+            this.pboxEditProductsPerRoutine.TabStop = false;
+            this.pboxEditProductsPerRoutine.Click += new System.EventHandler(this.pboxEditProductsPerRoutine_Click);
             // 
             // dgvProducts
             // 
@@ -296,7 +330,6 @@
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
             this.dataGridViewTextBoxColumn1.ReadOnly = true;
             this.dataGridViewTextBoxColumn1.Visible = false;
-            this.dataGridViewTextBoxColumn1.Width = 30;
             // 
             // dataGridViewTextBoxColumn2
             // 
@@ -352,6 +385,18 @@
             this.gboxVirtualBidders.TabStop = false;
             this.gboxVirtualBidders.Text = "Jugadores Virtuales";
             // 
+            // pboxEditVirtualBiddersPerRoutine
+            // 
+            this.pboxEditVirtualBiddersPerRoutine.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.pboxEditVirtualBiddersPerRoutine.Image = global::AuctionGame_Admin.Properties.Resources.editUnabled;
+            this.pboxEditVirtualBiddersPerRoutine.Location = new System.Drawing.Point(496, 122);
+            this.pboxEditVirtualBiddersPerRoutine.Name = "pboxEditVirtualBiddersPerRoutine";
+            this.pboxEditVirtualBiddersPerRoutine.Size = new System.Drawing.Size(30, 30);
+            this.pboxEditVirtualBiddersPerRoutine.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pboxEditVirtualBiddersPerRoutine.TabIndex = 29;
+            this.pboxEditVirtualBiddersPerRoutine.TabStop = false;
+            this.pboxEditVirtualBiddersPerRoutine.Click += new System.EventHandler(this.pboxEditVirtualBiddersPerRoutine_Click);
+            // 
             // dgvVirtualBidders
             // 
             this.dgvVirtualBidders.AllowUserToAddRows = false;
@@ -400,7 +445,6 @@
             this.clmIdVirtualBidder.Name = "clmIdVirtualBidder";
             this.clmIdVirtualBidder.ReadOnly = true;
             this.clmIdVirtualBidder.Visible = false;
-            this.clmIdVirtualBidder.Width = 30;
             // 
             // clmNameVirtualBidder
             // 
@@ -435,52 +479,6 @@
             this.btnExit.UseVisualStyleBackColor = false;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
-            // pboxEditVirtualBiddersPerRoutine
-            // 
-            this.pboxEditVirtualBiddersPerRoutine.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.pboxEditVirtualBiddersPerRoutine.Image = global::AuctionGame_Admin.Properties.Resources.editUnabled;
-            this.pboxEditVirtualBiddersPerRoutine.Location = new System.Drawing.Point(496, 122);
-            this.pboxEditVirtualBiddersPerRoutine.Name = "pboxEditVirtualBiddersPerRoutine";
-            this.pboxEditVirtualBiddersPerRoutine.Size = new System.Drawing.Size(30, 30);
-            this.pboxEditVirtualBiddersPerRoutine.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pboxEditVirtualBiddersPerRoutine.TabIndex = 29;
-            this.pboxEditVirtualBiddersPerRoutine.TabStop = false;
-            // 
-            // pboxEditProductsPerRoutine
-            // 
-            this.pboxEditProductsPerRoutine.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.pboxEditProductsPerRoutine.Image = global::AuctionGame_Admin.Properties.Resources.editUnabled;
-            this.pboxEditProductsPerRoutine.Location = new System.Drawing.Point(500, 122);
-            this.pboxEditProductsPerRoutine.Name = "pboxEditProductsPerRoutine";
-            this.pboxEditProductsPerRoutine.Size = new System.Drawing.Size(30, 30);
-            this.pboxEditProductsPerRoutine.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pboxEditProductsPerRoutine.TabIndex = 28;
-            this.pboxEditProductsPerRoutine.TabStop = false;
-            this.pboxEditProductsPerRoutine.Click += new System.EventHandler(this.pboxEditProductsPerRoutine_Click);
-            // 
-            // pboxEditFamiliesPerRoutine
-            // 
-            this.pboxEditFamiliesPerRoutine.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.pboxEditFamiliesPerRoutine.Image = global::AuctionGame_Admin.Properties.Resources.editUnabled;
-            this.pboxEditFamiliesPerRoutine.Location = new System.Drawing.Point(500, 122);
-            this.pboxEditFamiliesPerRoutine.Name = "pboxEditFamiliesPerRoutine";
-            this.pboxEditFamiliesPerRoutine.Size = new System.Drawing.Size(30, 30);
-            this.pboxEditFamiliesPerRoutine.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pboxEditFamiliesPerRoutine.TabIndex = 27;
-            this.pboxEditFamiliesPerRoutine.TabStop = false;
-            this.pboxEditFamiliesPerRoutine.Click += new System.EventHandler(this.pboxEditFamiliesPerRoutine_Click);
-            // 
-            // pboxSaveRoutine
-            // 
-            this.pboxSaveRoutine.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.pboxSaveRoutine.Image = global::AuctionGame_Admin.Properties.Resources.guardar_el_archivo;
-            this.pboxSaveRoutine.Location = new System.Drawing.Point(496, 124);
-            this.pboxSaveRoutine.Name = "pboxSaveRoutine";
-            this.pboxSaveRoutine.Size = new System.Drawing.Size(30, 30);
-            this.pboxSaveRoutine.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pboxSaveRoutine.TabIndex = 28;
-            this.pboxSaveRoutine.TabStop = false;
-            // 
             // FrmRoutine
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
@@ -501,16 +499,16 @@
             this.Load += new System.EventHandler(this.FrmRoutine_Load);
             this.gboxGeneralInformation.ResumeLayout(false);
             this.gboxGeneralInformation.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pboxSaveRoutine)).EndInit();
             this.gboxFamilies.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pboxEditFamiliesPerRoutine)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvFamilies)).EndInit();
             this.gboxProducts.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pboxEditProductsPerRoutine)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).EndInit();
             this.gboxVirtualBidders.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvVirtualBidders)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pboxEditVirtualBiddersPerRoutine)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pboxEditProductsPerRoutine)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pboxEditFamiliesPerRoutine)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pboxSaveRoutine)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvVirtualBidders)).EndInit();
             this.ResumeLayout(false);
 
         }

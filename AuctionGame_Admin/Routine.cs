@@ -135,19 +135,19 @@ namespace AuctionGame_Admin
                         $"WHERE ROUTINE_idRoutine = {IdRoutine}";
             var virtualBiddersDt = DbConnection.consultar_datos(query);
 
-            if (virtualBiddersDt == null) return null;
+            if (virtualBiddersDt == null) return virtualBidders;
             for (var index = 0; index < virtualBiddersDt.Rows.Count; index++)
             {
                 var row = virtualBiddersDt.Rows[index];
                 var virtualBidder = new VirtualBidder()
                 {
-                    IdVirtualBidder = (int) row[0],
-                    DescriptionBidder = (string) row[1],
-                    IdBidder = (int) row[2],
-                    Role = new Role((int) row[3]),
-                    NameBidder = (string) row[4],
-                    Wallet = (decimal) row[5],
-                };
+                    IdVirtualBidder = (int)row[0],
+                    IdBidder = (int)row[1],
+                    NameBidder = (string)row[2],
+                    DescriptionBidder = (string)row[3],
+                    Wallet = (decimal)row[4],
+                    Role = new Role((int)row[5]),
+                }; 
                 virtualBidders.Add(virtualBidder);
             }
 
@@ -195,6 +195,32 @@ namespace AuctionGame_Admin
             }
 
             return families;
+        }
+        public List<VirtualBidder> GetAvailableVirtualBidders()
+        {
+            var virtualBidders = new List<VirtualBidder>();
+            var query = "SELECT virtual_bidders_view.* FROM virtual_bidders_view " +
+                        "LEFT JOIN " +
+                        "routine_has_virtual_bidder ON routine_has_virtual_bidder.VIRTUAL_BIDDER_idVIrtualBidder = virtual_bidders_view.idVirtualBidder " +
+                        $"WHERE routine_has_virtual_bidder.ROUTINE_idRoutine IS NULL OR routine_has_virtual_bidder.ROUTINE_idRoutine != {IdRoutine}";
+            var consult = DbConnection.consultar_datos(query);
+            if (consult == null) return virtualBidders;
+            for (var index = 0; index < consult.Rows.Count; index++)
+            {
+                var row = consult.Rows[index];
+                var virtualBidder = new VirtualBidder()
+                {
+                    IdVirtualBidder = (int)row[0],
+                    IdBidder = (int)row[1],
+                    NameBidder = (string)row[2],
+                    DescriptionBidder = (string)row[3],
+                    Wallet = (decimal)row[4],
+                    Role = new Role((int)row[5]),
+                }; 
+                virtualBidders.Add(virtualBidder);
+            }
+
+            return virtualBidders;
         }
     }
 }
