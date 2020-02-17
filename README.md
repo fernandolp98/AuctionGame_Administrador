@@ -4,3 +4,5 @@ Software simulador de Subastas para el estudio del comportamiento humano. Servid
 
 
 Iconos diseñados por Freepik from www.flaticon.es
+Iconos diseñados por Roundicons from www.flaticon.es
+
