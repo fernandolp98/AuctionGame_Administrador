@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Data;
 
-namespace AuctionGame_User
-{
+namespace AuctionGame_Admin
+{ 
     public class Family
     {
         public int IdFamily { get; set; }
@@ -63,6 +63,7 @@ namespace AuctionGame_User
                     NameFamily = row[1].ToString(),
                     Points = int.Parse(row[2].ToString()),
                 };
+                family.GetProducts();
                 families.Add(family);
             }
 
