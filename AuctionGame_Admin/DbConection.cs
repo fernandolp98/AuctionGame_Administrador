@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Data;
 using MySql.Data.MySqlClient;
-
-namespace AuctionGame_Admin
+namespace AuctionGame_User
 {
     public class ConfigDb
     {

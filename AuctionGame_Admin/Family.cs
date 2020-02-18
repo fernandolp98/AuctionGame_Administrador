@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Data;
 
-namespace AuctionGame_Admin
+namespace AuctionGame_User
 {
     public class Family
     {
@@ -48,6 +48,25 @@ namespace AuctionGame_Admin
                 Points = int.Parse(rowFamily[2].ToString()),
             };
             return family;
+        }
+        public static List<Family> GetAllFamilies()
+        {
+            var families = new List<Family>();
+            var query = $@"SELECT * FROM family";
+            var familiesDt = DbConnection.consultar_datos(query);
+            if (familiesDt == null) return null;
+            foreach(DataRow row in familiesDt.Rows)
+            {
+                var family = new Family()
+                {
+                    IdFamily = int.Parse(row[0].ToString()),
+                    NameFamily = row[1].ToString(),
+                    Points = int.Parse(row[2].ToString()),
+                };
+                families.Add(family);
+            }
+
+            return families;
         }
 
         public List<Product> GetAvailableProducts()
