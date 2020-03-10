@@ -3,9 +3,9 @@ using System.Windows.Forms;
 
 namespace AuctionGame_Admin
 {
-    public partial class ChildMainVirtualBidders : Form
+    public partial class ChildMainVirtualBidder : Form
     {
-        public ChildMainVirtualBidders()
+        public ChildMainVirtualBidder()
         {
             InitializeComponent();
         }

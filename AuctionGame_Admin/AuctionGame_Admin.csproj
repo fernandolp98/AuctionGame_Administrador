@@ -97,15 +97,27 @@
     <Compile Include="ChildMainUsers.Designer.cs">
       <DependentUpon>ChildMainUsers.cs</DependentUpon>
     </Compile>
-    <Compile Include="ChildMainVirtualBidders.cs">
+    <Compile Include="ChildMainVirtualBidder.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ChildMainVirtualBidders.Designer.cs">
-      <DependentUpon>ChildMainVirtualBidders.cs</DependentUpon>
+    <Compile Include="ChildMainVirtualBidder.Designer.cs">
+      <DependentUpon>ChildMainVirtualBidder.cs</DependentUpon>
     </Compile>
     <Compile Include="DataControl.cs" />
     <Compile Include="DbConection.cs" />
     <Compile Include="Family.cs" />
+    <Compile Include="FrmGameConfiguration.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmGameConfiguration.Designer.cs">
+      <DependentUpon>FrmGameConfiguration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmConfiguration.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmConfiguration.Designer.cs">
+      <DependentUpon>FrmConfiguration.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmFamiliesForRoutine.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -190,8 +202,14 @@
     <EmbeddedResource Include="ChildMainRoutines.resx">
       <DependentUpon>ChildMainRoutines.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ChildMainVirtualBidders.resx">
-      <DependentUpon>ChildMainVirtualBidders.cs</DependentUpon>
+    <EmbeddedResource Include="ChildMainVirtualBidder.resx">
+      <DependentUpon>ChildMainVirtualBidder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmConfiguration.resx">
+      <DependentUpon>FrmConfiguration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmGameConfiguration.resx">
+      <DependentUpon>FrmGameConfiguration.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmFamiliesForRoutine.resx">
       <DependentUpon>FrmFamiliesForRoutine.cs</DependentUpon>

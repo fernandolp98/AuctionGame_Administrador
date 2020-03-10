@@ -12,14 +12,23 @@ namespace AuctionGame_Admin
 {
     public partial class FrmMainMenu : Form
     {
+        ChildMainProducts _formProducts;
+        ChildMainFamily _formFamily;
+        ChildMainRole _formRole;
+        ChildMainVirtualBidder _formVirtualBidder;
+        ChildMainRoutines _formRoutine;
+
         public FrmMainMenu()
         {
             InitializeComponent();
+            _formProducts = new ChildMainProducts();
+            _formFamily = new ChildMainFamily();
+            _formRole = new ChildMainRole();
+            _formVirtualBidder = new ChildMainVirtualBidder();
+            _formRoutine = new ChildMainRoutines();
         }
         private void HideSubMenus()
         {
-            if (pnlSubMenuItem1.Visible)
-                pnlSubMenuItem1.Visible = false;
             if (pnlSubMenuItem2.Visible)
                 pnlSubMenuItem2.Visible = false;
             if (pnlSubMenuItem3.Visible)
@@ -30,6 +39,8 @@ namespace AuctionGame_Admin
                 pnlSubMenuItem5.Visible = false;
             if (pnlSubMenuItem6.Visible)
                 pnlSubMenuItem6.Visible = false;
+            if (pnlSubMenuItem7.Visible)
+                pnlSubMenuItem7.Visible = false;
         }
 
         private void ShowSubMenu(Panel subMenu)
@@ -81,7 +92,13 @@ namespace AuctionGame_Admin
             else
                 ShowSubMenu(pnlSubMenuItem6);
         }
-
+        private void btnMenuItem7_Click(object sender, EventArgs e)
+        {
+            if (pnlSubMenuItem7.Visible)
+                pnlSubMenuItem7.Visible = false;
+            else
+                ShowSubMenu(pnlSubMenuItem7);
+        }
         private void OpenChildForm(Form child)
         {
             pnlDashboard.Controls.Clear();
@@ -95,12 +112,12 @@ namespace AuctionGame_Admin
 
         private void btnProducts_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new ChildMainProducts());
+            OpenChildForm(_formProducts);
         }
 
         private void btnAddProduct_Click(object sender, EventArgs e)
         {
-            var childProducts = new ChildMainProducts();
+            var childProducts = _formProducts;
             if (pnlDashboard.Controls.Count > 0)//Si el panel principal contiene un Formulario hijo
             {
 
@@ -124,12 +141,12 @@ namespace AuctionGame_Admin
 
         private void btnFamilies_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new ChildMainFamily());
+            OpenChildForm(_formFamily);
         }
 
         private void btnAddFamily_Click(object sender, EventArgs e)
         {
-            var childFamilies = new ChildMainFamily();
+            var childFamilies = _formFamily;
             if (pnlDashboard.Controls.Count > 0)//Si el panel principal contiene un Formulario hijo
             {
 
@@ -152,13 +169,13 @@ namespace AuctionGame_Admin
 
         private void btnRoles_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new ChildMainRole());
+            OpenChildForm(_formRole);
 
         }
 
         private void btnAddRole_Click(object sender, EventArgs e)
         {
-            var childRoles = new ChildMainRole();
+            var childRoles = _formRole;
             if (pnlDashboard.Controls.Count > 0)//Si el panel principal contiene un Formulario hijo
             {
 
@@ -180,23 +197,23 @@ namespace AuctionGame_Admin
         }
         private void btnVirtualPlayers_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new ChildMainVirtualBidders());
+            OpenChildForm(_formVirtualBidder);
 
         }
 
         private void btnAddVirtualPlayer_Click(object sender, EventArgs e)
         {
-            var childVirtualPlayers = new ChildMainVirtualBidders();
+            var childVirtualPlayers = _formVirtualBidder;
             if (pnlDashboard.Controls.Count > 0)//Si el panel principal contiene un Formulario hijo
             {
 
-                if (pnlDashboard.Controls[0].GetType() != typeof(ChildMainVirtualBidders))//Si el tipo de formulario es diferente a ChildMenuProducts
+                if (pnlDashboard.Controls[0].GetType() != typeof(ChildMainVirtualBidder))//Si el tipo de formulario es diferente a ChildMenuProducts
                 {
                     OpenChildForm(childVirtualPlayers);//Agrega un nuevo formulario de childMenuProducts
                 }
                 else
                 {
-                    childVirtualPlayers = (ChildMainVirtualBidders)pnlDashboard.Controls[0];
+                    childVirtualPlayers = (ChildMainVirtualBidder)pnlDashboard.Controls[0];
                 }
             }
             else
@@ -209,12 +226,12 @@ namespace AuctionGame_Admin
 
         private void btnRoutines_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new ChildMainRoutines());
+            OpenChildForm(_formRoutine);
         }
 
         private void btnAddRoutines_Click(object sender, EventArgs e)
         {
-            var childRoutines = new ChildMainRoutines();
+            var childRoutines = _formRoutine;
             if (pnlDashboard.Controls.Count > 0)//Si el panel principal contiene un Formulario hijo
             {
 
@@ -244,6 +261,26 @@ namespace AuctionGame_Admin
         {
             OpenChildForm(new FrmStatistics());
 
+        }
+        private void FrmMainMenu_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnGameConfiguration_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnGame_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnConfiguration_Click(object sender, EventArgs e)
+        {
+            var form = new FrmConfiguration();
+            form.ShowDialog();
         }
     }
 }

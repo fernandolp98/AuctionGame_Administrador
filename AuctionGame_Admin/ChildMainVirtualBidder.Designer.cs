@@ -1,6 +1,6 @@
 ﻿namespace AuctionGame_Admin
 {
-    partial class ChildMainVirtualBidders
+    partial class ChildMainVirtualBidder
     {
         /// <summary>
         /// Required designer variable.

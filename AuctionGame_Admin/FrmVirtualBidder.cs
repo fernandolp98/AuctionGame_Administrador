@@ -14,16 +14,16 @@ namespace AuctionGame_Admin
     public partial class FrmVirtualBidder : Form
     {
         private VirtualBidder _virtualBidder;
-        private readonly ChildMainVirtualBidders _father;
+        private readonly ChildMainVirtualBidder _father;
         private bool _edit;
-        public FrmVirtualBidder(VirtualBidder role, ChildMainVirtualBidders father)
+        public FrmVirtualBidder(VirtualBidder role, ChildMainVirtualBidder father)
         {
             InitializeComponent();
             _father = father;
             this._virtualBidder = role;
             _edit = true;
         }
-        public FrmVirtualBidder(ChildMainVirtualBidders father)
+        public FrmVirtualBidder(ChildMainVirtualBidder father)
         {
             InitializeComponent();
             _father = father;

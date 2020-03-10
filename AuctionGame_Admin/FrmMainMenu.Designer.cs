@@ -33,32 +33,38 @@ namespace AuctionGame_Admin
         private void InitializeComponent()
         {
             this.pnlSidebar = new System.Windows.Forms.Panel();
-            this.pnlSubMenuItem6 = new System.Windows.Forms.Panel();
+            this.btnConfiguration = new System.Windows.Forms.Button();
+            this.pnlSubMenuItem7 = new System.Windows.Forms.Panel();
             this.btnUsersStatistics = new System.Windows.Forms.Button();
             this.btnUsers = new System.Windows.Forms.Button();
-            this.btnMenuItem6 = new System.Windows.Forms.Button();
-            this.pnlSubMenuItem5 = new System.Windows.Forms.Panel();
+            this.btnMenuItem7 = new System.Windows.Forms.Button();
+            this.pnlSubMenuItem6 = new System.Windows.Forms.Panel();
             this.btnAddRoutines = new System.Windows.Forms.Button();
             this.btnRoutines = new System.Windows.Forms.Button();
-            this.btnMenuItem5 = new System.Windows.Forms.Button();
-            this.pnlSubMenuItem4 = new System.Windows.Forms.Panel();
+            this.btnMenuItem6 = new System.Windows.Forms.Button();
+            this.pnlSubMenuItem5 = new System.Windows.Forms.Panel();
             this.btnAddVirtualPlayer = new System.Windows.Forms.Button();
             this.btnVirtualPlayers = new System.Windows.Forms.Button();
-            this.btnMenuItem4 = new System.Windows.Forms.Button();
-            this.pnlSubMenuItem3 = new System.Windows.Forms.Panel();
+            this.btnMenuItem5 = new System.Windows.Forms.Button();
+            this.pnlSubMenuItem4 = new System.Windows.Forms.Panel();
             this.btnAddRole = new System.Windows.Forms.Button();
             this.btnRoles = new System.Windows.Forms.Button();
-            this.btnMenuItem3 = new System.Windows.Forms.Button();
-            this.pnlSubMenuItem2 = new System.Windows.Forms.Panel();
+            this.btnMenuItem4 = new System.Windows.Forms.Button();
+            this.pnlSubMenuItem3 = new System.Windows.Forms.Panel();
             this.btnAddFamily = new System.Windows.Forms.Button();
             this.btnFamilies = new System.Windows.Forms.Button();
-            this.btnMenuItem2 = new System.Windows.Forms.Button();
-            this.pnlSubMenuItem1 = new System.Windows.Forms.Panel();
+            this.btnMenuItem3 = new System.Windows.Forms.Button();
+            this.pnlSubMenuItem2 = new System.Windows.Forms.Panel();
             this.btnAddProduct = new System.Windows.Forms.Button();
             this.btnProducts = new System.Windows.Forms.Button();
+            this.btnMenuItem2 = new System.Windows.Forms.Button();
+            this.pnlSubMenuItem1 = new System.Windows.Forms.Panel();
+            this.btnGameConfiguration = new System.Windows.Forms.Button();
+            this.btnGame = new System.Windows.Forms.Button();
             this.btnMenuItem1 = new System.Windows.Forms.Button();
             this.pnlDashboard = new System.Windows.Forms.Panel();
             this.pnlSidebar.SuspendLayout();
+            this.pnlSubMenuItem7.SuspendLayout();
             this.pnlSubMenuItem6.SuspendLayout();
             this.pnlSubMenuItem5.SuspendLayout();
             this.pnlSubMenuItem4.SuspendLayout();
@@ -71,6 +77,9 @@ namespace AuctionGame_Admin
             // 
             this.pnlSidebar.AutoScroll = true;
             this.pnlSidebar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(82)))), ((int)(((byte)(118)))));
+            this.pnlSidebar.Controls.Add(this.btnConfiguration);
+            this.pnlSidebar.Controls.Add(this.pnlSubMenuItem7);
+            this.pnlSidebar.Controls.Add(this.btnMenuItem7);
             this.pnlSidebar.Controls.Add(this.pnlSubMenuItem6);
             this.pnlSidebar.Controls.Add(this.btnMenuItem6);
             this.pnlSidebar.Controls.Add(this.pnlSubMenuItem5);
@@ -90,18 +99,36 @@ namespace AuctionGame_Admin
             this.pnlSidebar.Size = new System.Drawing.Size(300, 661);
             this.pnlSidebar.TabIndex = 1;
             // 
-            // pnlSubMenuItem6
+            // btnConfiguration
             // 
-            this.pnlSubMenuItem6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(97)))), ((int)(((byte)(141)))));
-            this.pnlSubMenuItem6.Controls.Add(this.btnUsersStatistics);
-            this.pnlSubMenuItem6.Controls.Add(this.btnUsers);
-            this.pnlSubMenuItem6.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlSubMenuItem6.Location = new System.Drawing.Point(0, 785);
-            this.pnlSubMenuItem6.Margin = new System.Windows.Forms.Padding(4);
-            this.pnlSubMenuItem6.Name = "pnlSubMenuItem6";
-            this.pnlSubMenuItem6.Size = new System.Drawing.Size(283, 98);
-            this.pnlSubMenuItem6.TabIndex = 8;
-            this.pnlSubMenuItem6.Visible = false;
+            this.btnConfiguration.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnConfiguration.FlatAppearance.BorderSize = 0;
+            this.btnConfiguration.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(153)))), ((int)(((byte)(199)))));
+            this.btnConfiguration.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnConfiguration.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(214)))), ((int)(((byte)(229)))));
+            this.btnConfiguration.Location = new System.Drawing.Point(0, 1031);
+            this.btnConfiguration.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnConfiguration.Name = "btnConfiguration";
+            this.btnConfiguration.Padding = new System.Windows.Forms.Padding(51, 0, 0, 0);
+            this.btnConfiguration.Size = new System.Drawing.Size(283, 49);
+            this.btnConfiguration.TabIndex = 9;
+            this.btnConfiguration.Text = "Configuración";
+            this.btnConfiguration.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnConfiguration.UseVisualStyleBackColor = true;
+            this.btnConfiguration.Click += new System.EventHandler(this.btnConfiguration_Click);
+            // 
+            // pnlSubMenuItem7
+            // 
+            this.pnlSubMenuItem7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(97)))), ((int)(((byte)(141)))));
+            this.pnlSubMenuItem7.Controls.Add(this.btnUsersStatistics);
+            this.pnlSubMenuItem7.Controls.Add(this.btnUsers);
+            this.pnlSubMenuItem7.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlSubMenuItem7.Location = new System.Drawing.Point(0, 933);
+            this.pnlSubMenuItem7.Margin = new System.Windows.Forms.Padding(4);
+            this.pnlSubMenuItem7.Name = "pnlSubMenuItem7";
+            this.pnlSubMenuItem7.Size = new System.Drawing.Size(283, 98);
+            this.pnlSubMenuItem7.TabIndex = 8;
+            this.pnlSubMenuItem7.Visible = false;
             // 
             // btnUsersStatistics
             // 
@@ -137,36 +164,36 @@ namespace AuctionGame_Admin
             this.btnUsers.UseVisualStyleBackColor = true;
             this.btnUsers.Click += new System.EventHandler(this.btnUsers_Click);
             // 
-            // btnMenuItem6
+            // btnMenuItem7
             // 
-            this.btnMenuItem6.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnMenuItem6.FlatAppearance.BorderSize = 0;
-            this.btnMenuItem6.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(153)))), ((int)(((byte)(199)))));
-            this.btnMenuItem6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMenuItem6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(214)))), ((int)(((byte)(229)))));
-            this.btnMenuItem6.Location = new System.Drawing.Point(0, 736);
-            this.btnMenuItem6.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnMenuItem6.Name = "btnMenuItem6";
-            this.btnMenuItem6.Padding = new System.Windows.Forms.Padding(51, 0, 0, 0);
-            this.btnMenuItem6.Size = new System.Drawing.Size(283, 49);
-            this.btnMenuItem6.TabIndex = 9;
-            this.btnMenuItem6.Text = "Usuarios";
-            this.btnMenuItem6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnMenuItem6.UseVisualStyleBackColor = true;
-            this.btnMenuItem6.Click += new System.EventHandler(this.btnMenuItem6_Click);
+            this.btnMenuItem7.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnMenuItem7.FlatAppearance.BorderSize = 0;
+            this.btnMenuItem7.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(153)))), ((int)(((byte)(199)))));
+            this.btnMenuItem7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMenuItem7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(214)))), ((int)(((byte)(229)))));
+            this.btnMenuItem7.Location = new System.Drawing.Point(0, 884);
+            this.btnMenuItem7.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnMenuItem7.Name = "btnMenuItem7";
+            this.btnMenuItem7.Padding = new System.Windows.Forms.Padding(51, 0, 0, 0);
+            this.btnMenuItem7.Size = new System.Drawing.Size(283, 49);
+            this.btnMenuItem7.TabIndex = 9;
+            this.btnMenuItem7.Text = "Usuarios";
+            this.btnMenuItem7.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnMenuItem7.UseVisualStyleBackColor = true;
+            this.btnMenuItem7.Click += new System.EventHandler(this.btnMenuItem7_Click);
             // 
-            // pnlSubMenuItem5
+            // pnlSubMenuItem6
             // 
-            this.pnlSubMenuItem5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(97)))), ((int)(((byte)(141)))));
-            this.pnlSubMenuItem5.Controls.Add(this.btnAddRoutines);
-            this.pnlSubMenuItem5.Controls.Add(this.btnRoutines);
-            this.pnlSubMenuItem5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlSubMenuItem5.Location = new System.Drawing.Point(0, 638);
-            this.pnlSubMenuItem5.Margin = new System.Windows.Forms.Padding(4);
-            this.pnlSubMenuItem5.Name = "pnlSubMenuItem5";
-            this.pnlSubMenuItem5.Size = new System.Drawing.Size(283, 98);
-            this.pnlSubMenuItem5.TabIndex = 10;
-            this.pnlSubMenuItem5.Visible = false;
+            this.pnlSubMenuItem6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(97)))), ((int)(((byte)(141)))));
+            this.pnlSubMenuItem6.Controls.Add(this.btnAddRoutines);
+            this.pnlSubMenuItem6.Controls.Add(this.btnRoutines);
+            this.pnlSubMenuItem6.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlSubMenuItem6.Location = new System.Drawing.Point(0, 786);
+            this.pnlSubMenuItem6.Margin = new System.Windows.Forms.Padding(4);
+            this.pnlSubMenuItem6.Name = "pnlSubMenuItem6";
+            this.pnlSubMenuItem6.Size = new System.Drawing.Size(283, 98);
+            this.pnlSubMenuItem6.TabIndex = 10;
+            this.pnlSubMenuItem6.Visible = false;
             // 
             // btnAddRoutines
             // 
@@ -202,36 +229,36 @@ namespace AuctionGame_Admin
             this.btnRoutines.UseVisualStyleBackColor = true;
             this.btnRoutines.Click += new System.EventHandler(this.btnRoutines_Click);
             // 
-            // btnMenuItem5
+            // btnMenuItem6
             // 
-            this.btnMenuItem5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnMenuItem5.FlatAppearance.BorderSize = 0;
-            this.btnMenuItem5.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(153)))), ((int)(((byte)(199)))));
-            this.btnMenuItem5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMenuItem5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(214)))), ((int)(((byte)(229)))));
-            this.btnMenuItem5.Location = new System.Drawing.Point(0, 589);
-            this.btnMenuItem5.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnMenuItem5.Name = "btnMenuItem5";
-            this.btnMenuItem5.Padding = new System.Windows.Forms.Padding(51, 0, 0, 0);
-            this.btnMenuItem5.Size = new System.Drawing.Size(283, 49);
-            this.btnMenuItem5.TabIndex = 9;
-            this.btnMenuItem5.Text = "Rutinas";
-            this.btnMenuItem5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnMenuItem5.UseVisualStyleBackColor = true;
-            this.btnMenuItem5.Click += new System.EventHandler(this.btnMenuItem5_Click);
+            this.btnMenuItem6.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnMenuItem6.FlatAppearance.BorderSize = 0;
+            this.btnMenuItem6.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(153)))), ((int)(((byte)(199)))));
+            this.btnMenuItem6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMenuItem6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(214)))), ((int)(((byte)(229)))));
+            this.btnMenuItem6.Location = new System.Drawing.Point(0, 737);
+            this.btnMenuItem6.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnMenuItem6.Name = "btnMenuItem6";
+            this.btnMenuItem6.Padding = new System.Windows.Forms.Padding(51, 0, 0, 0);
+            this.btnMenuItem6.Size = new System.Drawing.Size(283, 49);
+            this.btnMenuItem6.TabIndex = 9;
+            this.btnMenuItem6.Text = "Rutinas";
+            this.btnMenuItem6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnMenuItem6.UseVisualStyleBackColor = true;
+            this.btnMenuItem6.Click += new System.EventHandler(this.btnMenuItem6_Click);
             // 
-            // pnlSubMenuItem4
+            // pnlSubMenuItem5
             // 
-            this.pnlSubMenuItem4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(97)))), ((int)(((byte)(141)))));
-            this.pnlSubMenuItem4.Controls.Add(this.btnAddVirtualPlayer);
-            this.pnlSubMenuItem4.Controls.Add(this.btnVirtualPlayers);
-            this.pnlSubMenuItem4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlSubMenuItem4.Location = new System.Drawing.Point(0, 491);
-            this.pnlSubMenuItem4.Margin = new System.Windows.Forms.Padding(4);
-            this.pnlSubMenuItem4.Name = "pnlSubMenuItem4";
-            this.pnlSubMenuItem4.Size = new System.Drawing.Size(283, 98);
-            this.pnlSubMenuItem4.TabIndex = 8;
-            this.pnlSubMenuItem4.Visible = false;
+            this.pnlSubMenuItem5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(97)))), ((int)(((byte)(141)))));
+            this.pnlSubMenuItem5.Controls.Add(this.btnAddVirtualPlayer);
+            this.pnlSubMenuItem5.Controls.Add(this.btnVirtualPlayers);
+            this.pnlSubMenuItem5.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlSubMenuItem5.Location = new System.Drawing.Point(0, 639);
+            this.pnlSubMenuItem5.Margin = new System.Windows.Forms.Padding(4);
+            this.pnlSubMenuItem5.Name = "pnlSubMenuItem5";
+            this.pnlSubMenuItem5.Size = new System.Drawing.Size(283, 98);
+            this.pnlSubMenuItem5.TabIndex = 8;
+            this.pnlSubMenuItem5.Visible = false;
             // 
             // btnAddVirtualPlayer
             // 
@@ -267,36 +294,36 @@ namespace AuctionGame_Admin
             this.btnVirtualPlayers.UseVisualStyleBackColor = true;
             this.btnVirtualPlayers.Click += new System.EventHandler(this.btnVirtualPlayers_Click);
             // 
-            // btnMenuItem4
+            // btnMenuItem5
             // 
-            this.btnMenuItem4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnMenuItem4.FlatAppearance.BorderSize = 0;
-            this.btnMenuItem4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(153)))), ((int)(((byte)(199)))));
-            this.btnMenuItem4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMenuItem4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(214)))), ((int)(((byte)(229)))));
-            this.btnMenuItem4.Location = new System.Drawing.Point(0, 442);
-            this.btnMenuItem4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnMenuItem4.Name = "btnMenuItem4";
-            this.btnMenuItem4.Padding = new System.Windows.Forms.Padding(51, 0, 0, 0);
-            this.btnMenuItem4.Size = new System.Drawing.Size(283, 49);
-            this.btnMenuItem4.TabIndex = 7;
-            this.btnMenuItem4.Text = "Jugadores Virtuales";
-            this.btnMenuItem4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnMenuItem4.UseVisualStyleBackColor = true;
-            this.btnMenuItem4.Click += new System.EventHandler(this.btnMenuItem4_Click);
+            this.btnMenuItem5.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnMenuItem5.FlatAppearance.BorderSize = 0;
+            this.btnMenuItem5.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(153)))), ((int)(((byte)(199)))));
+            this.btnMenuItem5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMenuItem5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(214)))), ((int)(((byte)(229)))));
+            this.btnMenuItem5.Location = new System.Drawing.Point(0, 590);
+            this.btnMenuItem5.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnMenuItem5.Name = "btnMenuItem5";
+            this.btnMenuItem5.Padding = new System.Windows.Forms.Padding(51, 0, 0, 0);
+            this.btnMenuItem5.Size = new System.Drawing.Size(283, 49);
+            this.btnMenuItem5.TabIndex = 7;
+            this.btnMenuItem5.Text = "Jugadores Virtuales";
+            this.btnMenuItem5.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnMenuItem5.UseVisualStyleBackColor = true;
+            this.btnMenuItem5.Click += new System.EventHandler(this.btnMenuItem5_Click);
             // 
-            // pnlSubMenuItem3
+            // pnlSubMenuItem4
             // 
-            this.pnlSubMenuItem3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(97)))), ((int)(((byte)(141)))));
-            this.pnlSubMenuItem3.Controls.Add(this.btnAddRole);
-            this.pnlSubMenuItem3.Controls.Add(this.btnRoles);
-            this.pnlSubMenuItem3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlSubMenuItem3.Location = new System.Drawing.Point(0, 344);
-            this.pnlSubMenuItem3.Margin = new System.Windows.Forms.Padding(4);
-            this.pnlSubMenuItem3.Name = "pnlSubMenuItem3";
-            this.pnlSubMenuItem3.Size = new System.Drawing.Size(283, 98);
-            this.pnlSubMenuItem3.TabIndex = 6;
-            this.pnlSubMenuItem3.Visible = false;
+            this.pnlSubMenuItem4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(97)))), ((int)(((byte)(141)))));
+            this.pnlSubMenuItem4.Controls.Add(this.btnAddRole);
+            this.pnlSubMenuItem4.Controls.Add(this.btnRoles);
+            this.pnlSubMenuItem4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlSubMenuItem4.Location = new System.Drawing.Point(0, 492);
+            this.pnlSubMenuItem4.Margin = new System.Windows.Forms.Padding(4);
+            this.pnlSubMenuItem4.Name = "pnlSubMenuItem4";
+            this.pnlSubMenuItem4.Size = new System.Drawing.Size(283, 98);
+            this.pnlSubMenuItem4.TabIndex = 6;
+            this.pnlSubMenuItem4.Visible = false;
             // 
             // btnAddRole
             // 
@@ -332,36 +359,36 @@ namespace AuctionGame_Admin
             this.btnRoles.UseVisualStyleBackColor = true;
             this.btnRoles.Click += new System.EventHandler(this.btnRoles_Click);
             // 
-            // btnMenuItem3
+            // btnMenuItem4
             // 
-            this.btnMenuItem3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnMenuItem3.FlatAppearance.BorderSize = 0;
-            this.btnMenuItem3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(153)))), ((int)(((byte)(199)))));
-            this.btnMenuItem3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMenuItem3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(214)))), ((int)(((byte)(229)))));
-            this.btnMenuItem3.Location = new System.Drawing.Point(0, 295);
-            this.btnMenuItem3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnMenuItem3.Name = "btnMenuItem3";
-            this.btnMenuItem3.Padding = new System.Windows.Forms.Padding(51, 0, 0, 0);
-            this.btnMenuItem3.Size = new System.Drawing.Size(283, 49);
-            this.btnMenuItem3.TabIndex = 5;
-            this.btnMenuItem3.Text = "Roles";
-            this.btnMenuItem3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnMenuItem3.UseVisualStyleBackColor = true;
-            this.btnMenuItem3.Click += new System.EventHandler(this.btnMenuItem3_Click);
+            this.btnMenuItem4.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnMenuItem4.FlatAppearance.BorderSize = 0;
+            this.btnMenuItem4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(153)))), ((int)(((byte)(199)))));
+            this.btnMenuItem4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMenuItem4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(214)))), ((int)(((byte)(229)))));
+            this.btnMenuItem4.Location = new System.Drawing.Point(0, 443);
+            this.btnMenuItem4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnMenuItem4.Name = "btnMenuItem4";
+            this.btnMenuItem4.Padding = new System.Windows.Forms.Padding(51, 0, 0, 0);
+            this.btnMenuItem4.Size = new System.Drawing.Size(283, 49);
+            this.btnMenuItem4.TabIndex = 5;
+            this.btnMenuItem4.Text = "Roles";
+            this.btnMenuItem4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnMenuItem4.UseVisualStyleBackColor = true;
+            this.btnMenuItem4.Click += new System.EventHandler(this.btnMenuItem4_Click);
             // 
-            // pnlSubMenuItem2
+            // pnlSubMenuItem3
             // 
-            this.pnlSubMenuItem2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(97)))), ((int)(((byte)(141)))));
-            this.pnlSubMenuItem2.Controls.Add(this.btnAddFamily);
-            this.pnlSubMenuItem2.Controls.Add(this.btnFamilies);
-            this.pnlSubMenuItem2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlSubMenuItem2.Location = new System.Drawing.Point(0, 197);
-            this.pnlSubMenuItem2.Margin = new System.Windows.Forms.Padding(4);
-            this.pnlSubMenuItem2.Name = "pnlSubMenuItem2";
-            this.pnlSubMenuItem2.Size = new System.Drawing.Size(283, 98);
-            this.pnlSubMenuItem2.TabIndex = 4;
-            this.pnlSubMenuItem2.Visible = false;
+            this.pnlSubMenuItem3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(97)))), ((int)(((byte)(141)))));
+            this.pnlSubMenuItem3.Controls.Add(this.btnAddFamily);
+            this.pnlSubMenuItem3.Controls.Add(this.btnFamilies);
+            this.pnlSubMenuItem3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlSubMenuItem3.Location = new System.Drawing.Point(0, 345);
+            this.pnlSubMenuItem3.Margin = new System.Windows.Forms.Padding(4);
+            this.pnlSubMenuItem3.Name = "pnlSubMenuItem3";
+            this.pnlSubMenuItem3.Size = new System.Drawing.Size(283, 98);
+            this.pnlSubMenuItem3.TabIndex = 4;
+            this.pnlSubMenuItem3.Visible = false;
             // 
             // btnAddFamily
             // 
@@ -397,36 +424,36 @@ namespace AuctionGame_Admin
             this.btnFamilies.UseVisualStyleBackColor = true;
             this.btnFamilies.Click += new System.EventHandler(this.btnFamilies_Click);
             // 
-            // btnMenuItem2
+            // btnMenuItem3
             // 
-            this.btnMenuItem2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnMenuItem2.FlatAppearance.BorderSize = 0;
-            this.btnMenuItem2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(153)))), ((int)(((byte)(199)))));
-            this.btnMenuItem2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMenuItem2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(214)))), ((int)(((byte)(229)))));
-            this.btnMenuItem2.Location = new System.Drawing.Point(0, 148);
-            this.btnMenuItem2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnMenuItem2.Name = "btnMenuItem2";
-            this.btnMenuItem2.Padding = new System.Windows.Forms.Padding(51, 0, 0, 0);
-            this.btnMenuItem2.Size = new System.Drawing.Size(283, 49);
-            this.btnMenuItem2.TabIndex = 3;
-            this.btnMenuItem2.Text = "Familias";
-            this.btnMenuItem2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnMenuItem2.UseVisualStyleBackColor = true;
-            this.btnMenuItem2.Click += new System.EventHandler(this.btnMenuItem2_Click);
+            this.btnMenuItem3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnMenuItem3.FlatAppearance.BorderSize = 0;
+            this.btnMenuItem3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(153)))), ((int)(((byte)(199)))));
+            this.btnMenuItem3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMenuItem3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(214)))), ((int)(((byte)(229)))));
+            this.btnMenuItem3.Location = new System.Drawing.Point(0, 296);
+            this.btnMenuItem3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnMenuItem3.Name = "btnMenuItem3";
+            this.btnMenuItem3.Padding = new System.Windows.Forms.Padding(51, 0, 0, 0);
+            this.btnMenuItem3.Size = new System.Drawing.Size(283, 49);
+            this.btnMenuItem3.TabIndex = 3;
+            this.btnMenuItem3.Text = "Familias";
+            this.btnMenuItem3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnMenuItem3.UseVisualStyleBackColor = true;
+            this.btnMenuItem3.Click += new System.EventHandler(this.btnMenuItem3_Click);
             // 
-            // pnlSubMenuItem1
+            // pnlSubMenuItem2
             // 
-            this.pnlSubMenuItem1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(97)))), ((int)(((byte)(141)))));
-            this.pnlSubMenuItem1.Controls.Add(this.btnAddProduct);
-            this.pnlSubMenuItem1.Controls.Add(this.btnProducts);
-            this.pnlSubMenuItem1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlSubMenuItem1.Location = new System.Drawing.Point(0, 49);
-            this.pnlSubMenuItem1.Margin = new System.Windows.Forms.Padding(4);
-            this.pnlSubMenuItem1.Name = "pnlSubMenuItem1";
-            this.pnlSubMenuItem1.Size = new System.Drawing.Size(283, 99);
-            this.pnlSubMenuItem1.TabIndex = 2;
-            this.pnlSubMenuItem1.Visible = false;
+            this.pnlSubMenuItem2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(97)))), ((int)(((byte)(141)))));
+            this.pnlSubMenuItem2.Controls.Add(this.btnAddProduct);
+            this.pnlSubMenuItem2.Controls.Add(this.btnProducts);
+            this.pnlSubMenuItem2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlSubMenuItem2.Location = new System.Drawing.Point(0, 197);
+            this.pnlSubMenuItem2.Margin = new System.Windows.Forms.Padding(4);
+            this.pnlSubMenuItem2.Name = "pnlSubMenuItem2";
+            this.pnlSubMenuItem2.Size = new System.Drawing.Size(283, 99);
+            this.pnlSubMenuItem2.TabIndex = 2;
+            this.pnlSubMenuItem2.Visible = false;
             // 
             // btnAddProduct
             // 
@@ -463,6 +490,75 @@ namespace AuctionGame_Admin
             this.btnProducts.UseVisualStyleBackColor = true;
             this.btnProducts.Click += new System.EventHandler(this.btnProducts_Click);
             // 
+            // btnMenuItem2
+            // 
+            this.btnMenuItem2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnMenuItem2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnMenuItem2.FlatAppearance.BorderSize = 0;
+            this.btnMenuItem2.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(153)))), ((int)(((byte)(199)))));
+            this.btnMenuItem2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMenuItem2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(214)))), ((int)(((byte)(229)))));
+            this.btnMenuItem2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnMenuItem2.Location = new System.Drawing.Point(0, 148);
+            this.btnMenuItem2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnMenuItem2.Name = "btnMenuItem2";
+            this.btnMenuItem2.Padding = new System.Windows.Forms.Padding(51, 0, 0, 0);
+            this.btnMenuItem2.Size = new System.Drawing.Size(283, 49);
+            this.btnMenuItem2.TabIndex = 1;
+            this.btnMenuItem2.Text = "Productos";
+            this.btnMenuItem2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnMenuItem2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnMenuItem2.UseVisualStyleBackColor = true;
+            this.btnMenuItem2.Click += new System.EventHandler(this.btnMenuItem2_Click);
+            // 
+            // pnlSubMenuItem1
+            // 
+            this.pnlSubMenuItem1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(97)))), ((int)(((byte)(141)))));
+            this.pnlSubMenuItem1.Controls.Add(this.btnGameConfiguration);
+            this.pnlSubMenuItem1.Controls.Add(this.btnGame);
+            this.pnlSubMenuItem1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlSubMenuItem1.Location = new System.Drawing.Point(0, 49);
+            this.pnlSubMenuItem1.Margin = new System.Windows.Forms.Padding(4);
+            this.pnlSubMenuItem1.Name = "pnlSubMenuItem1";
+            this.pnlSubMenuItem1.Size = new System.Drawing.Size(283, 99);
+            this.pnlSubMenuItem1.TabIndex = 2;
+            this.pnlSubMenuItem1.Visible = false;
+            // 
+            // btnGameConfiguration
+            // 
+            this.btnGameConfiguration.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnGameConfiguration.FlatAppearance.BorderSize = 0;
+            this.btnGameConfiguration.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGameConfiguration.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(214)))), ((int)(((byte)(229)))));
+            this.btnGameConfiguration.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnGameConfiguration.Location = new System.Drawing.Point(0, 49);
+            this.btnGameConfiguration.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnGameConfiguration.Name = "btnGameConfiguration";
+            this.btnGameConfiguration.Padding = new System.Windows.Forms.Padding(77, 0, 0, 0);
+            this.btnGameConfiguration.Size = new System.Drawing.Size(283, 49);
+            this.btnGameConfiguration.TabIndex = 2;
+            this.btnGameConfiguration.Text = "Configuración";
+            this.btnGameConfiguration.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnGameConfiguration.UseVisualStyleBackColor = true;
+            this.btnGameConfiguration.Click += new System.EventHandler(this.btnGameConfiguration_Click);
+            // 
+            // btnGame
+            // 
+            this.btnGame.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnGame.FlatAppearance.BorderSize = 0;
+            this.btnGame.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnGame.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(214)))), ((int)(((byte)(229)))));
+            this.btnGame.Location = new System.Drawing.Point(0, 0);
+            this.btnGame.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnGame.Name = "btnGame";
+            this.btnGame.Padding = new System.Windows.Forms.Padding(77, 0, 0, 0);
+            this.btnGame.Size = new System.Drawing.Size(283, 49);
+            this.btnGame.TabIndex = 3;
+            this.btnGame.Text = "Ver juego";
+            this.btnGame.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnGame.UseVisualStyleBackColor = true;
+            this.btnGame.Click += new System.EventHandler(this.btnGame_Click);
+            // 
             // btnMenuItem1
             // 
             this.btnMenuItem1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
@@ -478,7 +574,7 @@ namespace AuctionGame_Admin
             this.btnMenuItem1.Padding = new System.Windows.Forms.Padding(51, 0, 0, 0);
             this.btnMenuItem1.Size = new System.Drawing.Size(283, 49);
             this.btnMenuItem1.TabIndex = 1;
-            this.btnMenuItem1.Text = "Productos";
+            this.btnMenuItem1.Text = "Juego";
             this.btnMenuItem1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnMenuItem1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnMenuItem1.UseVisualStyleBackColor = true;
@@ -507,7 +603,9 @@ namespace AuctionGame_Admin
             this.Name = "FrmMainMenu";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Auction Game (Administrador)";
+            this.Load += new System.EventHandler(this.FrmMainMenu_Load);
             this.pnlSidebar.ResumeLayout(false);
+            this.pnlSubMenuItem7.ResumeLayout(false);
             this.pnlSubMenuItem6.ResumeLayout(false);
             this.pnlSubMenuItem5.ResumeLayout(false);
             this.pnlSubMenuItem4.ResumeLayout(false);
@@ -521,30 +619,46 @@ namespace AuctionGame_Admin
         #endregion
         private System.Windows.Forms.Panel pnlSidebar;
         private System.Windows.Forms.Panel pnlDashboard;
-        private System.Windows.Forms.Button btnMenuItem3;
-        private System.Windows.Forms.Panel pnlSubMenuItem2;
-        private System.Windows.Forms.Button btnAddFamily;
-        private System.Windows.Forms.Button btnFamilies;
-        private System.Windows.Forms.Button btnMenuItem2;
+
         private System.Windows.Forms.Panel pnlSubMenuItem1;
-        private System.Windows.Forms.Button btnAddProduct;
-        private System.Windows.Forms.Button btnProducts;
         private System.Windows.Forms.Button btnMenuItem1;
+        private System.Windows.Forms.Button btnGame;
+        private System.Windows.Forms.Button btnGameConfiguration;
+
+        private System.Windows.Forms.Panel pnlSubMenuItem2;
+        private System.Windows.Forms.Button btnMenuItem2;
+        private System.Windows.Forms.Button btnProducts;
+        private System.Windows.Forms.Button btnAddProduct;
+
+
         private System.Windows.Forms.Panel pnlSubMenuItem3;
-        private System.Windows.Forms.Button btnAddRole;
-        private System.Windows.Forms.Button btnRoles;
+        private System.Windows.Forms.Button btnMenuItem3;
+        private System.Windows.Forms.Button btnFamilies;
+        private System.Windows.Forms.Button btnAddFamily;
+
         private System.Windows.Forms.Panel pnlSubMenuItem4;
-        private System.Windows.Forms.Button btnAddVirtualPlayer;
-        private System.Windows.Forms.Button btnVirtualPlayers;
         private System.Windows.Forms.Button btnMenuItem4;
-        private System.Windows.Forms.Button btnMenuItem5;
+        private System.Windows.Forms.Button btnRoles;
+        private System.Windows.Forms.Button btnAddRole;
+
         private System.Windows.Forms.Panel pnlSubMenuItem5;
-        private System.Windows.Forms.Button btnAddRoutines;
-        private System.Windows.Forms.Button btnRoutines;
-        private System.Windows.Forms.Button btnMenuItem6;
+        private System.Windows.Forms.Button btnMenuItem5;
+        private System.Windows.Forms.Button btnVirtualPlayers;
+        private System.Windows.Forms.Button btnAddVirtualPlayer;
+
+
         private System.Windows.Forms.Panel pnlSubMenuItem6;
+        private System.Windows.Forms.Button btnMenuItem6;
+        private System.Windows.Forms.Button btnRoutines;
+        private System.Windows.Forms.Button btnAddRoutines;
+
+        private System.Windows.Forms.Panel pnlSubMenuItem7;
+        private System.Windows.Forms.Button btnMenuItem7;
         private System.Windows.Forms.Button btnUsers;
-        private Button btnUsersStatistics;
+        private System.Windows.Forms.Button btnUsersStatistics;
+
+        private System.Windows.Forms.Button btnConfiguration;
+
     }
 }
 
