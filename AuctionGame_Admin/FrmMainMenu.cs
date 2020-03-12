@@ -269,7 +269,7 @@ namespace AuctionGame_Admin
 
         private void btnGameConfiguration_Click(object sender, EventArgs e)
         {
-
+            OpenChildForm(new FrmGameConfiguration());
         }
 
         private void btnGame_Click(object sender, EventArgs e)
