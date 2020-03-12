@@ -201,6 +201,7 @@
     <Compile Include="TcpConnection.cs" />
     <Compile Include="Time.cs" />
     <Compile Include="TimesValues.cs" />
+    <Compile Include="User.cs" />
     <Compile Include="VirtualBidder.cs" />
     <EmbeddedResource Include="ChildMainFamily.resx">
       <DependentUpon>ChildMainFamily.cs</DependentUpon>

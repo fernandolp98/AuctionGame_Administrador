@@ -37,6 +37,26 @@ namespace AuctionGame_Admin
             routine.VirtualBidders = routine.GetVirtualBidders();
             return routine;
         }
+        public static List<Routine> GetAllRoutines()
+        {
+            var routines = new List<Routine>();
+            var query = $"SELECT idRoutine, nameRoutine, descriptionRoutine FROM routine";
+            var routineDt = DbConnection.consultar_datos(query);
+            foreach(DataRow row in routineDt.Rows)
+            {
+                var routine = new Routine();
+                routine.IdRoutine = (int)row[0];
+                routine.NameRoutine = (string)row[1];
+                routine.DescriptionRoutine = (string)row[2];
+                routine.Families = routine.GetFamilies();
+                routine.SingleProducts = routine.GetSingleProducts();
+                routine.ProductsByFamily = routine.GetProductsByFamily();
+                routine.AllProducts = routine.GetAllProducts();
+                routine.VirtualBidders = routine.GetVirtualBidders();
+                routines.Add(routine);
+            }
+            return routines;
+        }
 
         public List<Family> GetFamilies()
         {

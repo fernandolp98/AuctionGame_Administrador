@@ -13,17 +13,16 @@ namespace AuctionGame_Admin
         public Thread Hilo;
         public VirtualBidder()
         {
-
         }
-        public bool WantToBid(int ultimateOffert, int winner, int round)
+        public bool WantToBid(decimal ultimateOffert, int winner, int round)
         {
             if (winner == IdBidder) return false;//Si el ganador actual esél mismo, no puja
             if (OutBidder) return false;//Si está fuera de la apuesta, no puja
-            if (Role.Rounds.FinallyValue > round) return false;//Si su límite de rounds es mayor al actual, no puja
-            if (Role.OffertsForRound.FinallyValue > ParticipationsRound) return false;//Si su límite de ofertas por round es mayor a las participaciones que ha hecho, no puja
+            if (Role.Rounds.FinallyValue < round) return false;//Si su límite de rounds es mayor al actual, no puja
+            if (Role.OffertsForRound.FinallyValue < ParticipationsRound) return false;//Si su límite de ofertas por round es mayor a las participaciones que ha hecho, no puja
             if (ultimateOffert + Role.BidIncrease.GetNewFinallyValue() > Wallet) return false;//Si lo que desea ofertar es mayor a su dinero disponible, no puja
 
-            Offert = ultimateOffert + Role.BidIncrease.FinallyValue;
+            Offert = (int)ultimateOffert + Role.BidIncrease.FinallyValue;
             UpdateParticipation();//Incrementa sus participaciones
             return true;//Puja
         }

@@ -1,10 +1,16 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace AuctionGame_Admin
 {
     public partial class FrmRole : Form
     {
+
+        private static readonly Font FontPlaceHolder = new Font("Comic Sans MS", 14.25F, FontStyle.Italic, GraphicsUnit.Point, 0);
+        private static readonly Font FontRegular = new Font("Comic Sans MS", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        private readonly DataControl _dataControl = new DataControl(FontPlaceHolder, FontRegular, Color.Silver, Color.Black, Color.Red);
+
         private bool _edit;
         private readonly ChildMainRole _father;
         private Role _role;
@@ -36,14 +42,14 @@ namespace AuctionGame_Admin
 
             mtxbTimeToBidDown.Text = timeToBidDown;
             mtxbTimeToBidTop.Text = timeToBidTop;
-            DataControl.Text(txbNameRole, _role.NameRole);
-            DataControl.Text(txbDescriptionRole, _role.DescriptionRole);
-            DataControl.Text(txbOfersForRoundDown, _role.OffertsForRound.DownValue.ToString());
-            DataControl.Text(txbOffersForRoundTop, _role.OffertsForRound.TopValue.ToString());
-            DataControl.Text(txbRoundsDown, _role.Rounds.DownValue.ToString());
-            DataControl.Text(txbRoundsTop, _role.Rounds.TopValue.ToString());
-            DataControl.Text(txbBidIncreaseDown, _role.BidIncrease.DownValue.ToString());
-            DataControl.Text(txbBidIncreaseBidTop, _role.BidIncrease.TopValue.ToString());
+            _dataControl.Text(txbNameRole, _role.NameRole);
+            _dataControl.Text(txbDescriptionRole, _role.DescriptionRole);
+            _dataControl.Text(txbOfersForRoundDown, _role.OffertsForRound.DownValue.ToString());
+            _dataControl.Text(txbOffersForRoundTop, _role.OffertsForRound.TopValue.ToString());
+            _dataControl.Text(txbRoundsDown, _role.Rounds.DownValue.ToString());
+            _dataControl.Text(txbRoundsTop, _role.Rounds.TopValue.ToString());
+            _dataControl.Text(txbBidIncreaseDown, _role.BidIncrease.DownValue.ToString());
+            _dataControl.Text(txbBidIncreaseBidTop, _role.BidIncrease.TopValue.ToString());
         }
         private bool Question(string question, string caption)
         {
@@ -51,12 +57,12 @@ namespace AuctionGame_Admin
         }
         private void Txb_Enter(object sender, EventArgs e)
         {
-            DataControl.PlaceHolder_Enter((TextBox)sender);
+            _dataControl.PlaceHolder_Enter((TextBox)sender);
         }
 
         private void Txb_Leave(object sender, EventArgs e)
         {
-            DataControl.placeHolder_Leave((TextBox)sender);
+            _dataControl.placeHolder_Leave((TextBox)sender);
         }
         private void btnCancelar_Click(object sender, EventArgs e)
         {
@@ -78,7 +84,7 @@ namespace AuctionGame_Admin
                 txbBidIncreaseDown,
                 txbBidIncreaseBidTop
             };
-            return DataControl.Validar(textboxes);
+            return _dataControl.Validar(textboxes);
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
@@ -165,78 +171,78 @@ namespace AuctionGame_Admin
         private void txbOfersForRoundDown_Validated(object sender, EventArgs e)
         {
             var txb = (TextBox)sender;
-            if (DataControl.Validar(txb)) return;
-            if (DataControl.Validar(txbOffersForRoundTop)) return;
+            if (_dataControl.Validar(txb)) return;
+            if (_dataControl.Validar(txbOffersForRoundTop)) return;
             var down = int.Parse(txbOfersForRoundDown.Text);
             var top = int.Parse(txbOffersForRoundTop.Text);
             if (down <= top) return;
             MessageBox.Show(@"El valor minimo no puede ser mayor que el valor máximo.");
-            DataControl.Clear(txb);
+            _dataControl.Clear(txb);
         }
 
         private void txbOffersForRoundTop_Validated(object sender, EventArgs e)
         {
             var txb = (TextBox)sender;
-            if (DataControl.Validar(txb)) return;
-            if (DataControl.Validar(txbOfersForRoundDown)) return;
+            if (_dataControl.Validar(txb)) return;
+            if (_dataControl.Validar(txbOfersForRoundDown)) return;
             var down = int.Parse(txbOfersForRoundDown.Text);
             var top = int.Parse(txbOffersForRoundTop.Text);
             if (top >= down) return;
             MessageBox.Show(@"El valor máximo no puede ser menor que el valor mínimo.");
-            DataControl.Clear(txb);
+            _dataControl.Clear(txb);
         }
         private void txbRoundsDown_Validated(object sender, EventArgs e)
         {
             var txb = (TextBox)sender;
-            if (DataControl.Validar(txb)) return;
-            if (DataControl.Validar(txbRoundsTop)) return;
+            if (_dataControl.Validar(txb)) return;
+            if (_dataControl.Validar(txbRoundsTop)) return;
             var down = int.Parse(txbRoundsDown.Text);
             var top = int.Parse(txbRoundsTop.Text);
             if (down <= top) return;
             MessageBox.Show(@"El valor minimo no puede ser mayor que el valor máximo.");
-            DataControl.Clear(txb);
+            _dataControl.Clear(txb);
         }
 
         private void txbRoundsTop_Validated(object sender, EventArgs e)
         {
             var txb = (TextBox)sender;
-            if (DataControl.Validar(txb)) return;
-            if (DataControl.Validar(txbRoundsDown)) return;
+            if (_dataControl.Validar(txb)) return;
+            if (_dataControl.Validar(txbRoundsDown)) return;
             var down = int.Parse(txbRoundsDown.Text);
             var top = int.Parse(txbRoundsTop.Text);
             if (top >= down) return;
             MessageBox.Show(@"El valor máximo no puede ser menor que el valor mínimo.");
-            DataControl.Clear(txb);
+            _dataControl.Clear(txb);
         }
 
         private void txbIncreaseForBidDown_Validated(object sender, EventArgs e)
         {
             var txb = (TextBox)sender;
-            if (DataControl.Validar(txb)) return;
-            if (DataControl.Validar(txbBidIncreaseBidTop)) return;
+            if (_dataControl.Validar(txb)) return;
+            if (_dataControl.Validar(txbBidIncreaseBidTop)) return;
             var down = int.Parse(txbBidIncreaseDown.Text);
             var top = int.Parse(txbBidIncreaseBidTop.Text);
             if (down <= top) return;
             MessageBox.Show(@"El valor minimo no puede ser mayor que el valor máximo.");
-            DataControl.Clear(txb);
+            _dataControl.Clear(txb);
         }
 
         private void txbIncreaseForBidTop_Validated(object sender, EventArgs e)
         {
             var txb = (TextBox)sender;
-            if (DataControl.Validar(txb)) return;
-            if (DataControl.Validar(txbBidIncreaseDown)) return;
+            if (_dataControl.Validar(txb)) return;
+            if (_dataControl.Validar(txbBidIncreaseDown)) return;
             var down = int.Parse(txbBidIncreaseDown.Text);
             var top = int.Parse(txbBidIncreaseBidTop.Text);
             if (top >= down) return;
             MessageBox.Show(@"El valor máximo no puede ser menor que el valor mínimo.");
-            DataControl.Clear(txb);
+            _dataControl.Clear(txb);
         }
         private void mtxbTimeToBidDown_Validated(object sender, EventArgs e)
         {
             var mtxb = (MaskedTextBox)sender;
-            if (DataControl.Validar(mtxb)) return;
-            if (DataControl.Validar(mtxbTimeToBidTop)) return;
+            if (_dataControl.Validar(mtxb)) return;
+            if (_dataControl.Validar(mtxbTimeToBidTop)) return;
             var down = new Time(mtxb.Text, "mm:ss");
             var top = new Time(mtxbTimeToBidDown.Text, "mm:ss");
             if (down <= top) return;
@@ -246,8 +252,8 @@ namespace AuctionGame_Admin
         private void mtxbTimeToBidTop_Validated(object sender, EventArgs e)
         {
             var mtxb = (MaskedTextBox)sender;
-            if (DataControl.Validar(mtxb)) return;
-            if (DataControl.Validar(mtxbTimeToBidDown)) return;
+            if (_dataControl.Validar(mtxb)) return;
+            if (_dataControl.Validar(mtxbTimeToBidDown)) return;
             var down = new Time(mtxbTimeToBidDown.Text, "mm:ss");
             var top = new Time(mtxb.Text, "mm:ss");
             if (top >= down) return;

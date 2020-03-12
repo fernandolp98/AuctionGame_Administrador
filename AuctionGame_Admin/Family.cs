@@ -2,7 +2,7 @@
 using System.Data;
 
 namespace AuctionGame_Admin
-{ 
+{
     public class Family
     {
         public int IdFamily { get; set; }

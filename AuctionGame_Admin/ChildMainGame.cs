@@ -19,47 +19,43 @@ namespace AuctionGame_Admin
         private TcpListener _tcpListener;
         private Thread _acceptThread;
         private readonly List<TcpConnection> _connectedClients = new List<TcpConnection>();
+
+        private bool _serverIsOn;
+
         public ChildMainGame()
         {
             InitializeComponent();
+            _serverIsOn = true;
         }
 
         private void ChildMainGame_Load(object sender, EventArgs e)
         {
-            OnDataRecieved += MensajeRecibido;
-            OnClientConnected += ConexionRecibida;
+            OnDataRecieved += MessageReceived;
+            OnClientConnected += ConnectionReceived;
             OnClientDisconnected += ConexionCerrada;
 
-            EscucharClientes("127.0.0.1", 1698);
+            ListenClients("127.0.0.1", 1698);
         }
-        private void MensajeRecibido(TcpConnection conexionTcp, string datos)
+        private void ConnectionReceived(TcpConnection tcpConnection)
         {
-            var paquete = new Package(datos);
-            string comando = paquete.Comando;
-            if (comando == "usuario")
+            if (_serverIsOn)
             {
-                string contenido = paquete.Contenido;
-                List<string> valores = Map.Deserializar(contenido);
-
+                lock (_connectedClients)
+                    if (!_connectedClients.Contains(tcpConnection))
+                        _connectedClients.Add(tcpConnection);
                 Invoke(new Action(() =>
                 {
-                    //Mostrar Mensaje recibido
+                    //Mostrar cliente conectado
                 }));
-
-                var msgPack = new Package("resultado", "OK");
-                conexionTcp.EnviarPaquete(msgPack);
+                var msgPack = new Package("connectionResult", "Approved");
+                tcpConnection.EnviarPaquete(msgPack);
             }
-        }
-
-        private void ConexionRecibida(TcpConnection conexionTcp)
-        {
-            lock (_connectedClients)
-                if (!_connectedClients.Contains(conexionTcp))
-                    _connectedClients.Add(conexionTcp);
-            Invoke(new Action(() =>
+            else
             {
-                //Mosstrar cliente conectado
-            }));
+                var msgPack = new Package("connectionResult", "Denied");
+                tcpConnection.EnviarPaquete(msgPack);
+            }
+
         }
 
         private void ConexionCerrada(TcpConnection conexionTcp)
@@ -67,7 +63,7 @@ namespace AuctionGame_Admin
             lock (_connectedClients)
                 if (_connectedClients.Contains(conexionTcp))
                 {
-                    int cliIndex = _connectedClients.IndexOf(conexionTcp);
+                    var cliIndex = _connectedClients.IndexOf(conexionTcp);
                     _connectedClients.RemoveAt(cliIndex);
                 }
             Invoke(new Action(() =>
@@ -75,14 +71,32 @@ namespace AuctionGame_Admin
                 //Mostrar usuario cerrado
             }));
         }
+        private void MessageReceived(TcpConnection tcpConnection, string data)
+        {
+            var package = new Package(data);
+            var command = package.Command;
+            if (command == "newBidd")//Si se realiza nueva puja
+            {
+                var content = package.Content;
+                var values = Map.Deserialize(content); //idBidd|Oferta
 
-        private void EscucharClientes(string ipAddress, int port)
+                Invoke(new Action(() =>
+                {
+                    //Mostrar Mensaje recibido
+                }));
+
+                var msgPack = new Package("result", "OK");
+                tcpConnection.EnviarPaquete(msgPack);
+            }
+        }
+
+        private void ListenClients(string ipAddress, int port)
         {
             try
             {
                 _tcpListener = new TcpListener(IPAddress.Parse(ipAddress), port);
                 _tcpListener.Start();
-                _acceptThread = new Thread(AceptarClientes);
+                _acceptThread = new Thread(AcceptClients);
                 _acceptThread.Start();
             }
             catch (Exception e)
@@ -90,16 +104,16 @@ namespace AuctionGame_Admin
                 MessageBox.Show(e.Message);
             }
         }
-        private void AceptarClientes()
+        private void AcceptClients()
         {
             do
             {
                 try
                 {
-                    var conexion = _tcpListener.AcceptTcpClient();
-                    var srvClient = new TcpConnection(conexion)
+                    var connection = _tcpListener.AcceptTcpClient();
+                    var srvClient = new TcpConnection(connection)
                     {
-                        ReadThread = new Thread(LeerDatos)
+                        ReadThread = new Thread(ReadData)
                     };
                     srvClient.ReadThread.Start(srvClient);
 
@@ -112,7 +126,7 @@ namespace AuctionGame_Admin
             } while (true);
         }
 
-        private void LeerDatos(object client)
+        private void ReadData(object client)
         {
             var cli = client as TcpConnection;
             var charBuffer = new List<int>();

@@ -13,6 +13,11 @@ namespace AuctionGame_Admin
 {
     public partial class FrmVirtualBidder : Form
     {
+
+        private static readonly Font FontPlaceHolder = new Font("Comic Sans MS", 14.25F, FontStyle.Italic, GraphicsUnit.Point, 0);
+        private static readonly Font FontRegular = new Font("Comic Sans MS", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        private readonly DataControl _dataControl = new DataControl(FontPlaceHolder, FontRegular, Color.Silver, Color.Black, Color.Red);
+
         private VirtualBidder _virtualBidder;
         private readonly ChildMainVirtualBidder _father;
         private bool _edit;
@@ -40,9 +45,9 @@ namespace AuctionGame_Admin
         private void LoadVirtualBider()
         {
                 cboRole.SelectedValue = _virtualBidder.Role.IdRole;
-                DataControl.Text(txbNameVirtualBidder, _virtualBidder.NameBidder);
-                DataControl.Text(txbDescriptionVirtuaBidder, _virtualBidder.DescriptionBidder);
-                DataControl.Text(txbWalletVirtualBidder, _virtualBidder.Wallet.ToString(CultureInfo.CurrentCulture));
+                _dataControl.Text(txbNameVirtualBidder, _virtualBidder.NameBidder);
+                _dataControl.Text(txbDescriptionVirtuaBidder, _virtualBidder.DescriptionBidder);
+                _dataControl.Text(txbWalletVirtualBidder, _virtualBidder.Wallet.ToString(CultureInfo.CurrentCulture));
         }
 
         private void LoadRoles()
@@ -70,7 +75,7 @@ namespace AuctionGame_Admin
                 txbDescriptionVirtuaBidder,
                 txbWalletVirtualBidder
             };
-            return DataControl.Validar(textboxes);
+            return _dataControl.Validar(textboxes);
         }
     private void btnSave_Click(object sender, EventArgs e)
         {
@@ -139,17 +144,17 @@ namespace AuctionGame_Admin
 
         private void Txb_Enter(object sender, EventArgs e)
         {
-            DataControl.PlaceHolder_Enter((TextBox)sender);
+            _dataControl.PlaceHolder_Enter((TextBox)sender);
         }
 
         private void Txb_Leave(object sender, EventArgs e)
         {
-            DataControl.placeHolder_Leave((TextBox)sender);
+            _dataControl.placeHolder_Leave((TextBox)sender);
         }
 
         private void Txb_Validated(object sender, EventArgs e)
         {
-            DataControl.Validar((TextBox)sender);
+            _dataControl.Validar((TextBox)sender);
         }
     }
 }

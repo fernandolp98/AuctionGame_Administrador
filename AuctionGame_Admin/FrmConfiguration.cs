@@ -13,11 +13,13 @@ namespace AuctionGame_Admin
 {
     public partial class FrmConfiguration : Form
     {
-        private bool _edit;
+        private static readonly Font FontPlaceHolder = new Font("Comic Sans MS", 14.25F, FontStyle.Italic, GraphicsUnit.Point, 0);
+        private static readonly Font FontRegular = new Font("Comic Sans MS", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        private readonly DataControl _dataControl = new DataControl(FontPlaceHolder, FontRegular, Color.Silver, Color.Black, Color.Red);
+
         public FrmConfiguration()
         {
             InitializeComponent();
-            _edit = true;
         }
         private void FrmRole_Load(object sender, EventArgs e)
         {
@@ -48,12 +50,12 @@ namespace AuctionGame_Admin
         }
         private void Txb_Enter(object sender, EventArgs e)
         {
-            DataControl.PlaceHolder_Enter((TextBox)sender);
+            _dataControl.PlaceHolder_Enter((TextBox)sender);
         }
 
         private void Txb_Leave(object sender, EventArgs e)
         {
-            DataControl.placeHolder_Leave((TextBox)sender);
+            _dataControl.placeHolder_Leave((TextBox)sender);
         }
         private void btnCancelar_Click(object sender, EventArgs e)
         {
@@ -72,7 +74,7 @@ namespace AuctionGame_Admin
                 txbPortBd,
                 txbNameBd
             };
-            return DataControl.Validar(textboxes);
+            return _dataControl.Validar(textboxes);
         }
         private void btnSave_Click(object sender, EventArgs e)
         {

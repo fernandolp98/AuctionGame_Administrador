@@ -8,27 +8,27 @@ namespace AuctionGame_Admin
 {
     public class Package
     {
-        public string Comando { get; set; }
-        public string Contenido { get; set; }
+        public string Command { get; set; }
+        public string Content { get; set; }
 
         public Package()
         {
 
         }
-        public Package(string comando, string contenido)
+        public Package(string command, string content)
         {
-            Comando = comando;
-            Contenido = contenido;
+            Command = command;
+            Content = content;
         }
         public Package(string datos) //Ej: comanto: contenido
         {
             var sepIndex = datos.IndexOf(":", StringComparison.Ordinal);
-            Comando = datos.Substring(0, sepIndex);
-            Contenido = datos.Substring(Comando.Length);
+            Command = datos.Substring(0, sepIndex);
+            Content = datos.Substring(Command.Length);
         }
         public string Serializar()
         {
-            return $"{Comando}:{Contenido}";
+            return $"{Command}:{Content}";
         }
         public static implicit operator string(Package package)
         {

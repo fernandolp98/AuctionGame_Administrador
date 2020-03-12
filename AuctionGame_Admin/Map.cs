@@ -8,7 +8,7 @@ namespace AuctionGame_Admin
 {
     public class Map
     {
-        public static string Serializar (List<string> lista)
+        public static string Serialize (List<string> lista)
         {
             if (lista.Count == 0) return null;
             var esElPrimero = true;
@@ -20,7 +20,7 @@ namespace AuctionGame_Admin
             }
             return salida.ToString();
         }
-        public static List<string> Deserializar(string entrada)
+        public static List<string> Deserialize(string entrada)
         {
             var str = entrada;
             var lista = new List<string>();

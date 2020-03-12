@@ -102,7 +102,6 @@
             this.txbRoundsTop.Text = "Máximo";
             this.txbRoundsTop.Enter += new System.EventHandler(this.Txb_Enter);
             this.txbRoundsTop.Leave += new System.EventHandler(this.Txb_Leave);
-            this.txbRoundsTop.Validated += new System.EventHandler(this.txbRoundsTop_Validated);
             // 
             // txbRoundsDown
             // 
@@ -294,7 +293,6 @@
             this.txbOffersForRoundTop.Text = "Máximo";
             this.txbOffersForRoundTop.Enter += new System.EventHandler(this.Txb_Enter);
             this.txbOffersForRoundTop.Leave += new System.EventHandler(this.Txb_Leave);
-            this.txbOffersForRoundTop.Validated += new System.EventHandler(this.txbOffersForRoundTop_Validated);
             // 
             // txbOfersForRoundDown
             // 
@@ -308,7 +306,6 @@
             this.txbOfersForRoundDown.Text = "Mínimo";
             this.txbOfersForRoundDown.Enter += new System.EventHandler(this.Txb_Enter);
             this.txbOfersForRoundDown.Leave += new System.EventHandler(this.Txb_Leave);
-            this.txbOfersForRoundDown.Validated += new System.EventHandler(this.txbOfersForRoundDown_Validated);
             // 
             // label7
             // 
@@ -366,7 +363,6 @@
             this.txbBidIncreaseBidTop.Text = "Máximo";
             this.txbBidIncreaseBidTop.Enter += new System.EventHandler(this.Txb_Enter);
             this.txbBidIncreaseBidTop.Leave += new System.EventHandler(this.Txb_Leave);
-            this.txbBidIncreaseBidTop.Validated += new System.EventHandler(this.txbIncreaseForBidTop_Validated);
             // 
             // label12
             // 
@@ -423,7 +419,6 @@
             this.txbBidIncreaseDown.Text = "Mínimo";
             this.txbBidIncreaseDown.Enter += new System.EventHandler(this.Txb_Enter);
             this.txbBidIncreaseDown.Leave += new System.EventHandler(this.Txb_Leave);
-            this.txbBidIncreaseDown.Validated += new System.EventHandler(this.txbIncreaseForBidDown_Validated);
             // 
             // label5
             // 
@@ -448,7 +443,6 @@
             this.mtxbTimeToBidTop.TabIndex = 4;
             this.mtxbTimeToBidTop.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.mtxbTimeToBidTop.ValidatingType = typeof(System.DateTime);
-            this.mtxbTimeToBidTop.Validated += new System.EventHandler(this.mtxbTimeToBidTop_Validated);
             // 
             // mtxbTimeToBidDown
             // 
@@ -459,7 +453,6 @@
             this.mtxbTimeToBidDown.TabIndex = 3;
             this.mtxbTimeToBidDown.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.mtxbTimeToBidDown.ValidatingType = typeof(System.DateTime);
-            this.mtxbTimeToBidDown.Validated += new System.EventHandler(this.mtxbTimeToBidDown_Validated);
             // 
             // label4
             // 

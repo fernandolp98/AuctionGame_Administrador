@@ -13,6 +13,10 @@ namespace AuctionGame_Admin
 {
     public partial class FrmProduct : Form
     {
+        private static readonly Font FontPlaceHolder = new Font("Comic Sans MS", 14.25F, FontStyle.Italic, GraphicsUnit.Point, 0);
+        private static readonly Font FontRegular = new Font("Comic Sans MS", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        private readonly DataControl _dataControl = new DataControl(FontPlaceHolder, FontRegular, Color.Silver, Color.Black, Color.Red);
+
         private readonly Product _product;
         private readonly bool _edit;
         private readonly ChildMainProducts _father;
@@ -46,10 +50,10 @@ namespace AuctionGame_Admin
 
         private void LoadProduct()
         {
-            DataControl.Text(txbIdProduct, _product.IdProduct.ToString());
-            DataControl.Text(txbNameProduct, _product.Name);
-            DataControl.Text(txbInitialPrice, _product.Price.ToString(CultureInfo.InvariantCulture));
-            DataControl.Text(txbPointsValue, _product.Points.ToString(CultureInfo.InvariantCulture));
+            _dataControl.Text(txbIdProduct, _product.IdProduct.ToString());
+            _dataControl.Text(txbNameProduct, _product.Name);
+            _dataControl.Text(txbInitialPrice, _product.Price.ToString(CultureInfo.InvariantCulture));
+            _dataControl.Text(txbPointsValue, _product.Points.ToString(CultureInfo.InvariantCulture));
             pboxProducto.Image = _product.ImageProduct;
         }
 
@@ -60,12 +64,12 @@ namespace AuctionGame_Admin
 
         private void Txb_Enter(object sender, EventArgs e)
         {
-            DataControl.PlaceHolder_Enter((TextBox)sender);
+            _dataControl.PlaceHolder_Enter((TextBox)sender);
         }
 
         private void Txb_Leave(object sender, EventArgs e)
         {
-            DataControl.placeHolder_Leave((TextBox)sender);
+            _dataControl.placeHolder_Leave((TextBox)sender);
         }
 
 
@@ -74,7 +78,7 @@ namespace AuctionGame_Admin
             try
             {
                 var txb = (TextBox)sender;
-                DataControl.Validar(txb);
+                _dataControl.Validar(txb);
             }
             catch (Exception exception)
             {
@@ -85,7 +89,7 @@ namespace AuctionGame_Admin
         private bool ValidData()
         {
             var textboxes = new object[] { txbIdProduct, txbInitialPrice, txbNameProduct, txbPointsValue };
-            return DataControl.Validar(textboxes);
+            return _dataControl.Validar(textboxes);
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -96,7 +100,7 @@ namespace AuctionGame_Admin
                 var newNameProduct = txbNameProduct.Text;
                 var newInitialPrice = txbInitialPrice.Text;
                 var newPointsValue = txbPointsValue.Text;
-                var newImageB64 = DataControl.ImageToBase64String(pboxProducto.Image);
+                var newImageB64 = _dataControl.ImageToBase64String(pboxProducto.Image);
 
                 if (!_edit) //Si no va a editar un producto ya existente
                 {

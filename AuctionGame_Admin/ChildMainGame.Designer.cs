@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.btnSearchFamilies = new System.Windows.Forms.Button();
-            this.txbSearchFamilies = new System.Windows.Forms.TextBox();
             this.btnDeleteFamily = new System.Windows.Forms.Button();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.SuspendLayout();
             // 
             // btnSearchFamilies
@@ -48,20 +48,6 @@
             this.btnSearchFamilies.Text = "Buscar";
             this.btnSearchFamilies.UseVisualStyleBackColor = false;
             // 
-            // txbSearchFamilies
-            // 
-            this.txbSearchFamilies.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txbSearchFamilies.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbSearchFamilies.ForeColor = System.Drawing.Color.Silver;
-            this.txbSearchFamilies.Location = new System.Drawing.Point(427, 108);
-            this.txbSearchFamilies.Name = "txbSearchFamilies";
-            this.txbSearchFamilies.Size = new System.Drawing.Size(344, 29);
-            this.txbSearchFamilies.TabIndex = 17;
-            this.txbSearchFamilies.Tag = "Buscar,alfanumerico";
-            this.txbSearchFamilies.Text = "Buscar";
-            // 
             // btnDeleteFamily
             // 
             this.btnDeleteFamily.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -76,15 +62,23 @@
             this.btnDeleteFamily.Text = "Eliminar";
             this.btnDeleteFamily.UseVisualStyleBackColor = false;
             // 
+            // richTextBox1
+            // 
+            this.richTextBox1.Location = new System.Drawing.Point(521, 12);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(250, 223);
+            this.richTextBox1.TabIndex = 21;
+            this.richTextBox1.Text = "";
+            // 
             // ChildMainGame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(202)))), ((int)(((byte)(216)))));
             this.ClientSize = new System.Drawing.Size(784, 661);
+            this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.btnDeleteFamily);
             this.Controls.Add(this.btnSearchFamilies);
-            this.Controls.Add(this.txbSearchFamilies);
             this.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.ForeColor = System.Drawing.Color.White;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -93,13 +87,12 @@
             this.Text = "ChildMenuFamily";
             this.Load += new System.EventHandler(this.ChildMainGame_Load);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
         private System.Windows.Forms.Button btnSearchFamilies;
-        private System.Windows.Forms.TextBox txbSearchFamilies;
         private System.Windows.Forms.Button btnDeleteFamily;
+        private System.Windows.Forms.RichTextBox richTextBox1;
     }
 }

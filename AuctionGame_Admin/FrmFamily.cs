@@ -13,6 +13,10 @@ namespace AuctionGame_Admin
 {
     public partial class FrmFamily : Form
     {
+        private static readonly Font FontPlaceHolder = new Font("Comic Sans MS", 14.25F, FontStyle.Italic, GraphicsUnit.Point, 0);
+        private static readonly Font FontRegular = new Font("Comic Sans MS", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        private readonly DataControl _dataControl = new DataControl(FontPlaceHolder, FontRegular, Color.Silver, Color.Black, Color.Red);
+
         private Family _family;
         private bool _edit;
         private readonly ChildMainFamily _father;
@@ -61,8 +65,8 @@ namespace AuctionGame_Admin
 
         private void LoadFamily()
         {
-            DataControl.Text(txbNameFamily, _family.NameFamily);
-            DataControl.Text(txbPointsValue, _family.Points.ToString(CultureInfo.CurrentCulture));
+            _dataControl.Text(txbNameFamily, _family.NameFamily);
+            _dataControl.Text(txbPointsValue, _family.Points.ToString(CultureInfo.CurrentCulture));
 
         }
 
@@ -100,12 +104,12 @@ namespace AuctionGame_Admin
         }
         private void Txb_Enter(object sender, EventArgs e)
         {
-            DataControl.PlaceHolder_Enter((TextBox)sender);
+            _dataControl.PlaceHolder_Enter((TextBox)sender);
         }
 
         private void Txb_Leave(object sender, EventArgs e)
         {
-            DataControl.placeHolder_Leave((TextBox)sender);
+            _dataControl.placeHolder_Leave((TextBox)sender);
         }
         private void Txb_Validated(object sender, EventArgs e)
         {
@@ -113,7 +117,7 @@ namespace AuctionGame_Admin
             {
                 var txb = (TextBox)sender;
                 var txbTag = (string)txb.Tag;
-                DataControl.Validar(txb);
+                _dataControl.Validar(txb);
             }
             catch (Exception exception)
             {
@@ -123,7 +127,7 @@ namespace AuctionGame_Admin
         private bool ValidData()
         {
             var textboxes = new object[] { txbNameFamily, txbPointsValue };
-            return DataControl.Validar(textboxes);
+            return _dataControl.Validar(textboxes);
         }
         private void btnSave_Click(object sender, EventArgs e)
         {

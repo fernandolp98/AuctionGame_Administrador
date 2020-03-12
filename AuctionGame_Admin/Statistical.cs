@@ -15,7 +15,7 @@ namespace AuctionGame_Admin
         public int BidTotal { get; set; }
         public int BidWin { get; set; }
         public double Points { get; set; }
-        public double Wallet { get; set; }
+        public decimal Wallet { get; set; }
         public string Log { get; set; }
 
 
@@ -55,9 +55,9 @@ namespace AuctionGame_Admin
         {
             this._secondsBetweenBidd.Add(seconds);
         }
-        public void AddIncreaseForBidd(int increase)
+        public void AddIncreaseForBidd(decimal increase)
         {
-            this._increaseForBidd.Add(increase);
+            this._increaseForBidd.Add((int)increase);
         }
 
         public void Results()
@@ -65,7 +65,7 @@ namespace AuctionGame_Admin
             var roundsForBidd = (int)mean(_roundsForBidd);
             var biddForRound = (int)mean(_biddForRound);
             var secondsBetweenBidd = (int)mean(_secondsBetweenBidd);
-            var increaseForBidd = (int) mean(_increaseForBidd);
+            var increaseForBidd = (int)mean(_increaseForBidd);
 
             var query = $"UPDATE statistical_data SET " +
                            $"roundsForBid = {roundsForBidd}, " +

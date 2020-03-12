@@ -8,6 +8,10 @@ namespace AuctionGame_Admin
 {
     public partial class FrmRoutine : Form
     {
+        private static readonly Font FontPlaceHolder = new Font("Comic Sans MS", 14.25F, FontStyle.Italic, GraphicsUnit.Point, 0);
+        private static readonly Font FontRegular = new Font("Comic Sans MS", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        private readonly DataControl _dataControl = new DataControl(FontPlaceHolder, FontRegular, Color.Silver, Color.Black, Color.Red);
+
         private Routine _routine;
         private readonly Color _enableColor = Color.FromArgb(26, 82, 118);
 
@@ -50,8 +54,8 @@ namespace AuctionGame_Admin
         }
         private void LoadRoutine()
         {
-            DataControl.Text(txbNameRoutine, _routine.NameRoutine);
-            DataControl.Text(txbDescriptionRoutine, _routine.DescriptionRoutine);
+            _dataControl.Text(txbNameRoutine, _routine.NameRoutine);
+            _dataControl.Text(txbDescriptionRoutine, _routine.DescriptionRoutine);
             UpdateFamilies();
             UpdateProducts();
             UpdateVirtualBidders();
@@ -62,12 +66,12 @@ namespace AuctionGame_Admin
         }
         private void Txb_Enter(object sender, EventArgs e)
         {
-            DataControl.PlaceHolder_Enter((TextBox)sender);
+            _dataControl.PlaceHolder_Enter((TextBox)sender);
         }
 
         private void Txb_Leave(object sender, EventArgs e)
         {
-            DataControl.placeHolder_Leave((TextBox)sender);
+            _dataControl.placeHolder_Leave((TextBox)sender);
         }
         private bool ValidData()
         {
@@ -76,7 +80,7 @@ namespace AuctionGame_Admin
                 txbNameRoutine,
                 txbDescriptionRoutine
             };
-            return DataControl.Validar(textboxes);
+            return _dataControl.Validar(textboxes);
         }
         public void UpdateFamilies()
         {

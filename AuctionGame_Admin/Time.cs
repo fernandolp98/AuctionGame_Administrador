@@ -21,14 +21,16 @@ namespace AuctionGame_Admin
             switch (time)
             {
                 case int _:
+                case double _:
                     stringTime = time.ToString();
                     break;
                 case string s:
                     stringTime = s;
                     break;
+                default: Console.WriteLine(time.GetType().ToString()); break;
             }
             var timeArray = stringTime.Split(':');
-            var hours = 0;m:
+            var hours = 0;
             var minutes = 0;
             var seconds = 0;
             var error = true;

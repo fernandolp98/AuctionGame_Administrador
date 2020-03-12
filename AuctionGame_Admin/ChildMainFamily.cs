@@ -12,6 +12,10 @@ namespace AuctionGame_Admin
 {
     public partial class ChildMainFamily : Form
     {
+        private static readonly Font FontPlaceHolder = new Font("Comic Sans MS", 14.25F, FontStyle.Italic, GraphicsUnit.Point, 0);
+        private static readonly Font FontRegular = new Font("Comic Sans MS", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        private readonly DataControl _dataControl = new DataControl(FontPlaceHolder, FontRegular, Color.Silver, Color.Black, Color.Red);
+
         public ChildMainFamily()
         {
             InitializeComponent();
@@ -106,12 +110,12 @@ namespace AuctionGame_Admin
 
         private void txbSearchFamily_Enter(object sender, System.EventArgs e)
         {
-            DataControl.PlaceHolder_Enter((TextBox)sender);
+            _dataControl.PlaceHolder_Enter((TextBox)sender);
         }
 
         private void txbSearchFamily_Leave(object sender, System.EventArgs e)
         {
-            DataControl.placeHolder_Leave((TextBox)sender);
+            _dataControl.placeHolder_Leave((TextBox)sender);
 
         }
     }
