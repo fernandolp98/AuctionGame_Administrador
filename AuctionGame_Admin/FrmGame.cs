@@ -5,10 +5,13 @@ using System.Net;
 using System.Net.Sockets;
 using System.Threading;
 using System.Windows.Forms;
+using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace AuctionGame_Admin
 {
-    public partial class ChildMainGame : Form
+    public partial class FrmGame : Form
     {
         public delegate void ClientCarrier(TcpConnection tcpConnection);
         public event ClientCarrier OnClientConnected;
@@ -22,10 +25,18 @@ namespace AuctionGame_Admin
 
         private bool _serverIsOn;
 
-        public ChildMainGame()
+
+        private Routine _routine;
+        private decimal _initialMoney;
+        private Time _initialTime;
+
+        public FrmGame(Routine routine, decimal initialMoney, Time initialTime)
         {
             InitializeComponent();
             _serverIsOn = true;
+            _routine = routine;
+            _initialMoney = initialMoney;
+            _initialTime = initialTime;
         }
 
         private void ChildMainGame_Load(object sender, EventArgs e)
@@ -47,12 +58,13 @@ namespace AuctionGame_Admin
                 {
                     //Mostrar cliente conectado
                 }));
-                var msgPack = new Package("connectionResult", "Approved");
+
+                var msgPack = new Package("connectionResultOk", $"{_initialTime.Seconds}|{_routine.IdRoutine}|{_initialMoney}");
                 tcpConnection.EnviarPaquete(msgPack);
             }
             else
             {
-                var msgPack = new Package("connectionResult", "Denied");
+                var msgPack = new Package("connectionResultNo", "Denied");
                 tcpConnection.EnviarPaquete(msgPack);
             }
 
@@ -175,6 +187,20 @@ namespace AuctionGame_Admin
             } while (true);
 
             OnClientDisconnected?.Invoke(cli);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void FrmGame_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Environment.Exit(0);
+        }
+
+        private void FrmGame_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Environment.Exit(0);
         }
     }
 }

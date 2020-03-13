@@ -59,7 +59,6 @@ namespace AuctionGame_Admin
             this.btnProducts = new System.Windows.Forms.Button();
             this.btnMenuItem2 = new System.Windows.Forms.Button();
             this.pnlSubMenuItem1 = new System.Windows.Forms.Panel();
-            this.btnGameConfiguration = new System.Windows.Forms.Button();
             this.btnGame = new System.Windows.Forms.Button();
             this.btnMenuItem1 = new System.Windows.Forms.Button();
             this.pnlDashboard = new System.Windows.Forms.Panel();
@@ -106,7 +105,7 @@ namespace AuctionGame_Admin
             this.btnConfiguration.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(153)))), ((int)(((byte)(199)))));
             this.btnConfiguration.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnConfiguration.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(214)))), ((int)(((byte)(229)))));
-            this.btnConfiguration.Location = new System.Drawing.Point(0, 1031);
+            this.btnConfiguration.Location = new System.Drawing.Point(0, 981);
             this.btnConfiguration.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnConfiguration.Name = "btnConfiguration";
             this.btnConfiguration.Padding = new System.Windows.Forms.Padding(51, 0, 0, 0);
@@ -123,7 +122,7 @@ namespace AuctionGame_Admin
             this.pnlSubMenuItem7.Controls.Add(this.btnUsersStatistics);
             this.pnlSubMenuItem7.Controls.Add(this.btnUsers);
             this.pnlSubMenuItem7.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlSubMenuItem7.Location = new System.Drawing.Point(0, 933);
+            this.pnlSubMenuItem7.Location = new System.Drawing.Point(0, 883);
             this.pnlSubMenuItem7.Margin = new System.Windows.Forms.Padding(4);
             this.pnlSubMenuItem7.Name = "pnlSubMenuItem7";
             this.pnlSubMenuItem7.Size = new System.Drawing.Size(283, 98);
@@ -171,7 +170,7 @@ namespace AuctionGame_Admin
             this.btnMenuItem7.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(153)))), ((int)(((byte)(199)))));
             this.btnMenuItem7.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMenuItem7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(214)))), ((int)(((byte)(229)))));
-            this.btnMenuItem7.Location = new System.Drawing.Point(0, 884);
+            this.btnMenuItem7.Location = new System.Drawing.Point(0, 834);
             this.btnMenuItem7.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnMenuItem7.Name = "btnMenuItem7";
             this.btnMenuItem7.Padding = new System.Windows.Forms.Padding(51, 0, 0, 0);
@@ -188,7 +187,7 @@ namespace AuctionGame_Admin
             this.pnlSubMenuItem6.Controls.Add(this.btnAddRoutines);
             this.pnlSubMenuItem6.Controls.Add(this.btnRoutines);
             this.pnlSubMenuItem6.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlSubMenuItem6.Location = new System.Drawing.Point(0, 786);
+            this.pnlSubMenuItem6.Location = new System.Drawing.Point(0, 736);
             this.pnlSubMenuItem6.Margin = new System.Windows.Forms.Padding(4);
             this.pnlSubMenuItem6.Name = "pnlSubMenuItem6";
             this.pnlSubMenuItem6.Size = new System.Drawing.Size(283, 98);
@@ -236,7 +235,7 @@ namespace AuctionGame_Admin
             this.btnMenuItem6.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(153)))), ((int)(((byte)(199)))));
             this.btnMenuItem6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMenuItem6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(214)))), ((int)(((byte)(229)))));
-            this.btnMenuItem6.Location = new System.Drawing.Point(0, 737);
+            this.btnMenuItem6.Location = new System.Drawing.Point(0, 687);
             this.btnMenuItem6.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnMenuItem6.Name = "btnMenuItem6";
             this.btnMenuItem6.Padding = new System.Windows.Forms.Padding(51, 0, 0, 0);
@@ -253,7 +252,7 @@ namespace AuctionGame_Admin
             this.pnlSubMenuItem5.Controls.Add(this.btnAddVirtualPlayer);
             this.pnlSubMenuItem5.Controls.Add(this.btnVirtualPlayers);
             this.pnlSubMenuItem5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlSubMenuItem5.Location = new System.Drawing.Point(0, 639);
+            this.pnlSubMenuItem5.Location = new System.Drawing.Point(0, 589);
             this.pnlSubMenuItem5.Margin = new System.Windows.Forms.Padding(4);
             this.pnlSubMenuItem5.Name = "pnlSubMenuItem5";
             this.pnlSubMenuItem5.Size = new System.Drawing.Size(283, 98);
@@ -301,7 +300,7 @@ namespace AuctionGame_Admin
             this.btnMenuItem5.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(153)))), ((int)(((byte)(199)))));
             this.btnMenuItem5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMenuItem5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(214)))), ((int)(((byte)(229)))));
-            this.btnMenuItem5.Location = new System.Drawing.Point(0, 590);
+            this.btnMenuItem5.Location = new System.Drawing.Point(0, 540);
             this.btnMenuItem5.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnMenuItem5.Name = "btnMenuItem5";
             this.btnMenuItem5.Padding = new System.Windows.Forms.Padding(51, 0, 0, 0);
@@ -318,7 +317,7 @@ namespace AuctionGame_Admin
             this.pnlSubMenuItem4.Controls.Add(this.btnAddRole);
             this.pnlSubMenuItem4.Controls.Add(this.btnRoles);
             this.pnlSubMenuItem4.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlSubMenuItem4.Location = new System.Drawing.Point(0, 492);
+            this.pnlSubMenuItem4.Location = new System.Drawing.Point(0, 442);
             this.pnlSubMenuItem4.Margin = new System.Windows.Forms.Padding(4);
             this.pnlSubMenuItem4.Name = "pnlSubMenuItem4";
             this.pnlSubMenuItem4.Size = new System.Drawing.Size(283, 98);
@@ -366,7 +365,7 @@ namespace AuctionGame_Admin
             this.btnMenuItem4.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(153)))), ((int)(((byte)(199)))));
             this.btnMenuItem4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMenuItem4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(214)))), ((int)(((byte)(229)))));
-            this.btnMenuItem4.Location = new System.Drawing.Point(0, 443);
+            this.btnMenuItem4.Location = new System.Drawing.Point(0, 393);
             this.btnMenuItem4.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnMenuItem4.Name = "btnMenuItem4";
             this.btnMenuItem4.Padding = new System.Windows.Forms.Padding(51, 0, 0, 0);
@@ -383,7 +382,7 @@ namespace AuctionGame_Admin
             this.pnlSubMenuItem3.Controls.Add(this.btnAddFamily);
             this.pnlSubMenuItem3.Controls.Add(this.btnFamilies);
             this.pnlSubMenuItem3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlSubMenuItem3.Location = new System.Drawing.Point(0, 345);
+            this.pnlSubMenuItem3.Location = new System.Drawing.Point(0, 295);
             this.pnlSubMenuItem3.Margin = new System.Windows.Forms.Padding(4);
             this.pnlSubMenuItem3.Name = "pnlSubMenuItem3";
             this.pnlSubMenuItem3.Size = new System.Drawing.Size(283, 98);
@@ -431,7 +430,7 @@ namespace AuctionGame_Admin
             this.btnMenuItem3.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(153)))), ((int)(((byte)(199)))));
             this.btnMenuItem3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMenuItem3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(214)))), ((int)(((byte)(229)))));
-            this.btnMenuItem3.Location = new System.Drawing.Point(0, 296);
+            this.btnMenuItem3.Location = new System.Drawing.Point(0, 246);
             this.btnMenuItem3.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnMenuItem3.Name = "btnMenuItem3";
             this.btnMenuItem3.Padding = new System.Windows.Forms.Padding(51, 0, 0, 0);
@@ -448,7 +447,7 @@ namespace AuctionGame_Admin
             this.pnlSubMenuItem2.Controls.Add(this.btnAddProduct);
             this.pnlSubMenuItem2.Controls.Add(this.btnProducts);
             this.pnlSubMenuItem2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlSubMenuItem2.Location = new System.Drawing.Point(0, 197);
+            this.pnlSubMenuItem2.Location = new System.Drawing.Point(0, 147);
             this.pnlSubMenuItem2.Margin = new System.Windows.Forms.Padding(4);
             this.pnlSubMenuItem2.Name = "pnlSubMenuItem2";
             this.pnlSubMenuItem2.Size = new System.Drawing.Size(283, 99);
@@ -499,7 +498,7 @@ namespace AuctionGame_Admin
             this.btnMenuItem2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMenuItem2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(214)))), ((int)(((byte)(229)))));
             this.btnMenuItem2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnMenuItem2.Location = new System.Drawing.Point(0, 148);
+            this.btnMenuItem2.Location = new System.Drawing.Point(0, 98);
             this.btnMenuItem2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnMenuItem2.Name = "btnMenuItem2";
             this.btnMenuItem2.Padding = new System.Windows.Forms.Padding(51, 0, 0, 0);
@@ -514,33 +513,14 @@ namespace AuctionGame_Admin
             // pnlSubMenuItem1
             // 
             this.pnlSubMenuItem1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(31)))), ((int)(((byte)(97)))), ((int)(((byte)(141)))));
-            this.pnlSubMenuItem1.Controls.Add(this.btnGameConfiguration);
             this.pnlSubMenuItem1.Controls.Add(this.btnGame);
             this.pnlSubMenuItem1.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlSubMenuItem1.Location = new System.Drawing.Point(0, 49);
             this.pnlSubMenuItem1.Margin = new System.Windows.Forms.Padding(4);
             this.pnlSubMenuItem1.Name = "pnlSubMenuItem1";
-            this.pnlSubMenuItem1.Size = new System.Drawing.Size(283, 99);
+            this.pnlSubMenuItem1.Size = new System.Drawing.Size(283, 49);
             this.pnlSubMenuItem1.TabIndex = 2;
             this.pnlSubMenuItem1.Visible = false;
-            // 
-            // btnGameConfiguration
-            // 
-            this.btnGameConfiguration.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnGameConfiguration.FlatAppearance.BorderSize = 0;
-            this.btnGameConfiguration.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnGameConfiguration.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(214)))), ((int)(((byte)(229)))));
-            this.btnGameConfiguration.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnGameConfiguration.Location = new System.Drawing.Point(0, 49);
-            this.btnGameConfiguration.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnGameConfiguration.Name = "btnGameConfiguration";
-            this.btnGameConfiguration.Padding = new System.Windows.Forms.Padding(77, 0, 0, 0);
-            this.btnGameConfiguration.Size = new System.Drawing.Size(283, 49);
-            this.btnGameConfiguration.TabIndex = 2;
-            this.btnGameConfiguration.Text = "Configuración";
-            this.btnGameConfiguration.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnGameConfiguration.UseVisualStyleBackColor = true;
-            this.btnGameConfiguration.Click += new System.EventHandler(this.btnGameConfiguration_Click);
             // 
             // btnGame
             // 
@@ -554,7 +534,7 @@ namespace AuctionGame_Admin
             this.btnGame.Padding = new System.Windows.Forms.Padding(77, 0, 0, 0);
             this.btnGame.Size = new System.Drawing.Size(283, 49);
             this.btnGame.TabIndex = 3;
-            this.btnGame.Text = "Ver juego";
+            this.btnGame.Text = "Iniciar Juego";
             this.btnGame.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnGame.UseVisualStyleBackColor = true;
             this.btnGame.Click += new System.EventHandler(this.btnGame_Click);
@@ -623,7 +603,6 @@ namespace AuctionGame_Admin
         private System.Windows.Forms.Panel pnlSubMenuItem1;
         private System.Windows.Forms.Button btnMenuItem1;
         private System.Windows.Forms.Button btnGame;
-        private System.Windows.Forms.Button btnGameConfiguration;
 
         private System.Windows.Forms.Panel pnlSubMenuItem2;
         private System.Windows.Forms.Button btnMenuItem2;

@@ -275,7 +275,8 @@ namespace AuctionGame_Admin
 
         private void btnGame_Click(object sender, EventArgs e)
         {
-            OpenChildForm(new ChildMainGame());
+            var form = new FrmGameConfiguration();
+            form.Show();
 
         }
 

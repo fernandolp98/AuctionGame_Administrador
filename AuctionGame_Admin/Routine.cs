@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace AuctionGame_Admin
 {
+    [Serializable]
     public class Routine
     {
         public int IdRoutine { get; set; }

@@ -12,8 +12,8 @@ namespace AuctionGame_Admin
 {
     public partial class FrmGameConfiguration : Form
     {
-        private static readonly Font FontPlaceHolder = new Font("Comic Sans MS", 14.25F, FontStyle.Italic, GraphicsUnit.Point, 0);
-        private static readonly Font FontRegular = new Font("Comic Sans MS", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
+        private static readonly Font FontPlaceHolder = new Font("Segoe UI", 12F, FontStyle.Italic, GraphicsUnit.Point, 0);
+        private static readonly Font FontRegular = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
         private readonly DataControl _dataControl = new DataControl(FontPlaceHolder, FontRegular, Color.Silver, Color.Black, Color.Red);
 
         private bool _edit;
@@ -24,11 +24,14 @@ namespace AuctionGame_Admin
         }
         private void FrmRole_Load(object sender, EventArgs e)
         {
-
+            LoadRoutines();
         }
-        private void LoadRole()
+        private void LoadRoutines()
         {
-
+            var routines = Routine.GetAllRoutines();
+            cboRoutines.DataSource = routines;
+            cboRoutines.DisplayMember = "NameRoutine";
+            cboRoutines.ValueMember = "IdRoutine";
         }
         private bool Question(string question, string caption)
         {
@@ -52,16 +55,8 @@ namespace AuctionGame_Admin
         {
             var textboxes = new object[]
             {
-                txbNameRole,
-                txbDescriptionRole,
-                mtxbTimeToBidDown,
-                mtxbTimeToBidTop,
-                txbOfersForRoundDown,
-                txbOffersForRoundTop,
-                txbRoundsDown,
-                txbRoundsTop,
-                txbBidIncreaseDown,
-                txbBidIncreaseBidTop
+                txbInitialMoney,
+                mtxbInitialTime,
             };
             return _dataControl.Validar(textboxes);
         }
@@ -69,7 +64,12 @@ namespace AuctionGame_Admin
         {
             if (ValidData())
             {
-
+                var routine = (Routine)cboRoutines.SelectedItem;
+                if (routine == null) return;
+                var initialMoney = decimal.Parse(txbInitialMoney.Text);
+                var time = new Time(mtxbInitialTime.Text, "mm:ss");
+                var form = new FrmGame(routine, initialMoney, time);
+                form.Show();
             }
         }
 
@@ -77,5 +77,18 @@ namespace AuctionGame_Admin
 
 
         #endregion
+
+        private void txbInitialMoney_Validated(object sender, EventArgs e)
+        {
+            _dataControl.Validar((TextBox) sender);
+        }
+
+        private void mtxbInitialTime_Validated(object sender, EventArgs e)
+        {
+            var mtxb = (MaskedTextBox) sender;
+            if (_dataControl.Validar(mtxb)) return;
+            var time = new Time(mtxb.Text, "mm:ss");
+            mtxb.Text = time.Format("mm:ss");
+        }
     }
 }

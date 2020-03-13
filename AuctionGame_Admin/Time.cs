@@ -2,7 +2,7 @@
 
 namespace AuctionGame_Admin
 {
-    class Time : IComparable<Time>
+    public class Time : IComparable<Time>
     {
         public int Hours { get; set; }
         public int Minutes { get; set; }
