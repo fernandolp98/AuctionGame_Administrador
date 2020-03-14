@@ -8,32 +8,34 @@ using System.Net.Sockets;
 using System.Threading;
 using System.Windows.Forms;
 
-
 namespace AuctionGame_Admin
 {
     public partial class FrmGame : Form
     {
+
         public delegate void ClientCarrier(TcpConnection tcpConnection);
         public event ClientCarrier OnClientConnected;
         public event ClientCarrier OnClientDisconnected;
         public delegate void DataRecieved(TcpConnection tcpConnection, string data);
         public event DataRecieved OnDataRecieved;
 
+        private bool _serverIsOn;
         private TcpListener _tcpListener;
         private Thread _acceptThread;
         private readonly List<TcpConnection> _connectedClients = new List<TcpConnection>();
 
-
+        private bool _activeAuction;
         private readonly Routine _routine;
         private readonly decimal _initialMoney;
         private readonly Time _initialTime;
 
-        private List<Product> _products;
+        private readonly List<Product> _products;
         private List<Family> _families;
-        private List<VirtualBidder> _virtualBidders;
+        private readonly List<VirtualBidder> _virtualBidders;
 
-        private int _initialMinutes, _initialSeconds;
-        private int _predeterminatedMinutes, predeterminatedSeconds;
+        private readonly int _initialMinutes;
+        private readonly int _initialSeconds;
+        private int _predeterminatedMinutes, _predeterminatedSeconds;
         private int _seconds, _minutes;
 
         private int _currentProductIndex;
@@ -44,12 +46,6 @@ namespace AuctionGame_Admin
         private int _round;
 
         private int _currentWinner;
-
-        private bool _activeAuction;
-
-        private string _log;
-
-        private bool _firstBidd = true;
 
         public FrmGame(Routine routine, decimal initialMoney, Time initialTime)
         {
@@ -111,7 +107,7 @@ namespace AuctionGame_Admin
                     tcpConnection.EnviarPaquete(msgPack);
                     Invoke(new Action(() =>
                     {
-                        addText(rtxbUsers, $"{user.NameBidder} ({user.IdBidder})", Color.Black, true);
+                        AddText(rtxbUsers, $"{user.NameBidder} ({user.IdBidder})", Color.Black, true);
 
                     }));
                 }
@@ -126,6 +122,7 @@ namespace AuctionGame_Admin
         {
             try
             {
+                _serverIsOn = true;
                 _tcpListener = new TcpListener(IPAddress.Parse(ipAddress), port);
                 _tcpListener.Start();
                 _acceptThread = new Thread(AcceptClients);
@@ -138,7 +135,7 @@ namespace AuctionGame_Admin
         }
         private void AcceptClients()
         {
-            do
+            while (_serverIsOn)
             {
                 try
                 {
@@ -155,7 +152,9 @@ namespace AuctionGame_Admin
                 {
                     MessageBox.Show(e.Message);
                 }
-            } while (true);
+            }
+            _tcpListener.Stop();
+            _tcpListener.Server.Disconnect(false);
         }
 
         private void ReadData(object client)
@@ -215,22 +214,22 @@ namespace AuctionGame_Admin
         #region Apuestas
         private void btnPlay_Click(object sender, EventArgs e)
         {
-            using (Semaphore semaphore = new Semaphore(1, 1, "Semaphore"))
+            using (var semaphore = new Semaphore(1, 1, "Semaphore"))
             {
 
-                if (_virtualBidders != null && _firstBidd)
+                if (_virtualBidders != null)
                     foreach (var vb in _virtualBidders)
                     {
-                        Thread thread = new Thread(() => ManagerBidder(vb));
+                        var thread = new Thread(() => ManagerBidder(vb));
                         vb.Hilo = thread;
                         vb.Hilo.Start();
                     }
-                else
-                    foreach (var vb in _virtualBidders)
-                    {
-                        vb.Hilo.Resume();
-                    }
-                _firstBidd = false;
+                //else
+                //    foreach (var vb in _virtualBidders)
+                //    {
+                //        //vb.Hilo.Resume();
+                //    }
+                //_firstBidd = false;
                 nextBid();
             }
         }
@@ -239,7 +238,7 @@ namespace AuctionGame_Admin
             if (_products.Count > 0 && _currentProductIndex < _products.Count)
             {
                 txbClock.BackColor = Color.Green;
-                _seconds = predeterminatedSeconds = _initialSeconds;
+                _seconds = _predeterminatedSeconds = _initialSeconds;
                 _minutes = _predeterminatedMinutes = _initialMinutes;
                 //Selecciona el siguiente producto
                 _currentProduct = _products.ElementAt(_currentProductIndex);
@@ -250,18 +249,18 @@ namespace AuctionGame_Admin
                 _round = 1; //numero de ronda actual
                 lblLastOffer.Text = _currentProduct.Price.ToString();
                 lblCurrentNameProduct.Text = _currentProduct.Name;
-                addText(rtxbActivity, $"Inicia subasta por ", Color.Black, true);
-                addText(rtxbActivity, _currentProduct.Name, Color.Red, false);
-                addText(rtxbActivity, $"\nPrecio Inicial ", Color.Black, false);
-                addText(rtxbActivity, _currentProduct.Price.ToString(), Color.Red, false);
-                addText(rtxbActivity, $"\nInicia Round 1\n", Color.Black, false);
+                AddText(rtxbActivity, $"Inicia subasta por ", Color.Black, true);
+                AddText(rtxbActivity, _currentProduct.Name, Color.Red, false);
+                AddText(rtxbActivity, $"\nPrecio Inicial ", Color.Black, false);
+                AddText(rtxbActivity, _currentProduct.Price.ToString(), Color.Red, false);
+                AddText(rtxbActivity, $"\nInicia Round 1\n", Color.Black, false);
 
                 lblAuctionNumber.Text = _currentProductIndex.ToString();
                 lblRoundNumber.Text = _round.ToString();
 
                 _currentWinner = 0;
                 if (_virtualBidders != null)
-                    foreach (VirtualBidder vb in _virtualBidders)
+                    foreach (var vb in _virtualBidders)
                     {
                         vb.OutBidder = false;
                         vb.Offert = 0;
@@ -282,7 +281,7 @@ namespace AuctionGame_Admin
             }
             else
             {
-                MessageBox.Show("Ya no existen productos por subastar");
+                MessageBox.Show(@"Ya no existen productos por subastar");
                 _activeAuction = false;
             }
         }
@@ -300,7 +299,7 @@ namespace AuctionGame_Admin
 
 
 
-                    addText(rtxbActivity, $"Termina subasta, gana {_currentWinner}. \n", Color.Blue, true);
+                    AddText(rtxbActivity, $"Termina subasta, gana {_currentWinner}. \n", Color.Blue, true);
                     timerAuction.Stop();//se detiene la variable tiempo
                     txbClock.BackColor = Color.Red;//cambia el color del reloj
 
@@ -326,12 +325,11 @@ namespace AuctionGame_Admin
                                 //se le resta el monto de la offerta a su cartera
                                 vb.Wallet -= vb.Offert;
                             }
-                            vb.Hilo.Suspend();
                         }
                 }
                 else //Se inicia una nueva ronda
                 {
-                    addText(rtxbActivity, $"Inicia ronda {_round + 1}\n", Color.Black, true);
+                    AddText(rtxbActivity, $"Inicia ronda {_round + 1}\n", Color.Black, true);
                     foreach (var vb in _virtualBidders)
                     {
                         if (!vb.OutBidder)
@@ -344,19 +342,19 @@ namespace AuctionGame_Admin
                     lblRoundNumber.Text = _round.ToString();
                     if (_predeterminatedMinutes == 0)//si los minutos que se dan de manera predeterminada llegan a 0
                     {
-                        if (predeterminatedSeconds > 20)//si los segundos que se dan de manera predeterminada son mas de 20
+                        if (_predeterminatedSeconds > 20)//si los segundos que se dan de manera predeterminada son mas de 20
                         {
-                            predeterminatedSeconds -= 10;//se van restando 10 segundos por ronda
+                            _predeterminatedSeconds -= 10;//se van restando 10 segundos por ronda
                         }
                         else
                         {
-                            predeterminatedSeconds = 15;//se limita a 15 segundos la ronda
+                            _predeterminatedSeconds = 15;//se limita a 15 segundos la ronda
                         }
                     }
                     else if (_predeterminatedMinutes == 1)
                     {
                         _predeterminatedMinutes--;
-                        predeterminatedSeconds = 50;
+                        _predeterminatedSeconds = 50;
                     }
                     else
                     {
@@ -364,7 +362,7 @@ namespace AuctionGame_Admin
                     }
                     //se igualan los minutos y segundos a los predeterminados
                     _minutes = _predeterminatedMinutes;
-                    _seconds = predeterminatedSeconds;
+                    _seconds = _predeterminatedSeconds;
                     //for para recalcular el tiempo de las apuestas
                     for (int index = 0; index < _virtualBidders.Count(); index++) //for  para recorrer el array de bidders
                     {
@@ -408,7 +406,7 @@ namespace AuctionGame_Admin
                 {
                     Thread.Sleep(vb.Role.TimeToBid.FinallyValue * 1000);
 
-                    while (true)
+                    while (_activeAuction)
                     {
                         if (!vb.OutBidder)//si el bidder no esta fuera
                         {
@@ -468,28 +466,34 @@ namespace AuctionGame_Admin
             }
             _roundActivity++;
             var newPuja = bidder.IdBidder + " : " + _lastOffert + "\n";
-            addText(rtxbActivity, newPuja, Color.Red, true);
+            AddText(rtxbActivity, newPuja, Color.Red, true);
         }
 
 
         #endregion
 
-        private void addText_Update(RichTextBox rtxb, string text, Color color, bool hora)
+        private void FrmGame_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            _activeAuction = false;
+            _serverIsOn = false;
+        }
+
+        protected virtual void AddText_Update(RichTextBox rtxb, string text, Color color, bool hora)
         {
             rtxb.SelectionStart = rtxb.TextLength;
             rtxb.SelectionColor = color;
             rtxb.AppendText(hora ? $@"{DateTime.Now:HH:mm:ss} -> {text} " : $"{text}");
             rtxb.ScrollToCaret();
         }
-        private void addText(RichTextBox rtxb, string text, Color color, bool hora)//Rtxb, texto a agregar, color del texto, define si llevará hora
+        private void AddText(RichTextBox rtxb, string text, Color color, bool hora)//Rtxb, texto a agregar, color del texto, define si llevará hora
         {
             if (rtxb.InvokeRequired)
             {
-                rtxb.Invoke(new MethodInvoker(delegate { addText_Update(rtxb, text, color, hora); }));
+                rtxb.Invoke(new MethodInvoker(delegate { AddText_Update(rtxb, text, color, hora); }));
             }
             else
             {
-                addText_Update(rtxb, text, color, hora);
+                AddText_Update(rtxb, text, color, hora);
             }
         }
 

@@ -177,6 +177,7 @@
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "FrmGame";
             this.Text = "ChildMenuFamily";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmGame_FormClosing);
             this.Load += new System.EventHandler(this.ChildMainGame_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pboxCurrentProduct)).EndInit();
             this.ResumeLayout(false);
