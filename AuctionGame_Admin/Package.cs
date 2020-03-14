@@ -20,11 +20,11 @@ namespace AuctionGame_Admin
             Command = command;
             Content = content;
         }
-        public Package(string datos) //Ej: comanto: contenido
+        public Package(string datos) //Ej: comanto:contenido
         {
             var sepIndex = datos.IndexOf(":", StringComparison.Ordinal);
             Command = datos.Substring(0, sepIndex);
-            Content = datos.Substring(Command.Length);
+            Content = datos.Substring(Command.Length + 1);
         }
         public string Serializar()
         {

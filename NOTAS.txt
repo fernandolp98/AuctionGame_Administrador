@@ -1,5 +1,5 @@
-*Se debe crear un funcion "insert_virtual_bidder(in_nameVirtualBidder, in_descriptionVirtualBidder, in_walletVirtualBidder, in_idRoleVirtualBidder)"
-
-*Se debe crear un procedimiento almacenado update_virtual_bidder(in_nameVirtualBidder, in_descriptionVirtualBidder, in_walletVirtualBidder, in_idRoleVirtualBidder)
-
 *Limitar tiempo de oferta a una hora... como se le de su chingada gana escribirlo ej: 59:60
+
+*Configuración de rutinas no actualiza al modificar...
+
+*Configuración de rutinas falta metodos de buscar
