@@ -147,14 +147,14 @@ namespace AuctionGame_Admin
                     srvClient.ReadThread.Start(srvClient);
 
                     OnClientConnected?.Invoke(srvClient);
+
                 }
                 catch (Exception e)
                 {
-                    MessageBox.Show(e.Message);
+                    Console.WriteLine(e.Message);
+                    throw;
                 }
             }
-            _tcpListener.Stop();
-            _tcpListener.Server.Disconnect(false);
         }
 
         private void ReadData(object client)
@@ -217,13 +217,6 @@ namespace AuctionGame_Admin
             using (var semaphore = new Semaphore(1, 1, "Semaphore"))
             {
 
-                if (_virtualBidders != null)
-                    foreach (var vb in _virtualBidders)
-                    {
-                        var thread = new Thread(() => ManagerBidder(vb));
-                        vb.Hilo = thread;
-                        vb.Hilo.Start();
-                    }
                 //else
                 //    foreach (var vb in _virtualBidders)
                 //    {
@@ -231,6 +224,13 @@ namespace AuctionGame_Admin
                 //    }
                 //_firstBidd = false;
                 nextBid();
+                if (_virtualBidders != null)
+                    foreach (var vb in _virtualBidders)
+                    {
+                        var thread = new Thread(() => ManagerBidder(vb));
+                        vb.Hilo = thread;
+                        vb.Hilo.Start();
+                    }
             }
         }
         private void nextBid()
@@ -472,10 +472,13 @@ namespace AuctionGame_Admin
 
         #endregion
 
+        [Obsolete]
         private void FrmGame_FormClosing(object sender, FormClosingEventArgs e)
         {
             _activeAuction = false;
             _serverIsOn = false;
+            _acceptThread.Suspend();
+            _tcpListener.Stop();
         }
 
         protected virtual void AddText_Update(RichTextBox rtxb, string text, Color color, bool hora)

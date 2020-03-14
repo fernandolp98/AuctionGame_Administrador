@@ -57,7 +57,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.label1.Location = new System.Drawing.Point(36, 9);
+            this.label1.Location = new System.Drawing.Point(8, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(169, 21);
             this.label1.TabIndex = 22;
@@ -81,10 +81,10 @@
             // 
             // rtxbActivity
             // 
-            this.rtxbActivity.Location = new System.Drawing.Point(234, 33);
+            this.rtxbActivity.Location = new System.Drawing.Point(452, 33);
             this.rtxbActivity.Name = "rtxbActivity";
             this.rtxbActivity.ReadOnly = true;
-            this.rtxbActivity.Size = new System.Drawing.Size(538, 223);
+            this.rtxbActivity.Size = new System.Drawing.Size(320, 223);
             this.rtxbActivity.TabIndex = 23;
             this.rtxbActivity.Text = "";
             // 
