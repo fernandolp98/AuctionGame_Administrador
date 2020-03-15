@@ -21,6 +21,8 @@ namespace AuctionGame_Admin
         public delegate void ErrorCarrier(Exception e);
         public event ErrorCarrier OnError;
 
+        public User User { get; set; }
+
         public TcpConnection(TcpClient client)
         {
             var networkStream = client.GetStream();

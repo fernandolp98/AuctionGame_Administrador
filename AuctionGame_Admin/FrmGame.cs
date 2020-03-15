@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -71,13 +72,24 @@ namespace AuctionGame_Admin
 
         #region Servidor TCP
 
+        private void UpdateUsers()
+        {
+            rtxbUsers.Clear();
+            lock (_connectedClients)
+            {
+                foreach (var user in _connectedClients)
+                {
+                    var text = $"{user.User.IdBidder} - {user.User.NameBidder}";
+                    AddText(rtxbUsers, text, Color.Black, false);
+                }
+            }
+        }
         private void ConnectionReceived(TcpConnection tcpConnection)//Conexión recibida
         {
             lock (_connectedClients)
                 if (!_connectedClients.Contains(tcpConnection))
                     _connectedClients.Add(tcpConnection);
         }
-
         private void ConexionCerrada(TcpConnection conexionTcp)
         {
             lock (_connectedClients)
@@ -86,35 +98,53 @@ namespace AuctionGame_Admin
                     var cliIndex = _connectedClients.IndexOf(conexionTcp);
                     _connectedClients.RemoveAt(cliIndex);
                 }
-            Invoke(new Action(() =>
-            {
-                //Mostrar usuario cerrado
-            }));
+            Invoke(new Action(UpdateUsers));
+
         }
         private void MessageReceived(TcpConnection tcpConnection, string data)//Mensaje recibido
         {
             var package = new Package(data);
             var command = package.Command;
-            if (command == "newUser")//Se envia el nombre del nuevo usuario para ser registrado
+            var content = Map.Deserialize(package.Content);
+            if (command == "newUser")//Se recibe el nombre de usuario para ser registrado
             {
-                var nameUser = package.Content;
+                var nameUser = content[0];
                 var query = $"SELECT insert_user('{nameUser}', {_initialMoney})";
                 var userDt = DbConnection.consultar_datos(query);
                 if (userDt != null)
                 {
                     var user = User.GetUserById((int)userDt.Rows[0][0]);
-                    var msgPack = new Package("connectionResultOk", $"{user.IdUser}|{_routine.IdRoutine}|{_initialTime.GetSeconds()}"); //Envia Paquete con la información del juego -> idUser|idRutina|Tiempo
+                    var contentList = new List<object>{ user.IdUser, _routine.IdRoutine, _initialTime.GetSeconds() };
+                    var contentString = Map.Serialize(contentList);
+                    var msgPack = new Package("connectionResultOk", contentString); //Envia Paquete con la información del juego -> idUser|idRutina|Tiempo
+                    tcpConnection.User = user; 
                     tcpConnection.EnviarPaquete(msgPack);
                     Invoke(new Action(() =>
                     {
-                        AddText(rtxbUsers, $"{user.NameBidder} ({user.IdBidder})", Color.Black, true);
-
+                        Invoke(new Action(UpdateUsers));
                     }));
                 }
             }
-            if (command == "newBidd")
+            if (command == "newBidd")//Usuario realiza puja idUser|Oferta|Hora
             {
+                var player = tcpConnection.User;
+                var newOffer = int.Parse(content[0]);
+                if (newOffer <= _lastOffert || newOffer > player.Wallet || player.OutBidder) return;
+                var response = new Package("biddOk", content[0]);
+                tcpConnection.EnviarPaquete(response);
+                var timeBetweenBidd = DateTime.Now - player.LastBiddTime;
+                player.LastBiddTime = DateTime.Now;
+                var secondsBetweenBidd = timeBetweenBidd.Seconds;
+                var increase = newOffer - _lastOffert;
 
+                //se le asigna el valor del campo TxtBoxValueOffert a la variable My ofert
+                player.Offert = newOffer;//Int32.Parse(TxtBoxValueOffert.Text);
+
+                UpdateBidd(player);
+
+                player.UpdateParticipation();// se actualiza la participacion del jugador
+                player.Statistics.AddIncreaseForBidd(increase);
+                player.Statistics.AddSecondsBetweenBidd(secondsBetweenBidd);
             }
         }
 
@@ -214,6 +244,7 @@ namespace AuctionGame_Admin
         #region Apuestas
         private void btnPlay_Click(object sender, EventArgs e)
         {
+            _serverIsOn = false;
             using (var semaphore = new Semaphore(1, 1, "Semaphore"))
             {
 
@@ -271,12 +302,20 @@ namespace AuctionGame_Admin
                 timerAuction.Start();
 
 
-                /////////// REINICIAR JUGADORES ///////////////// (ENVIAR MENSAJE)
-                //_player.ParticipationsRound = 0;
-                //_player.OutBidder = false;
-                //_player.Rounds = 0;
-                //_player.Offert = 0;
-                //_player.LastBiddTime = DateTime.Now;
+                lock (_connectedClients)
+                {
+                    foreach (var tcp in _connectedClients)
+                    {
+                        tcp.User.ParticipationsRound = 0;
+                        tcp.User.OutBidder = false;
+                        tcp.User.Rounds = 0;
+                        tcp.User.Offert = 0;
+                        tcp.User.LastBiddTime = DateTime.Now;
+                        var package = new Package("game", "start");
+                        tcp.EnviarPaquete(package);
+                    }
+                }
+
 
             }
             else
@@ -293,49 +332,58 @@ namespace AuctionGame_Admin
             {
                 if (_roundActivity < 2) //Cuando la actividad de la ronda es menor a 2, termina la subasta 
                 {
+                    lock (_connectedClients)
+                    {
+                        foreach (var tcp in _connectedClients)
+                        {
+                            tcp.User.Statistics.AddRoundsForBidd(tcp.User.Rounds);
+                            tcp.User.Statistics.AddBiddForRound(tcp.User.ParticipationsRound);
 
-                    //_player.Statistics.AddRoundsForBidd(_player.Rounds);
-                    //_player.Statistics.AddBiddForRound(_player.ParticipationsRound);
+                            if (_currentWinner != tcp.User.IdBidder) continue;//Verifica si el usuario es el ganador
 
+                            tcp.User.ProductsEarned.Add(_currentProduct);//Agrega a productos ganados
+                            VerifyFamiliesEarned(tcp.User);//Verifica si ha ganado una familia
+                            tcp.User.Wallet -= tcp.User.Offert;// se le descuenta de su cartera el monto ofertado
+                            tcp.User.Points += _currentProduct.Points;//Suma los puntos del producto actual
+                            tcp.User.Statistics.BidWin++;//Aumenta las apuestas ganadas
+
+                            //Envia mensaje al usuario para actualizar puntos y dinero
+                            var content = Map.Serialize(new List<object> { tcp.User.Points, tcp.User.Wallet });
+                            var package = new Package("updatePointsMoney", content);
+                            tcp.EnviarPaquete(package);
+                        }
+                    }
 
 
                     AddText(rtxbActivity, $"Termina subasta, gana {_currentWinner}. \n", Color.Blue, true);
                     timerAuction.Stop();//se detiene la variable tiempo
                     txbClock.BackColor = Color.Red;//cambia el color del reloj
 
-                    //si el ganador es el jugador
-                    //if (_currentWinner == _player.IdBidder)
-                    //{
-                    //    _player.ProductsEarned.Add(_currentProduct);
-                    //    VerifyFamiliesEarned();
-                    //    _player.Wallet = _player.Wallet - _player.Offert;// se le descuenta de su cartera el monto ofertado
-                    //    _player.Points += _currentProduct.Points;
-                    //    lblPoints.Text = _player.Points.ToString();
-                    //    lblMoney.Text = _player.Wallet.ToString();
-                    //    _player.Statistics.BidWin++;
-                    //}
-
-                    if (_virtualBidders != null)
-                        for (int index = 0; index < _virtualBidders.Count(); index++) //for  para recorrer el array de bidders
+                    if (_virtualBidders == null) return;
+                    foreach (var vb in _virtualBidders)
+                    {
+                        vb.OutBidder = false;//se cambia la variable bidder fuera a false para que continuen en la nueva subasta
+                        if (vb.IdBidder == _currentWinner)//si el id del bidder es igual al registrado como ganador
                         {
-                            var vb = _virtualBidders.ElementAt(index);
-                            vb.OutBidder = false;//se cambia la variable bidder fuera a false para que continuen en la nueva subasta
-                            if (vb.IdBidder == _currentWinner)//si el id del bidder es igual al registrado como ganador
-                            {
-                                //se le resta el monto de la offerta a su cartera
-                                vb.Wallet -= vb.Offert;
-                            }
+                            //se le resta el monto de la offerta a su cartera
+                            vb.Wallet -= vb.Offert;
                         }
+                    }
                 }
                 else //Se inicia una nueva ronda
                 {
                     AddText(rtxbActivity, $"Inicia ronda {_round + 1}\n", Color.Black, true);
                     foreach (var vb in _virtualBidders)
                     {
-                        if (!vb.OutBidder)
+                        if (vb.ParticipationsRound == 0)
                         {
-                            vb.Role.OffertsForRound.GetNewFinallyValue();
+                            vb.OutBidder = true;//El jugador queda fuera de la ronda
                         }
+                        if (!vb.OutBidder)//Si el jugador no queda fuera
+                        {
+                            vb.Role.OffertsForRound.GetNewFinallyValue();//Se obtiene nuevo valor de ofertas
+                        }
+                        vb.ParticipationsRound = 0;//Su participación se reinicia a cero
                     }
                     _roundActivity = 0;// se inicializa la actividad en la ronda
                     _round++;//se aumenta el round
@@ -363,23 +411,21 @@ namespace AuctionGame_Admin
                     //se igualan los minutos y segundos a los predeterminados
                     _minutes = _predeterminatedMinutes;
                     _seconds = _predeterminatedSeconds;
-                    //for para recalcular el tiempo de las apuestas
-                    for (int index = 0; index < _virtualBidders.Count(); index++) //for  para recorrer el array de bidders
-                    {
-                        var vb = _virtualBidders.ElementAt(index);
-                        if (vb.ParticipationsRound == 0)
-                        {
-                            vb.OutBidder = true;//SE CAMBIA LA VARIABLE DE BIDDER FUERA A TRUE
-                        }
-                        vb.ParticipationsRound = 0;//LA PARTICIPACIPON DE LA NUEVA RONDA SE CAMBIA A 0                    
-                    }
+
                     //si el jugador no participo en la ronda anterior
-                    //if (_player.ParticipationsRound == 0)
-                    //{
-                    //    _player.OutBidder = true;//queda fuera de la subasta
-                    //}
-                    //_player.Statistics.AddBiddForRound(_player.ParticipationsRound);
-                    //_player.ParticipationsRound = 0;
+
+                    lock (_connectedClients)
+                    {
+                        foreach (var tcp in _connectedClients)
+                        {
+                            if (tcp.User.ParticipationsRound == 0)
+                            {
+                                tcp.User.OutBidder = true;//queda fuera de la subasta
+                            }
+                            tcp.User.Statistics.AddBiddForRound(tcp.User.ParticipationsRound);
+                            tcp.User.ParticipationsRound = 0;
+                        }
+                    }
                 }
             }
             else //Continua la ronda
@@ -402,32 +448,24 @@ namespace AuctionGame_Admin
         {
             try
             {
-                using (Semaphore semaphore = Semaphore.OpenExisting("Semaphore"))
+                using (var semaphore = Semaphore.OpenExisting("Semaphore"))
                 {
                     Thread.Sleep(vb.Role.TimeToBid.FinallyValue * 1000);
 
                     while (_activeAuction)
                     {
-                        if (!vb.OutBidder)//si el bidder no esta fuera
+                        if (vb.OutBidder) continue;
+                        if (_minutes == 0 && _seconds == 0) continue;
+                        semaphore.WaitOne();
+                        //aumenta el tamaño de size para pasar al siguiente bidder
+                        if (vb.WantToBid(_lastOffert, _currentWinner, _round))// si cambia el ultimo apostador ganador se modifican las etiquetas
                         {
-                            if (_minutes != 0 || _seconds != 0)
-                            {
-                                semaphore.WaitOne();
-                                //aumenta el tamaño de size para pasar al siguiente bidder
-                                if (vb.WantToBid(_lastOffert, _currentWinner, _round))// si cambia el ultimo apostador ganador se modifican las etiquetas
-                                {
-                                    UpdateBidd(vb);
+                            UpdateBidd(vb);
 
-                                    Thread.Sleep(2000);//Le da un margen de 2 segundos entre jugadores para evitar el solapamiento
-                                }
-                                else
-                                {
-
-                                }
-                                semaphore.Release();
-                                Thread.Sleep(vb.Role.TimeToBid.NewFinallyValue() * 1000);
-                            }
+                            Thread.Sleep(2000);//Le da un margen de 2 segundos entre jugadores para evitar el solapamiento
                         }
+                        semaphore.Release();
+                        Thread.Sleep(vb.Role.TimeToBid.NewFinallyValue() * 1000);
                     }
                 }
             }
@@ -438,20 +476,41 @@ namespace AuctionGame_Admin
             }
 
         }
+        private void VerifyFamiliesEarned(User player)
+        {
+            foreach (var family in _families)
+            {
+                var productsEarnedCount = 0;
+                foreach (var productEarned in player.ProductsEarned)
+                {
+                    foreach (var productNeccesary in family.Products)
+                    {
+                        if (productNeccesary.Equals(productEarned))
+                            productsEarnedCount++;
+                    }
+                }
+
+                if (productsEarnedCount != family.Products.Count) continue;
+                player.Points += family.Points;
+            }
+        }
         private void UpdateBidd(Bidder bidder)
         {
             _currentWinner = bidder.IdBidder;
             _lastOffert = bidder.Offert;
+            var content = Map.Serialize(new List<object> {_currentWinner, _lastOffert});
+            var package = new Package("updateBidd", content);
+            SendPackage(package);
             if (lblLastOffer.InvokeRequired)
             {
                 lblLastOffer.Invoke(new MethodInvoker(delegate
                 {
-                    lblLastOffer.Text = _lastOffert.ToString();
+                    lblLastOffer.Text = _lastOffert.ToString(CultureInfo.InvariantCulture);
                 }));
             }
             else
             {
-                lblLastOffer.Text = _lastOffert.ToString();
+                lblLastOffer.Text = _lastOffert.ToString(CultureInfo.InvariantCulture);
             }
             if (lblCurrentWinner.InvokeRequired)
             {
@@ -467,6 +526,17 @@ namespace AuctionGame_Admin
             _roundActivity++;
             var newPuja = bidder.IdBidder + " : " + _lastOffert + "\n";
             AddText(rtxbActivity, newPuja, Color.Red, true);
+        }
+
+        private void SendPackage(Package package)
+        {
+            lock (_connectedClients)
+            {
+                foreach (var tcp in _connectedClients)
+                {
+                    tcp.EnviarPaquete(package);
+                }
+            }
         }
 
 

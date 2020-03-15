@@ -8,15 +8,19 @@ namespace AuctionGame_Admin
 {
     public class Map
     {
-        public static string Serialize (List<string> lista)
+        public static string Serialize (List<object> lista)
         {
             if (lista.Count == 0) return null;
             var esElPrimero = true;
             var salida = new StringBuilder();
             foreach (var linea in lista)
             {
-                if (esElPrimero) salida.Append(linea);
-                else salida.Append($",{linea}");
+                if (esElPrimero)
+                {
+                    salida.Append(linea);
+                    esElPrimero = false;
+                }
+                else salida.Append($"|{linea}");
             }
             return salida.ToString();
         }
