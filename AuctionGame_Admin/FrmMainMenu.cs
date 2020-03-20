@@ -271,6 +271,7 @@ namespace AuctionGame_Admin
         {
             var form = new FrmGameConfiguration();
             form.Show();
+
         }
 
         private void btnGame_Click(object sender, EventArgs e)

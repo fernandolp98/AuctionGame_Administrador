@@ -16,11 +16,9 @@ namespace AuctionGame_Admin
         private static readonly Font FontRegular = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
         private readonly DataControl _dataControl = new DataControl(FontPlaceHolder, FontRegular, Color.Silver, Color.Black, Color.Red);
 
-        private bool _edit;
         public FrmGameConfiguration()
         {
             InitializeComponent();
-            _edit = true;
         }
         private void FrmRole_Load(object sender, EventArgs e)
         {
@@ -68,7 +66,8 @@ namespace AuctionGame_Admin
                 if (routine == null) return;
                 var initialMoney = decimal.Parse(txbInitialMoney.Text);
                 var time = new Time(mtxbInitialTime.Text, "mm:ss");
-                var form = new FrmGame(routine, initialMoney, time);
+                var form = new FrmGame(routine, initialMoney, time, this);
+                this.Hide();
                 form.Show();
             }
         }

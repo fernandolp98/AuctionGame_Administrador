@@ -160,6 +160,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(188)))), ((int)(((byte)(202)))), ((int)(((byte)(216)))));
             this.ClientSize = new System.Drawing.Size(784, 661);
+            this.Controls.Add(this.btnPlay);
             this.Controls.Add(this.lblCurrentWinner);
             this.Controls.Add(this.pboxCurrentProduct);
             this.Controls.Add(this.lblLastOffer);
@@ -170,7 +171,6 @@
             this.Controls.Add(this.rtxbActivity);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.rtxbUsers);
-            this.Controls.Add(this.btnPlay);
             this.Font = new System.Drawing.Font("Segoe UI", 12F);
             this.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(82)))), ((int)(((byte)(118)))));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;

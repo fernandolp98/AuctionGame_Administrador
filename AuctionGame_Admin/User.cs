@@ -38,5 +38,20 @@ namespace AuctionGame_Admin
             return user;
         }
 
+        public void UpdateParticipation(decimal lastBid, decimal newBid)
+        {
+            Offert = newBid;
+            var increase = newBid - lastBid;
+
+            var timeBetweenBidd = DateTime.Now - LastBiddTime;
+            LastBiddTime = DateTime.Now;
+            var secondsBetweenBidd = timeBetweenBidd.Seconds;
+
+            UpdateParticipation();
+
+            Statistics.AddIncreaseForBidd(increase);
+            Statistics.AddSecondsBetweenBidd(secondsBetweenBidd);
+        }
+
     }
 }
