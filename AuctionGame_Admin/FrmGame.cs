@@ -31,7 +31,7 @@ namespace AuctionGame_Admin
         private readonly Time _initialTime;
 
         private readonly List<Product> _products;
-        private List<Family> _families;
+        private readonly List<Family> _families;
         private readonly List<VirtualBidder> _virtualBidders;
 
         private readonly int _initialMinutes;
@@ -49,7 +49,7 @@ namespace AuctionGame_Admin
 
         private int _currentWinner;
 
-        private FrmGameConfiguration _father;
+        private readonly FrmGameConfiguration _father;
 
         public FrmGame(Routine routine, decimal initialMoney, Time initialTime, FrmGameConfiguration father)
         {
@@ -214,7 +214,7 @@ namespace AuctionGame_Admin
                 contentList.Add(true);
                 contentList.Add(values[0]);
                 player.UpdateParticipation(_lastBid, newBid);
-                UpdateBidd(player);
+                UpdateBid(player);
             }
             var contentString = Map.Serialize(contentList);
             var response = new Package("bidResult", contentString);
@@ -320,7 +320,7 @@ namespace AuctionGame_Admin
         private void btnPlay_Click(object sender, EventArgs e)
         {
             _serverIsOn = false;
-            using (var semaphore = new Semaphore(1, 1, "Semaphore"))
+            using (new Semaphore(1, 1, "Semaphore"))
             {
                 NextBid();
                 if (_virtualBidders == null) return;
@@ -369,7 +369,6 @@ namespace AuctionGame_Admin
                     }
                 var contentList = new List<object> { _currentAuction, _currentProduct.IdProduct};
                 var contentString = Map.Serialize(contentList);
-                var package = new Package("newAuction", contentString);
 
                 lock (_connectedClients)
                 {
@@ -380,7 +379,7 @@ namespace AuctionGame_Admin
                         tcp.User.Rounds = 0;
                         tcp.User.Offert = 0;
                         tcp.User.LastBiddTime = DateTime.Now;
-                        tcp.EnviarPaquete(package);
+                        tcp.EnviarPaquete(new Package("newAuction", contentString));
                     }
                 }
                 _activeAuction = true;
@@ -394,43 +393,47 @@ namespace AuctionGame_Admin
         }
         private void timerAuction_Tick(object sender, EventArgs e)
         {
-            if (_seconds == 0 && _minutes == 0)
+            if (_seconds == 0 && _minutes == 0)//Cuando el tiempo llega a 00:00
             {
-                if (_roundActivity < 2)
+                if (_roundActivity < 2)//Si la actividad de la última ronda es menor a 2, finaliza la subasta
                 {
+                    //Actualiza estadísticas de usuario y les manda mensaje de subasta finalizada
                     lock (_connectedClients)
                     {
                         foreach (var tcp in _connectedClients)
                         {
-                            tcp.User.Statistics.AddRoundsForBidd(tcp.User.Rounds);
-                            tcp.User.Statistics.AddBiddForRound(tcp.User.ParticipationsRound);
 
-                            if (_currentWinner == tcp.User.IdBidder)
+                            tcp.User.Statistics
+                                .AddRoundsForAuction(tcp.User
+                                    .Rounds); //Agrega las rondas en las que participó el usuario
+                            tcp.User.Statistics.AddBidByRound(tcp.User
+                                .ParticipationsRound); //Agrega las ofertas por round en las que participo
+
+                            if (_currentWinner == tcp.User.IdBidder) //Si el jugador actual es el ganador
                             {
-                                tcp.User.ProductsEarned.Add(_currentProduct);//Agrega a productos ganados
-                                VerifyFamiliesEarned(tcp.User);//Verifica si ha ganado una familia
-                                tcp.User.Wallet -= tcp.User.Offert;// se le descuenta de su cartera el monto ofertado
-                                tcp.User.Points += _currentProduct.Points;//Suma los puntos del producto actual
-                                tcp.User.Statistics.BidWin++;//Aumenta las apuestas ganadas
+                                tcp.User.ProductsEarned
+                                    .Add(_currentProduct); //Agrega a productos ganados el producto actual
+                                VerifyFamiliesEarned(tcp.User); //Verifica si se completó una familia de productos
+                                tcp.User.Wallet -= tcp.User.Offert; // se le descuenta de su cartera el monto ofertado
+                                tcp.User.Points += _currentProduct.Points; //Suma los puntos del producto actual
+                                tcp.User.Statistics.BidWin++; //Aumenta las apuestas ganadas
 
                                 //Envia mensaje al usuario para actualizar puntos y dinero
-                                var content = Map.Serialize(new List<object> { true, tcp.User.Points, tcp.User.Wallet });
-                                var package = new Package("auctionFinished", content);
-                                tcp.EnviarPaquete(package);
+                                var content = Map.Serialize(new List<object> {true, tcp.User.Points, tcp.User.Wallet});
+                                tcp.EnviarPaquete(new Package("auctionFinished", content));
                             }
-                            else
+                            else //Si el jugador no es ganador
                             {
-                                var content = Map.Serialize(new List<object> { false, tcp.User.Wallet, _currentProduct.IdProduct });
-                                var package = new Package("auctionFinished", content);
-                                tcp.EnviarPaquete(package);
+                                //Envía mensaje al usuario de subasta finalizada
+                                var content = Map.Serialize(new List<object>
+                                    {false, tcp.User.Wallet, _currentProduct.IdProduct});
+                                tcp.EnviarPaquete(new Package("auctionFinished", content));
                             }
-
-
                         }
                     }
-                    AddText(rtxbActivity, $"Termina subasta, gana {_currentWinner}. \n", Color.Blue, true);
-                    timerAuction.Stop();//se detiene la variable tiempo
-                    txbClock.BackColor = Color.Red;//cambia el color del reloj
+                    AddText(rtxbActivity, $"Termina subasta, gana {_currentWinner}. \n", Color.Blue, true);//Muestra mensaje en el log
+                    timerAuction.Stop();//Detiene el cronómetro
+                    txbClock.BackColor = Color.Red;//Cambia el color del reloj
 
                     if (_virtualBidders == null) return;
                     foreach (var vb in _virtualBidders)
@@ -445,8 +448,20 @@ namespace AuctionGame_Admin
                 }
                 else //Se inicia una nueva ronda
                 {
-                    AddText(rtxbActivity, $"Inicia ronda {_round + 1}\n", Color.Black, true);
-                    foreach (var vb in _virtualBidders)
+
+
+                    _roundActivity = 0;// se reinicia la actividad en la ronda en cero
+                    _round++;//se aumenta el round
+                    lblRoundNumber.Text = _round.ToString();//Actualiza la etiqueta de la ronda
+
+                    //Muestra en el log que se ha iniciado una nueva ronda
+                    AddText(rtxbActivity, $"Inicia ronda {_round}\n", Color.Black, true);
+
+                    //Envía mensaje a los usuarios para actualizar la ronda
+                    SendPackage(new Package("newRound", (_round).ToString()));
+
+                    //Actualiza los jugadores virtuales
+                    foreach (var vb in _virtualBidders)//Recorre los jugadores virtuales
                     {
                         if (vb.ParticipationsRound == 0)
                         {
@@ -458,47 +473,44 @@ namespace AuctionGame_Admin
                         }
                         vb.ParticipationsRound = 0;//Su participación se reinicia a cero
                     }
-                    _roundActivity = 0;// se inicializa la actividad en la ronda
-                    _round++;//se aumenta el round
-                    lblRoundNumber.Text = _round.ToString();
-                    if (_predeterminatedMinutes == 0)//si los minutos que se dan de manera predeterminada llegan a 0
-                    {
-                        if (_predeterminatedSeconds > 20)//si los segundos que se dan de manera predeterminada son mas de 20
-                        {
-                            _predeterminatedSeconds -= 10;//se van restando 10 segundos por ronda
-                        }
-                        else
-                        {
-                            _predeterminatedSeconds = 15;//se limita a 15 segundos la ronda
-                        }
-                    }
-                    else if (_predeterminatedMinutes == 1)
-                    {
-                        _predeterminatedMinutes--;
-                        _predeterminatedSeconds = 50;
-                    }
-                    else
-                    {
-                        _predeterminatedMinutes--;//disminuyen los minutos que se dan de manera predeterminada
-                    }
-                    //se igualan los minutos y segundos a los predeterminados
-                    _minutes = _predeterminatedMinutes;
-                    _seconds = _predeterminatedSeconds;
-
-                    //si el jugador no participo en la ronda anterior
-
+                    //Actualiza los usuario para la siguiente ronda
                     lock (_connectedClients)
                     {
                         foreach (var tcp in _connectedClients)
                         {
-                            if (tcp.User.ParticipationsRound == 0)
+                            if (!tcp.User.OutBidder)
                             {
-                                tcp.User.OutBidder = true;//queda fuera de la subasta
+                                if (tcp.User.ParticipationsRound == 0)//Si no tuvo participaciones en la ronda anterior
+                                {
+                                    tcp.User.OutBidder = true;//queda fuera de la subasta
+                                    tcp.EnviarPaquete(new Package("outBidder", "True"));//Envia mensaje al jugador
+                                }
+                                tcp.User.Statistics.AddBidByRound(tcp.User.ParticipationsRound);
+                                tcp.User.ParticipationsRound = 0;
                             }
-                            tcp.User.Statistics.AddBiddForRound(tcp.User.ParticipationsRound);
-                            tcp.User.ParticipationsRound = 0;
                         }
                     }
+
+                    //Actualiza el tiempo predeterminado para la ronda
+                    switch (_predeterminatedMinutes)
+                    {
+                        case 0 when _predeterminatedSeconds > 30: //Cuando los minitos son cero y los segundos mayor a 30
+                            _predeterminatedSeconds -= 10;//se van restando 10 segundos por ronda
+                            break;
+                        case 0: //Cuando los minutos son cero
+                            _predeterminatedSeconds = 20;//se limita a 20 segundos la ronda
+                            break;
+                        case 1: //Cuando los minutos son 1
+                            _predeterminatedMinutes = 0; //Minutos quedan en cero
+                            _predeterminatedSeconds = 50; //Segundos quedan en 50
+                            break;
+                        default: //Cuando es mayor a un minuto
+                            _predeterminatedMinutes--;//disminuyen los minutos que se dan de manera predeterminada
+                            break;
+                    }
+                    //se igualan los minutos y segundos a los predeterminados
+                    _minutes = _predeterminatedMinutes;
+                    _seconds = _predeterminatedSeconds;
                 }
             }
             else //Continua la ronda
@@ -514,8 +526,7 @@ namespace AuctionGame_Admin
                 }
                 var time = new Time(0, _minutes, _seconds);
                 txbClock.Text = time.Format("mm:ss");
-                var package = new Package("updateClock", time.Format("mm:ss"));
-                SendPackage(package);
+                SendPackage(new Package("updateClock", time.Format("mm:ss")));
 
             }
         }
@@ -535,7 +546,7 @@ namespace AuctionGame_Admin
                         //aumenta el tamaño de size para pasar al siguiente bidder
                         if (vb.WantToBid(_lastBid, _currentWinner, _round))// si cambia el ultimo apostador ganador se modifican las etiquetas
                         {
-                            UpdateBidd(vb);
+                            UpdateBid(vb);
 
                             Thread.Sleep(2000);//Le da un margen de 2 segundos entre jugadores para evitar el solapamiento
                         }
@@ -569,7 +580,7 @@ namespace AuctionGame_Admin
                 player.Points += family.Points;
             }
         }
-        private void UpdateBidd(Bidder bidder)
+        private void UpdateBid(Bidder bidder)
         {
             _currentWinner = bidder.IdBidder;
             _lastBid = bidder.Offert;

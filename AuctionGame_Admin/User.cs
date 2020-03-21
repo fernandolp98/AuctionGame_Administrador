@@ -49,8 +49,8 @@ namespace AuctionGame_Admin
 
             UpdateParticipation();
 
-            Statistics.AddIncreaseForBidd(increase);
-            Statistics.AddSecondsBetweenBidd(secondsBetweenBidd);
+            Statistics.AddIncreaseForBid(increase);
+            Statistics.AddSecondsBetweenBid(secondsBetweenBidd);
         }
 
     }

@@ -6,10 +6,10 @@ namespace AuctionGame_Admin
     {
         public int IdStatistical { get; set; }
 
-        private readonly List<int> _roundsForBidd;
-        private readonly List<int> _biddForRound;
-        private readonly List<int> _secondsBetweenBidd;
-        private readonly List<int> _increaseForBidd;
+        private readonly List<int> _roundsByAuction;
+        private readonly List<int> _bidByRound;
+        private readonly List<int> _secondsBetweenBid;
+        private readonly List<int> _increaseForBid;
 
 
         public int BidTotal { get; set; }
@@ -23,14 +23,14 @@ namespace AuctionGame_Admin
 
         public Statistical()
         {
-            _roundsForBidd = new List<int>();
-            _biddForRound = new List<int>();
-            _secondsBetweenBidd = new List<int>();
-            _increaseForBidd = new List<int>();
+            _roundsByAuction = new List<int>();
+            _bidByRound = new List<int>();
+            _secondsBetweenBid = new List<int>();
+            _increaseForBid = new List<int>();
 
         }
 
-        public double mean(List<int> list)
+        public double Mean(List<int> list)
         {
             var mean = 0.0;
             foreach (var n in list)
@@ -41,31 +41,31 @@ namespace AuctionGame_Admin
             mean /= list.Count;
             return mean;
         }
-        public void AddRoundsForBidd(int rounds)
+        public void AddRoundsForAuction(int rounds)
         {
-            this._roundsForBidd.Add(rounds);
+            this._roundsByAuction.Add(rounds);
         }
-        public void AddBiddForRound(int bidds)
+        public void AddBidByRound(int bidds)
         
         {
             if(bidds > 0)
-                this._biddForRound.Add(bidds);
+                this._bidByRound.Add(bidds);
         }
-        public void AddSecondsBetweenBidd(int seconds)
+        public void AddSecondsBetweenBid(int seconds)
         {
-            this._secondsBetweenBidd.Add(seconds);
+            this._secondsBetweenBid.Add(seconds);
         }
-        public void AddIncreaseForBidd(decimal increase)
+        public void AddIncreaseForBid(decimal increase)
         {
-            this._increaseForBidd.Add((int)increase);
+            this._increaseForBid.Add((int)increase);
         }
 
         public void Results()
         {
-            var roundsForBidd = (int)mean(_roundsForBidd);
-            var biddForRound = (int)mean(_biddForRound);
-            var secondsBetweenBidd = (int)mean(_secondsBetweenBidd);
-            var increaseForBidd = (int)mean(_increaseForBidd);
+            var roundsForBidd = (int)Mean(_roundsByAuction);
+            var biddForRound = (int)Mean(_bidByRound);
+            var secondsBetweenBidd = (int)Mean(_secondsBetweenBid);
+            var increaseForBidd = (int)Mean(_increaseForBid);
 
             var query = $"UPDATE statistical_data SET " +
                            $"roundsForBid = {roundsForBidd}, " +
