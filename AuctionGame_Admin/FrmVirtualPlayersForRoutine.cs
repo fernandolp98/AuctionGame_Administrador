@@ -10,43 +10,43 @@ using System.Windows.Forms;
 
 namespace AuctionGame_Admin
 {
-    public partial class FrmVurtualBiddersForRoutine : Form
+    public partial class FrmVirtualPlayersForRoutine : Form
     {
         private readonly Routine _routine;
         private readonly FrmRoutine _father;
-        private readonly List<int> _availableVirtualBidders;
-        private readonly List<int> _registeredVirtualBidders;
-        private readonly List<int> _newVirtualBidders;
-        private readonly List<int> _deletedVirtualBidders;
+        private readonly List<int> _availablevirtualPlayers;
+        private readonly List<int> _registeredvirtualPlayers;
+        private readonly List<int> _newvirtualPlayers;
+        private readonly List<int> _deletedvirtualPlayers;
 
-        public FrmVurtualBiddersForRoutine(Routine routine, FrmRoutine father)
+        public FrmVirtualPlayersForRoutine(Routine routine, FrmRoutine father)
         {
             InitializeComponent();
             _routine = routine;
             _father = father;
-            _newVirtualBidders = new List<int>();
-            _deletedVirtualBidders = new List<int>();
-            _availableVirtualBidders = new List<int>();
-            _registeredVirtualBidders = new List<int>();
+            _newvirtualPlayers = new List<int>();
+            _deletedvirtualPlayers = new List<int>();
+            _availablevirtualPlayers = new List<int>();
+            _registeredvirtualPlayers = new List<int>();
         }
 
         private void FrmParamsForRoutine_Load(object sender, EventArgs e)
         {
-            UpdateForVirtualBidders();
+            UpdateForvirtualPlayers();
         }
 
-        private void UpdateForVirtualBidders()
+        private void UpdateForvirtualPlayers()
         {
-            var availableVirtualBidders = _routine.GetAvailableVirtualBidders();
-            foreach (var virtualBidder in availableVirtualBidders)
+            var availablevirtualPlayers = _routine.GetAvailablevirtualPlayers();
+            foreach (var virtualPlayer in availablevirtualPlayers)
             {
-                _availableVirtualBidders.Add(virtualBidder.IdVirtualBidder);
-                dgvAvailable.Rows.Add(virtualBidder.IdVirtualBidder, virtualBidder.NameBidder);
+                _availablevirtualPlayers.Add(virtualPlayer.IdvirtualPlayer);
+                dgvAvailable.Rows.Add(virtualPlayer.IdvirtualPlayer, virtualPlayer.NameVirtualPlayer);
             }
-            foreach (var virtualBidder in _routine.VirtualBidders)
+            foreach (var virtualPlayer in _routine.virtualPlayers)
             {
-                _registeredVirtualBidders.Add(virtualBidder.IdVirtualBidder);
-                dgvRegistered.Rows.Add(virtualBidder.IdVirtualBidder, virtualBidder.NameBidder);
+                _registeredvirtualPlayers.Add(virtualPlayer.IdvirtualPlayer);
+                dgvRegistered.Rows.Add(virtualPlayer.IdvirtualPlayer, virtualPlayer.NameVirtualPlayer);
 
             }
         }
@@ -56,10 +56,10 @@ namespace AuctionGame_Admin
             foreach (DataGridViewRow row in rows)
             {
                 var id = (int)row.Cells[0].Value;
-                if (_availableVirtualBidders.Contains(id))
-                    _newVirtualBidders.Add(id);
-                if (_registeredVirtualBidders.Contains(id))
-                    _deletedVirtualBidders.Remove(id);
+                if (_availablevirtualPlayers.Contains(id))
+                    _newvirtualPlayers.Add(id);
+                if (_registeredvirtualPlayers.Contains(id))
+                    _deletedvirtualPlayers.Remove(id);
 
                 dgvAvailable.Rows.Remove(row);
                 dgvRegistered.Rows.Add(row);
@@ -71,10 +71,10 @@ namespace AuctionGame_Admin
             foreach (DataGridViewRow row in rows)
             {
                 var id = (int)row.Cells[0].Value;
-                if (_registeredVirtualBidders.Contains(id))
-                    _deletedVirtualBidders.Add(id);
-                if (_availableVirtualBidders.Contains(id))
-                    _newVirtualBidders.Remove(id);
+                if (_registeredvirtualPlayers.Contains(id))
+                    _deletedvirtualPlayers.Add(id);
+                if (_availablevirtualPlayers.Contains(id))
+                    _newvirtualPlayers.Remove(id);
 
                 dgvRegistered.Rows.Remove(row);
                 dgvAvailable.Rows.Add(row);
@@ -83,9 +83,9 @@ namespace AuctionGame_Admin
 
         private void Add()
         {
-            foreach (var id in _newVirtualBidders)
+            foreach (var id in _newvirtualPlayers)
             {
-                var query = $"INSERT INTO routine_has_virtual_bidder (ROUTINE_idRoutine, VIRTUAL_BIDDER_idVIrtualBidder) VALUES ({_routine.IdRoutine}, {id})";
+                var query = $"INSERT INTO routine_has_virtual_bidder (ROUTINE_idRoutine, VIRTUAL_BIDDER_idvirtualPlayer) VALUES ({_routine.IdRoutine}, {id})";
                 if (!DbConnection.ejecutar(query))
                 {
                     MessageBox.Show(@"Hubo un error agregando un jugador virtual");
@@ -95,9 +95,9 @@ namespace AuctionGame_Admin
 
         private void Delete()
         {
-            foreach (var id in _deletedVirtualBidders)
+            foreach (var id in _deletedvirtualPlayers)
             {
-                var query = $"DELETE FROM routine_has_virtual_bidder WHERE ROUTINE_idRoutine = {_routine.IdRoutine} AND VIRTUAL_BIDDER_idVirtualBidder = {id}";
+                var query = $"DELETE FROM routine_has_virtual_bidder WHERE ROUTINE_idRoutine = {_routine.IdRoutine} AND VIRTUAL_BIDDER_idvirtualPlayer = {id}";
                 if (!DbConnection.ejecutar(query))
                 {
                     MessageBox.Show(@"Hubo un error eliminando un jugador virtual");
@@ -129,8 +129,8 @@ namespace AuctionGame_Admin
         {
             Add();
             Delete();
-            _routine.VirtualBidders = _routine?.GetVirtualBidders();
-            _father?.UpdateVirtualBidders();
+            _routine.virtualPlayers = _routine?.GetvirtualPlayers();
+            _father?.UpdatevirtualPlayers();
             Close();
         }
 

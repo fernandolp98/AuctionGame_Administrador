@@ -3,3 +3,5 @@
 *Configuración de rutinas no actualiza al modificar...
 
 *Configuración de rutinas falta metodos de buscar
+
+*El jugador puede seguir apostando a pesar de no haber una subasta activa

@@ -92,7 +92,7 @@
             // 
             // txbRoundsTop
             // 
-            this.txbRoundsTop.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic);
+            this.txbRoundsTop.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbRoundsTop.ForeColor = System.Drawing.Color.Silver;
             this.txbRoundsTop.Location = new System.Drawing.Point(321, 87);
             this.txbRoundsTop.Name = "txbRoundsTop";
@@ -106,7 +106,7 @@
             // 
             // txbRoundsDown
             // 
-            this.txbRoundsDown.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic);
+            this.txbRoundsDown.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbRoundsDown.ForeColor = System.Drawing.Color.Silver;
             this.txbRoundsDown.Location = new System.Drawing.Point(321, 54);
             this.txbRoundsDown.Name = "txbRoundsDown";
@@ -148,7 +148,7 @@
             // 
             // txbBidIncreaseBidTop
             // 
-            this.txbBidIncreaseBidTop.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic);
+            this.txbBidIncreaseBidTop.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbBidIncreaseBidTop.ForeColor = System.Drawing.Color.Silver;
             this.txbBidIncreaseBidTop.Location = new System.Drawing.Point(321, 186);
             this.txbBidIncreaseBidTop.Name = "txbBidIncreaseBidTop";
@@ -162,7 +162,7 @@
             // 
             // txbBidIncreaseDown
             // 
-            this.txbBidIncreaseDown.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic);
+            this.txbBidIncreaseDown.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbBidIncreaseDown.ForeColor = System.Drawing.Color.Silver;
             this.txbBidIncreaseDown.Location = new System.Drawing.Point(321, 153);
             this.txbBidIncreaseDown.Name = "txbBidIncreaseDown";
@@ -176,7 +176,7 @@
             // 
             // txbOffersForRoundTop
             // 
-            this.txbOffersForRoundTop.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic);
+            this.txbOffersForRoundTop.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbOffersForRoundTop.ForeColor = System.Drawing.Color.Silver;
             this.txbOffersForRoundTop.Location = new System.Drawing.Point(140, 186);
             this.txbOffersForRoundTop.Name = "txbOffersForRoundTop";
@@ -190,7 +190,7 @@
             // 
             // txbOfersForRoundDown
             // 
-            this.txbOfersForRoundDown.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic);
+            this.txbOfersForRoundDown.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbOfersForRoundDown.ForeColor = System.Drawing.Color.Silver;
             this.txbOfersForRoundDown.Location = new System.Drawing.Point(140, 153);
             this.txbOfersForRoundDown.Name = "txbOfersForRoundDown";
@@ -396,7 +396,7 @@
             this.txbDescriptionRole.Name = "txbDescriptionRole";
             this.txbDescriptionRole.Size = new System.Drawing.Size(297, 69);
             this.txbDescriptionRole.TabIndex = 2;
-            this.txbDescriptionRole.Tag = "Descripción,alfanumerioco";
+            this.txbDescriptionRole.Tag = "Descripción,alfanumerico";
             this.txbDescriptionRole.Text = "Descripción";
             this.txbDescriptionRole.Enter += new System.EventHandler(this.Txb_Enter);
             this.txbDescriptionRole.Leave += new System.EventHandler(this.Txb_Leave);

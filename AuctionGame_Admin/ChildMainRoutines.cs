@@ -56,5 +56,10 @@ namespace AuctionGame_Admin
             var form = new FrmRoutine(routine, this);//Instancia un nuevo formulario para agregar productos
             form.Show();//Abre el formulario
         }
+
+        private void btnSearchRoutines_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

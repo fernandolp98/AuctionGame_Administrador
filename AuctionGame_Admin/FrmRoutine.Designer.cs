@@ -57,13 +57,13 @@
             this.clmInitialPriceProduct = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmSingleProduct = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.clmAddedByFamily = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.gboxVirtualBidders = new System.Windows.Forms.GroupBox();
-            this.pboxEditVirtualBiddersPerRoutine = new System.Windows.Forms.PictureBox();
-            this.dgvVirtualBidders = new System.Windows.Forms.DataGridView();
-            this.clmIdVirtualBidder = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmNameVirtualBidder = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmWalletVirtualBidder = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmRoleVirtualBidder = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.gboxvirtualPlayers = new System.Windows.Forms.GroupBox();
+            this.pboxEditvirtualPlayersPerRoutine = new System.Windows.Forms.PictureBox();
+            this.dgvvirtualPlayers = new System.Windows.Forms.DataGridView();
+            this.clmIdvirtualPlayer = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmNamevirtualPlayer = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmWalletvirtualPlayer = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmRolevirtualPlayer = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnExit = new System.Windows.Forms.Button();
             this.gboxGeneralInformation.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pboxSaveRoutine)).BeginInit();
@@ -73,9 +73,9 @@
             this.gboxProducts.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pboxEditProductsPerRoutine)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).BeginInit();
-            this.gboxVirtualBidders.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pboxEditVirtualBiddersPerRoutine)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvVirtualBidders)).BeginInit();
+            this.gboxvirtualPlayers.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pboxEditvirtualPlayersPerRoutine)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvvirtualPlayers)).BeginInit();
             this.SuspendLayout();
             // 
             // gboxGeneralInformation
@@ -377,41 +377,41 @@
             this.clmAddedByFamily.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.clmAddedByFamily.Width = 75;
             // 
-            // gboxVirtualBidders
+            // gboxvirtualPlayers
             // 
-            this.gboxVirtualBidders.Controls.Add(this.pboxEditVirtualBiddersPerRoutine);
-            this.gboxVirtualBidders.Controls.Add(this.dgvVirtualBidders);
-            this.gboxVirtualBidders.Enabled = false;
-            this.gboxVirtualBidders.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(82)))), ((int)(((byte)(118)))));
-            this.gboxVirtualBidders.Location = new System.Drawing.Point(12, 514);
-            this.gboxVirtualBidders.Name = "gboxVirtualBidders";
-            this.gboxVirtualBidders.Size = new System.Drawing.Size(536, 160);
-            this.gboxVirtualBidders.TabIndex = 18;
-            this.gboxVirtualBidders.TabStop = false;
-            this.gboxVirtualBidders.Text = "Jugadores Virtuales";
+            this.gboxvirtualPlayers.Controls.Add(this.pboxEditvirtualPlayersPerRoutine);
+            this.gboxvirtualPlayers.Controls.Add(this.dgvvirtualPlayers);
+            this.gboxvirtualPlayers.Enabled = false;
+            this.gboxvirtualPlayers.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(82)))), ((int)(((byte)(118)))));
+            this.gboxvirtualPlayers.Location = new System.Drawing.Point(12, 514);
+            this.gboxvirtualPlayers.Name = "gboxvirtualPlayers";
+            this.gboxvirtualPlayers.Size = new System.Drawing.Size(536, 160);
+            this.gboxvirtualPlayers.TabIndex = 18;
+            this.gboxvirtualPlayers.TabStop = false;
+            this.gboxvirtualPlayers.Text = "Jugadores Virtuales";
             // 
-            // pboxEditVirtualBiddersPerRoutine
+            // pboxEditvirtualPlayersPerRoutine
             // 
-            this.pboxEditVirtualBiddersPerRoutine.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.pboxEditVirtualBiddersPerRoutine.Image = global::AuctionGame_Admin.Properties.Resources.editUnabled;
-            this.pboxEditVirtualBiddersPerRoutine.Location = new System.Drawing.Point(496, 122);
-            this.pboxEditVirtualBiddersPerRoutine.Name = "pboxEditVirtualBiddersPerRoutine";
-            this.pboxEditVirtualBiddersPerRoutine.Size = new System.Drawing.Size(30, 30);
-            this.pboxEditVirtualBiddersPerRoutine.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pboxEditVirtualBiddersPerRoutine.TabIndex = 29;
-            this.pboxEditVirtualBiddersPerRoutine.TabStop = false;
-            this.pboxEditVirtualBiddersPerRoutine.Click += new System.EventHandler(this.pboxEditVirtualBiddersPerRoutine_Click);
+            this.pboxEditvirtualPlayersPerRoutine.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.pboxEditvirtualPlayersPerRoutine.Image = global::AuctionGame_Admin.Properties.Resources.editUnabled;
+            this.pboxEditvirtualPlayersPerRoutine.Location = new System.Drawing.Point(496, 122);
+            this.pboxEditvirtualPlayersPerRoutine.Name = "pboxEditvirtualPlayersPerRoutine";
+            this.pboxEditvirtualPlayersPerRoutine.Size = new System.Drawing.Size(30, 30);
+            this.pboxEditvirtualPlayersPerRoutine.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pboxEditvirtualPlayersPerRoutine.TabIndex = 29;
+            this.pboxEditvirtualPlayersPerRoutine.TabStop = false;
+            this.pboxEditvirtualPlayersPerRoutine.Click += new System.EventHandler(this.pboxEditvirtualPlayersPerRoutine_Click);
             // 
-            // dgvVirtualBidders
+            // dgvvirtualPlayers
             // 
-            this.dgvVirtualBidders.AllowUserToAddRows = false;
-            this.dgvVirtualBidders.AllowUserToDeleteRows = false;
-            this.dgvVirtualBidders.AllowUserToResizeRows = false;
-            this.dgvVirtualBidders.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.dgvVirtualBidders.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvVirtualBidders.BackgroundColor = System.Drawing.Color.White;
-            this.dgvVirtualBidders.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dgvVirtualBidders.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            this.dgvvirtualPlayers.AllowUserToAddRows = false;
+            this.dgvvirtualPlayers.AllowUserToDeleteRows = false;
+            this.dgvvirtualPlayers.AllowUserToResizeRows = false;
+            this.dgvvirtualPlayers.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.dgvvirtualPlayers.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvvirtualPlayers.BackgroundColor = System.Drawing.Color.White;
+            this.dgvvirtualPlayers.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvvirtualPlayers.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle13.BackColor = System.Drawing.Color.Silver;
             dataGridViewCellStyle13.Font = new System.Drawing.Font("Segoe UI", 12F);
@@ -419,55 +419,55 @@
             dataGridViewCellStyle13.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(10)))), ((int)(((byte)(61)))), ((int)(((byte)(98)))));
             dataGridViewCellStyle13.SelectionForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvVirtualBidders.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
-            this.dgvVirtualBidders.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvVirtualBidders.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.clmIdVirtualBidder,
-            this.clmNameVirtualBidder,
-            this.clmWalletVirtualBidder,
-            this.clmRoleVirtualBidder});
-            this.dgvVirtualBidders.EnableHeadersVisualStyles = false;
-            this.dgvVirtualBidders.Location = new System.Drawing.Point(12, 23);
-            this.dgvVirtualBidders.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.dgvVirtualBidders.MultiSelect = false;
-            this.dgvVirtualBidders.Name = "dgvVirtualBidders";
-            this.dgvVirtualBidders.ReadOnly = true;
-            this.dgvVirtualBidders.RowHeadersVisible = false;
+            this.dgvvirtualPlayers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
+            this.dgvvirtualPlayers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvvirtualPlayers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.clmIdvirtualPlayer,
+            this.clmNamevirtualPlayer,
+            this.clmWalletvirtualPlayer,
+            this.clmRolevirtualPlayer});
+            this.dgvvirtualPlayers.EnableHeadersVisualStyles = false;
+            this.dgvvirtualPlayers.Location = new System.Drawing.Point(12, 23);
+            this.dgvvirtualPlayers.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.dgvvirtualPlayers.MultiSelect = false;
+            this.dgvvirtualPlayers.Name = "dgvvirtualPlayers";
+            this.dgvvirtualPlayers.ReadOnly = true;
+            this.dgvvirtualPlayers.RowHeadersVisible = false;
             dataGridViewCellStyle14.ForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(117)))), ((int)(((byte)(176)))));
             dataGridViewCellStyle14.SelectionForeColor = System.Drawing.Color.White;
-            this.dgvVirtualBidders.RowsDefaultCellStyle = dataGridViewCellStyle14;
-            this.dgvVirtualBidders.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvVirtualBidders.ShowCellToolTips = false;
-            this.dgvVirtualBidders.Size = new System.Drawing.Size(477, 129);
-            this.dgvVirtualBidders.TabIndex = 27;
-            this.dgvVirtualBidders.Tag = "-1";
+            this.dgvvirtualPlayers.RowsDefaultCellStyle = dataGridViewCellStyle14;
+            this.dgvvirtualPlayers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvvirtualPlayers.ShowCellToolTips = false;
+            this.dgvvirtualPlayers.Size = new System.Drawing.Size(477, 129);
+            this.dgvvirtualPlayers.TabIndex = 27;
+            this.dgvvirtualPlayers.Tag = "-1";
             // 
-            // clmIdVirtualBidder
+            // clmIdvirtualPlayer
             // 
-            this.clmIdVirtualBidder.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.clmIdVirtualBidder.HeaderText = "ID";
-            this.clmIdVirtualBidder.Name = "clmIdVirtualBidder";
-            this.clmIdVirtualBidder.ReadOnly = true;
-            this.clmIdVirtualBidder.Visible = false;
+            this.clmIdvirtualPlayer.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.clmIdvirtualPlayer.HeaderText = "ID";
+            this.clmIdvirtualPlayer.Name = "clmIdvirtualPlayer";
+            this.clmIdvirtualPlayer.ReadOnly = true;
+            this.clmIdvirtualPlayer.Visible = false;
             // 
-            // clmNameVirtualBidder
+            // clmNamevirtualPlayer
             // 
-            this.clmNameVirtualBidder.HeaderText = "Nombre";
-            this.clmNameVirtualBidder.Name = "clmNameVirtualBidder";
-            this.clmNameVirtualBidder.ReadOnly = true;
+            this.clmNamevirtualPlayer.HeaderText = "Nombre";
+            this.clmNamevirtualPlayer.Name = "clmNamevirtualPlayer";
+            this.clmNamevirtualPlayer.ReadOnly = true;
             // 
-            // clmWalletVirtualBidder
+            // clmWalletvirtualPlayer
             // 
-            this.clmWalletVirtualBidder.HeaderText = "Billetera";
-            this.clmWalletVirtualBidder.Name = "clmWalletVirtualBidder";
-            this.clmWalletVirtualBidder.ReadOnly = true;
+            this.clmWalletvirtualPlayer.HeaderText = "Billetera";
+            this.clmWalletvirtualPlayer.Name = "clmWalletvirtualPlayer";
+            this.clmWalletvirtualPlayer.ReadOnly = true;
             // 
-            // clmRoleVirtualBidder
+            // clmRolevirtualPlayer
             // 
-            this.clmRoleVirtualBidder.HeaderText = "Rol";
-            this.clmRoleVirtualBidder.Name = "clmRoleVirtualBidder";
-            this.clmRoleVirtualBidder.ReadOnly = true;
+            this.clmRolevirtualPlayer.HeaderText = "Rol";
+            this.clmRolevirtualPlayer.Name = "clmRolevirtualPlayer";
+            this.clmRolevirtualPlayer.ReadOnly = true;
             // 
             // btnExit
             // 
@@ -490,7 +490,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(643, 686);
             this.Controls.Add(this.btnExit);
-            this.Controls.Add(this.gboxVirtualBidders);
+            this.Controls.Add(this.gboxvirtualPlayers);
             this.Controls.Add(this.gboxProducts);
             this.Controls.Add(this.gboxFamilies);
             this.Controls.Add(this.gboxGeneralInformation);
@@ -511,9 +511,9 @@
             this.gboxProducts.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pboxEditProductsPerRoutine)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvProducts)).EndInit();
-            this.gboxVirtualBidders.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pboxEditVirtualBiddersPerRoutine)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvVirtualBidders)).EndInit();
+            this.gboxvirtualPlayers.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pboxEditvirtualPlayersPerRoutine)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvvirtualPlayers)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -527,22 +527,22 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.GroupBox gboxFamilies;
         private System.Windows.Forms.GroupBox gboxProducts;
-        private System.Windows.Forms.GroupBox gboxVirtualBidders;
+        private System.Windows.Forms.GroupBox gboxvirtualPlayers;
         private System.Windows.Forms.DataGridView dgvFamilies;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmIdFamily;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmNameFamily;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmFamilyPoints;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmFamilyProducts;
         private System.Windows.Forms.DataGridView dgvProducts;
-        private System.Windows.Forms.DataGridView dgvVirtualBidders;
+        private System.Windows.Forms.DataGridView dgvvirtualPlayers;
         private System.Windows.Forms.PictureBox pboxEditFamiliesPerRoutine;
         private System.Windows.Forms.PictureBox pboxEditProductsPerRoutine;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmIdVirtualBidder;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmNameVirtualBidder;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmWalletVirtualBidder;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmRoleVirtualBidder;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmIdvirtualPlayer;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmNamevirtualPlayer;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmWalletvirtualPlayer;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmRolevirtualPlayer;
         private System.Windows.Forms.PictureBox pboxSaveRoutine;
-        private System.Windows.Forms.PictureBox pboxEditVirtualBiddersPerRoutine;
+        private System.Windows.Forms.PictureBox pboxEditvirtualPlayersPerRoutine;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmPointsProduct;

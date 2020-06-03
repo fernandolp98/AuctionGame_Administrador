@@ -12,9 +12,7 @@ namespace AuctionGame_Admin
 {
     public partial class ChildMainFamily : Form
     {
-        private static readonly Font FontPlaceHolder = new Font("Comic Sans MS", 14.25F, FontStyle.Italic, GraphicsUnit.Point, 0);
-        private static readonly Font FontRegular = new Font("Comic Sans MS", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-        private readonly DataControl _dataControl = new DataControl(FontPlaceHolder, FontRegular, Color.Silver, Color.Black, Color.Red);
+        private readonly DataControl _dataControl = new DataControl(Fonts.FontPlaceHolder, Fonts.FontRegular, Color.Silver, Color.Black, Color.Red);
 
         public ChildMainFamily()
         {
@@ -37,10 +35,6 @@ namespace AuctionGame_Admin
                 if (currentIdFamily == int.Parse(currentRow.Cells[0].Value.ToString()))
                     currentRow.Selected = true;
             }
-        }
-        private void ChildMenuFamily_Load(object sender, System.EventArgs e)
-        {
-            UpdateFamilies("");
         }
         private bool Question(string question, string caption)
         {
@@ -83,7 +77,7 @@ namespace AuctionGame_Admin
 
             if (!Question($@"¿Está seguro de eliminar el producto {currentNameProduct}?",
                 @"Estás a punto de eliminar un producto")) return;
-            var query = $"DELETE FROM family WHERE idFamily = {currentIdproduct}";
+            var query = $"CALL procedure_delete_family({currentIdproduct})";
             if (DbConnection.ejecutar(query))
             {
                 MessageBox.Show(@"Se eliminó correctamente");
@@ -101,8 +95,8 @@ namespace AuctionGame_Admin
             var query = "SELECT * FROM families_view";
             switch (option)
             {
-                case 1: query += $" WHERE families_view.nameFamily LIKE '{txbSearchFamilies.Text}%'"; break;
-                case 2: query += $" WHERE families_view.points = {txbSearchFamilies.Text}"; break;
+                case 1: query += $" WHERE families_view.name_family LIKE '{txbSearchFamilies.Text}%'"; break;
+                case 2: query += $" WHERE families_view.points_family = {txbSearchFamilies.Text}"; break;
                 case 3: query += $" WHERE families_view.products = {txbSearchFamilies.Text}"; break;
             }
             UpdateFamilies(query);
@@ -116,6 +110,11 @@ namespace AuctionGame_Admin
         private void txbSearchFamily_Leave(object sender, System.EventArgs e)
         {
             _dataControl.placeHolder_Leave((TextBox)sender);
+
+        }
+
+        private void ChildMainFamily_Load(object sender, EventArgs e)
+        {
 
         }
     }

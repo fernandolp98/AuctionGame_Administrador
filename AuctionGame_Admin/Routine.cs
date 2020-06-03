@@ -17,7 +17,7 @@ namespace AuctionGame_Admin
         public List<Product> SingleProducts { get; set; }
         public List<Product> ProductsByFamily { get; set; }
         public List<Product> AllProducts { get; set; }
-        public List<VirtualBidder> VirtualBidders { get; set; }
+        public List<VirtualPlayer> virtualPlayers { get; set; }
 
         public static Routine GetRoutineById(int idRoutine)
         {
@@ -35,7 +35,7 @@ namespace AuctionGame_Admin
             routine.SingleProducts = routine.GetSingleProducts();
             routine.ProductsByFamily = routine.GetProductsByFamily();
             routine.AllProducts = routine.GetAllProducts();
-            routine.VirtualBidders = routine.GetVirtualBidders();
+            routine.virtualPlayers = routine.GetvirtualPlayers();
             return routine;
         }
         public static List<Routine> GetAllRoutines()
@@ -53,7 +53,7 @@ namespace AuctionGame_Admin
                 routine.SingleProducts = routine.GetSingleProducts();
                 routine.ProductsByFamily = routine.GetProductsByFamily();
                 routine.AllProducts = routine.GetAllProducts();
-                routine.VirtualBidders = routine.GetVirtualBidders();
+                routine.virtualPlayers = routine.GetvirtualPlayers();
                 routines.Add(routine);
             }
             return routines;
@@ -149,39 +149,38 @@ namespace AuctionGame_Admin
             return products;
         }
 
-        public List<VirtualBidder> GetVirtualBidders()
+        public List<VirtualPlayer> GetvirtualPlayers()
         {
-            var virtualBidders = new List<VirtualBidder>();
+            var virtualPlayers = new List<VirtualPlayer>();
             var query = "SELECT * FROM virtual_bidders_per_routine " +
                         $"WHERE ROUTINE_idRoutine = {IdRoutine}";
-            var virtualBiddersDt = DbConnection.consultar_datos(query);
+            var virtualPlayersDt = DbConnection.consultar_datos(query);
 
-            if (virtualBiddersDt == null) return virtualBidders;
-            for (var index = 0; index < virtualBiddersDt.Rows.Count; index++)
+            if (virtualPlayersDt == null) return virtualPlayers;
+            for (var index = 0; index < virtualPlayersDt.Rows.Count; index++)
             {
-                var row = virtualBiddersDt.Rows[index];
-                var virtualBidder = new VirtualBidder()
+                var row = virtualPlayersDt.Rows[index];
+                var virtualPlayer = new VirtualPlayer()
                 {
-                    IdVirtualBidder = (int)row[0],
+                    IdvirtualPlayer = (int)row[0],
                     IdBidder = (int)row[1],
-                    NameBidder = (string)row[2],
-                    DescriptionBidder = (string)row[3],
+                    NameVirtualPlayer = (string)row[2],
+                    DescriptionPlayer = (string)row[3],
                     Wallet = (decimal)row[4],
                     Role = new Role((int)row[5]),
                 }; 
-                virtualBidders.Add(virtualBidder);
+                virtualPlayers.Add(virtualPlayer);
             }
 
-            return virtualBidders;
+            return virtualPlayers;
         }
 
         public List<Product> GetAvailableProducts()
         {
             var products = new List<Product>();
-            var query = "SELECT products_view.* FROM products_view " +
-                        "LEFT JOIN " +
-                        "routine_has_product ON routine_has_product.PRODUCT_idProduct = products_view.idProduct " +
-                        $"WHERE routine_has_product.ROUTINE_idRoutine IS NULL OR routine_has_product.ROUTINE_idRoutine != {IdRoutine}";
+            var query = "SELECT t1.* FROM products_view t1 " +
+                        "WHERE NOT EXISTS(SELECT NULL FROM routine_has_product t2 " +
+                        $"WHERE t1.idProduct = t2.PRODUCT_idProduct AND t2.ROUTINE_idRoutine = {IdRoutine})";
             var consult = DbConnection.consultar_datos(query);
             if (consult == null) return products;
             for (var index = 0; index < consult.Rows.Count; index++)
@@ -202,10 +201,10 @@ namespace AuctionGame_Admin
         public List<Family> GetAvailableFamilies()
         {
             var families = new List<Family>();
-            var query = "SELECT families_view.* FROM families_view " +
-                        "LEFT JOIN " +
-                        "routine_has_family ON routine_has_family.FAMILY_idFamily = families_view.idFamily " +
-                        $"WHERE routine_has_family.ROUTINE_idRoutine IS NULL OR routine_has_family.ROUTINE_idRoutine != {IdRoutine}";
+
+            var query = "SELECT t1.* FROM families_view t1 " +
+                        "WHERE NOT EXISTS(SELECT NULL FROM routine_has_family t2 " +
+                        $"WHERE t1.idFamily = t2.FAMILY_idFamily AND t2.ROUTINE_idRoutine = {IdRoutine})";
             var consult = DbConnection.consultar_datos(query);
             if (consult == null) return families;
             for (var index = 0; index < consult.Rows.Count; index++)
@@ -217,31 +216,30 @@ namespace AuctionGame_Admin
 
             return families;
         }
-        public List<VirtualBidder> GetAvailableVirtualBidders()
+        public List<VirtualPlayer> GetAvailablevirtualPlayers()
         {
-            var virtualBidders = new List<VirtualBidder>();
-            var query = "SELECT virtual_bidders_view.* FROM virtual_bidders_view " +
-                        "LEFT JOIN " +
-                        "routine_has_virtual_bidder ON routine_has_virtual_bidder.VIRTUAL_BIDDER_idVIrtualBidder = virtual_bidders_view.idVirtualBidder " +
-                        $"WHERE routine_has_virtual_bidder.ROUTINE_idRoutine IS NULL OR routine_has_virtual_bidder.ROUTINE_idRoutine != {IdRoutine}";
+            var virtualPlayers = new List<VirtualPlayer>();
+            var query = "SELECT t1.* FROM virtual_bidders_view t1 " +
+                        "WHERE NOT EXISTS(SELECT NULL FROM routine_has_virtual_bidder t2 " +
+                        $"WHERE t1.idvirtualPlayer = t2.VIRTUAL_BIDDER_idvirtualPlayer AND t2.ROUTINE_idRoutine = {IdRoutine})";
             var consult = DbConnection.consultar_datos(query);
-            if (consult == null) return virtualBidders;
+            if (consult == null) return virtualPlayers;
             for (var index = 0; index < consult.Rows.Count; index++)
             {
                 var row = consult.Rows[index];
-                var virtualBidder = new VirtualBidder()
+                var virtualPlayer = new VirtualPlayer()
                 {
-                    IdVirtualBidder = (int)row[0],
+                    IdvirtualPlayer = (int)row[0],
                     IdBidder = (int)row[1],
-                    NameBidder = (string)row[2],
-                    DescriptionBidder = (string)row[3],
+                    NameVirtualPlayer = (string)row[2],
+                    DescriptionPlayer = (string)row[3],
                     Wallet = (decimal)row[4],
                     Role = new Role((int)row[5]),
                 }; 
-                virtualBidders.Add(virtualBidder);
+                virtualPlayers.Add(virtualPlayer);
             }
 
-            return virtualBidders;
+            return virtualPlayers;
         }
     }
 }

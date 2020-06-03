@@ -6,6 +6,11 @@ using System.Windows.Forms;
 
 namespace AuctionGame_Admin
 {
+    public static class Fonts
+    {
+        public static readonly Font FontPlaceHolder = new Font("Segoe UI", 12F, FontStyle.Italic, GraphicsUnit.Point, 0);
+        public static readonly Font FontRegular = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+    }
     public class DataControl
     {
         public Font FontPlaceHolder { get; set; }
@@ -35,6 +40,7 @@ namespace AuctionGame_Admin
         public void PlaceHolder_Enter(TextBox txb)
         {
             var text = txb.Tag.ToString().Split(',')[0];
+            Console.WriteLine();
             if (txb.Text ==  text && (txb.ForeColor == ColorPlaceHolder || txb.ForeColor == ColorError) && txb.Font.Equals(FontPlaceHolder))
             {
                 Text(txb, "");
@@ -245,7 +251,7 @@ namespace AuctionGame_Admin
             return true;
         }
 
-        public  string ImageToBase64String(Image imagen)
+        public static string ImageToBase64String(Image imagen)
         {
             using (var ms = new System.IO.MemoryStream())
             {

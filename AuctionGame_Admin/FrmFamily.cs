@@ -13,9 +13,7 @@ namespace AuctionGame_Admin
 {
     public partial class FrmFamily : Form
     {
-        private static readonly Font FontPlaceHolder = new Font("Comic Sans MS", 14.25F, FontStyle.Italic, GraphicsUnit.Point, 0);
-        private static readonly Font FontRegular = new Font("Comic Sans MS", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-        private readonly DataControl _dataControl = new DataControl(FontPlaceHolder, FontRegular, Color.Silver, Color.Black, Color.Red);
+        private readonly DataControl _dataControl = new DataControl(Fonts.FontPlaceHolder, Fonts.FontRegular, Color.Silver, Color.Black, Color.Red);
 
         private Family _family;
         private bool _edit;
@@ -134,16 +132,14 @@ namespace AuctionGame_Admin
             if (ValidData()) //Valida Datos
             {
                 var newNameFamily = txbNameFamily.Text;
-                var newPointsValue = txbPointsValue.Text;
+                var newPointsValue = int.Parse(txbPointsValue.Text);
 
                 if (!_edit) //Si no va a editar un producto ya existente
                 {
-                    var query =
-                        $"SELECT insert_family('{newNameFamily}', {newPointsValue})";
-                    var idFamilyDt = DbConnection.consultar_datos(query);
-                    if (idFamilyDt != null) //Si se ejecuta la consulta en la base de datos correctamente
+                    _family = new Family(0, newNameFamily, newPointsValue);
+                    
+                    if (_family.Insert()) //Si se ejecuta la consulta en la base de datos correctamente
                     {
-                        _family = Family.GetFamilyById(int.Parse(idFamilyDt.Rows[0][0].ToString()));
                         AddNewProducts();
                         _father?.UpdateFamilies("");
                         if (Question(@"¡Se ha registrado la familia exitosamente! ¿Desea agregar otra?", @"Familia agregada"))
@@ -164,12 +160,9 @@ namespace AuctionGame_Admin
                 }
                 else if (_edit) //Si va a editar un producto ya existente
                 {
-                    var query =
-                        $"UPDATE family set " +
-                        $"nameFamily = '{newNameFamily}', " +
-                        $"points = {newPointsValue} " +
-                        $"WHERE idFamily = {_family.IdFamily}";
-                    if (DbConnection.ejecutar(query)) //Si se ejecuta la consulta en la base de datos correctamente
+                    _family.NameFamily = newNameFamily;
+                    _family.Points = newPointsValue;
+                    if (_family.Update()) //Si se ejecuta la consulta en la base de datos correctamente
                     {
                         var added = AddNewProducts();
                         var removed = RemoveOldProduct();
@@ -204,7 +197,7 @@ namespace AuctionGame_Admin
             while (_newProducts.Count > index)
             {
                 var idProduct = _newProducts[index];
-                var query = $"INSERT INTO family_has_product (FAMILY_idFamily, PRODUCT_idProduct) VALUES ({_family.IdFamily}, {idProduct})";
+                var query = $"CALL procedure_add_product_for_family({_family.IdFamily}, {idProduct})";
                 if (DbConnection.ejecutar(query))
                 {
                     _newProducts.Remove(idProduct);
@@ -228,7 +221,7 @@ namespace AuctionGame_Admin
             while (_deletedProducts.Count > index)
             {
                 var idProduct = _deletedProducts[index];
-                var query = $"DELETE FROM family_has_product WHERE FAMILY_idFamily = {_family.IdFamily} AND PRODUCT_idProduct = {idProduct}";
+                var query = $"CALL procedure_delete_family_product({_family.IdFamily}, {idProduct})";
                 if (DbConnection.ejecutar(query))
                 {
                     _deletedProducts.Remove(idProduct);

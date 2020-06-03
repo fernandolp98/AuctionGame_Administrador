@@ -37,10 +37,6 @@ namespace AuctionGame_Admin
                     currentRow.Selected = true;
             }
         }
-        private void ChildMenuRole_Load(object sender, EventArgs e)
-        {
-            UpdateRoles("");
-        }
         private bool Question(string question, string caption)
         {
             return MessageBox.Show(question, caption, MessageBoxButtons.YesNoCancel) == DialogResult.Yes;

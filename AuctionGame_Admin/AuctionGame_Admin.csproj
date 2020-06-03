@@ -131,11 +131,11 @@
     <Compile Include="ChildMainUsers.Designer.cs">
       <DependentUpon>ChildMainUsers.cs</DependentUpon>
     </Compile>
-    <Compile Include="ChildMainVirtualBidder.cs">
+    <Compile Include="ChildMainVirtualPlayer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ChildMainVirtualBidder.Designer.cs">
-      <DependentUpon>ChildMainVirtualBidder.cs</DependentUpon>
+    <Compile Include="ChildMainVirtualPlayer.Designer.cs">
+      <DependentUpon>ChildMainVirtualPlayer.cs</DependentUpon>
     </Compile>
     <Compile Include="DataControl.cs" />
     <Compile Include="DbConection.cs" />
@@ -206,17 +206,17 @@
     <Compile Include="ChildMainStatistics.Designer.cs">
       <DependentUpon>ChildMainStatistics.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmVirtualBidder.cs">
+    <Compile Include="FrmVirtualPlayer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmVirtualBidder.Designer.cs">
-      <DependentUpon>FrmVirtualBidder.cs</DependentUpon>
+    <Compile Include="FrmVirtualPlayer.Designer.cs">
+      <DependentUpon>FrmVirtualPlayer.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmVurtualBiddersForRoutine.cs">
+    <Compile Include="FrmVirtualPlayersForRoutine.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmVurtualBiddersForRoutine.Designer.cs">
-      <DependentUpon>FrmVurtualBiddersForRoutine.cs</DependentUpon>
+    <Compile Include="FrmVirtualPlayersForRoutine.Designer.cs">
+      <DependentUpon>FrmVirtualPlayersForRoutine.cs</DependentUpon>
     </Compile>
     <Compile Include="Map.cs" />
     <Compile Include="Package.cs" />
@@ -230,9 +230,15 @@
     <Compile Include="Time.cs" />
     <Compile Include="TimesValues.cs" />
     <Compile Include="User.cs" />
-    <Compile Include="VirtualBidder.cs" />
+    <Compile Include="VirtualPlayer.cs" />
     <EmbeddedResource Include="ChildMainFamily.resx">
       <DependentUpon>ChildMainFamily.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChildMainRole.resx">
+      <DependentUpon>ChildMainRole.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ChildMainUsers.resx">
+      <DependentUpon>ChildMainUsers.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmGame.resx">
       <DependentUpon>FrmGame.cs</DependentUpon>
@@ -243,8 +249,9 @@
     <EmbeddedResource Include="ChildMainRoutines.resx">
       <DependentUpon>ChildMainRoutines.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ChildMainVirtualBidder.resx">
-      <DependentUpon>ChildMainVirtualBidder.cs</DependentUpon>
+    <EmbeddedResource Include="ChildMainVirtualPlayer.resx">
+      <DependentUpon>ChildMainVirtualPlayer.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmConfiguration.resx">
       <DependentUpon>FrmConfiguration.cs</DependentUpon>
@@ -273,11 +280,14 @@
     <EmbeddedResource Include="FrmRoutine.resx">
       <DependentUpon>FrmRoutine.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmVirtualBidder.resx">
-      <DependentUpon>FrmVirtualBidder.cs</DependentUpon>
+    <EmbeddedResource Include="FrmStatistics.resx">
+      <DependentUpon>FrmStatistics.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmVurtualBiddersForRoutine.resx">
-      <DependentUpon>FrmVurtualBiddersForRoutine.cs</DependentUpon>
+    <EmbeddedResource Include="FrmVirtualPlayer.resx">
+      <DependentUpon>FrmVirtualPlayer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmVirtualPlayersForRoutine.resx">
+      <DependentUpon>FrmVirtualPlayersForRoutine.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

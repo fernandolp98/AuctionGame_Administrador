@@ -12,14 +12,10 @@ namespace AuctionGame_Admin
         private readonly List<int> _increaseForBid;
 
 
-        public int BidTotal { get; set; }
-        public int BidWin { get; set; }
+        public int TotalAuctions { get; set; }
+        public int AuctionsWon { get; set; }
+        public int ParicipatedAuctions { get; set; }
         public double Points { get; set; }
-        public decimal Wallet { get; set; }
-        public string Log { get; set; }
-
-
-
 
         public Statistical()
         {
@@ -27,12 +23,11 @@ namespace AuctionGame_Admin
             _bidByRound = new List<int>();
             _secondsBetweenBid = new List<int>();
             _increaseForBid = new List<int>();
-
         }
 
-        public double Mean(List<int> list)
+        public decimal Mean(List<int> list)
         {
-            var mean = 0.0;
+            var mean = (decimal)0.00;
             foreach (var n in list)
             {
                 mean += n;
@@ -60,22 +55,22 @@ namespace AuctionGame_Admin
             this._increaseForBid.Add((int)increase);
         }
 
-        public void Results()
+        public void Results(decimal wallet)
         {
-            var roundsForBidd = (int)Mean(_roundsByAuction);
-            var biddForRound = (int)Mean(_bidByRound);
-            var secondsBetweenBidd = (int)Mean(_secondsBetweenBid);
-            var increaseForBidd = (int)Mean(_increaseForBid);
-
+            var roundsForBidd = Mean(_roundsByAuction);
+            var biddForRound = Mean(_bidByRound);
+            var secondsBetweenBidd = Mean(_secondsBetweenBid);
+            var increaseForBidd = Mean(_increaseForBid);
             var query = $"UPDATE statistical_data SET " +
                            $"roundsForBid = {roundsForBidd}, " +
                            $"biddForRound={biddForRound}, " +
-                           $"totalBid={BidTotal}, " +
-                           $"bidWin={BidWin}, " +
-                           $"secondsBetweenBidd={secondsBetweenBidd}, " +
-                           $"increaseForBidd={increaseForBidd}, " +
+                           $"totalAuctions={TotalAuctions}, " +
+                           $"participatedAuctions={ParicipatedAuctions}, " +
+                           $"auctionsWon={AuctionsWon}, " +
+                           $"finalWallet={wallet}, " +
                            $"points={Points}, " +
-                           $"log = '{Log}'" +
+                           $"secondsBetweenBidd={secondsBetweenBidd}, " +
+                           $"increaseForBidd={increaseForBidd} " +
                            $"WHERE idSTATISCAL = {IdStatistical}";
             DbConnection.ejecutar(query);
         }

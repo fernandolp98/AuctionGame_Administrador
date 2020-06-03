@@ -5,14 +5,14 @@ namespace AuctionGame_Admin
 {
     public class BetwenValues
     {
-        public int TopValue { get; set; }
         public int DownValue { get; set; }
+        public int TopValue { get; set; }
         public int FinallyValue { get; set; }
 
         public BetwenValues(int downValue, int topValue)
         {
-            this.TopValue = topValue;
             this.DownValue = downValue;
+            this.TopValue = topValue;
             this.FinallyValue = RandomData();
         }
 

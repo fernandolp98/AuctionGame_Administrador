@@ -1,6 +1,6 @@
 ﻿namespace AuctionGame_Admin
 {
-    partial class FrmVurtualBiddersForRoutine
+    partial class FrmVirtualPlayersForRoutine
     {
         /// <summary>
         /// Required designer variable.

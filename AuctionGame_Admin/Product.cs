@@ -9,7 +9,7 @@ namespace AuctionGame_Admin
     {
         public int IdProduct;
         public string Name { get; set; }
-        public decimal Price { get; set; }
+        public decimal StartingPrice { get; set; }
         public int Points { get; set; }
 
         public Image ImageProduct { get; set; }
@@ -18,13 +18,13 @@ namespace AuctionGame_Admin
         {
 
         }
-        public Product(int id, string n, decimal p, int po, Image im)
+        public Product(int id, string name, decimal startingPrice, int points, Image image)
         {
             this.IdProduct = id;
-            this.Name = n;
-            this.Price = p;
-            this.Points = po;
-            this.ImageProduct = im;
+            this.Name = name;
+            this.StartingPrice = startingPrice;
+            this.Points = points;
+            this.ImageProduct = image;
         }
         public bool Equals(Product product)
         {
@@ -37,9 +37,9 @@ namespace AuctionGame_Admin
         public static Product GetProductById(int idProduct)
         {
             var product = new Product();
-            var query = $"SELECT * FROM products_view WHERE idProduct = {idProduct}";
+            var query = $"SELECT * FROM products_view WHERE id_product = {idProduct}";
             var productDataTable = DbConnection.consultar_datos(query);
-            if (productDataTable == null) return product;
+            if (productDataTable == null) return null;
             foreach (DataRow row in productDataTable.Rows)
             {
                 var image = DataControl.Base64StringToImage((string) row[4]);
@@ -68,6 +68,21 @@ namespace AuctionGame_Admin
             }
 
             return products;
+        }
+
+        public bool Insert()
+        {
+            var b64Image = DataControl.ImageToBase64String(this.ImageProduct);
+            var query =
+                $"CALL procedure_insert_product({IdProduct}, '{Name}', {StartingPrice}, {Points}, '{b64Image}')";
+            return DbConnection.ejecutar(query);
+        }
+
+        public bool Update()
+        {
+            var b64Image = DataControl.ImageToBase64String(this.ImageProduct);
+            var query = $"CALL procedure_update_product({IdProduct}, '{Name}', {StartingPrice}, {Points}, '{b64Image}')";
+            return DbConnection.ejecutar(query);
         }
     }
 }

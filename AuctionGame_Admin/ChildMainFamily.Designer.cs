@@ -116,9 +116,7 @@
             // 
             // btnSearchFamilies
             // 
-            this.btnSearchFamilies.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSearchFamilies.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSearchFamilies.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(82)))), ((int)(((byte)(118)))));
             this.btnSearchFamilies.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSearchFamilies.ForeColor = System.Drawing.Color.White;
@@ -191,7 +189,7 @@
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "ChildMainFamily";
             this.Text = "ChildMenuFamily";
-            this.Load += new System.EventHandler(this.ChildMenuFamily_Load);
+            this.Load += new System.EventHandler(this.ChildMainFamily_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvFamilies)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -8,9 +8,7 @@ namespace AuctionGame_Admin
 {
     public partial class FrmRoutine : Form
     {
-        private static readonly Font FontPlaceHolder = new Font("Comic Sans MS", 14.25F, FontStyle.Italic, GraphicsUnit.Point, 0);
-        private static readonly Font FontRegular = new Font("Comic Sans MS", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-        private readonly DataControl _dataControl = new DataControl(FontPlaceHolder, FontRegular, Color.Silver, Color.Black, Color.Red);
+        private readonly DataControl _dataControl = new DataControl(Fonts.FontPlaceHolder, Fonts.FontRegular, Color.Silver, Color.Black, Color.Red);
 
         private Routine _routine;
         private readonly Color _enableColor = Color.FromArgb(26, 82, 118);
@@ -48,9 +46,9 @@ namespace AuctionGame_Admin
             gboxProducts.Enabled = true;
             pboxEditProductsPerRoutine.Image = Properties.Resources.Edit;
             dgvProducts.ColumnHeadersDefaultCellStyle.BackColor = _enableColor;
-            gboxVirtualBidders.Enabled = true;
-            pboxEditVirtualBiddersPerRoutine.Image = Properties.Resources.Edit;
-            dgvVirtualBidders.ColumnHeadersDefaultCellStyle.BackColor = _enableColor;
+            gboxvirtualPlayers.Enabled = true;
+            pboxEditvirtualPlayersPerRoutine.Image = Properties.Resources.Edit;
+            dgvvirtualPlayers.ColumnHeadersDefaultCellStyle.BackColor = _enableColor;
         }
         private void LoadRoutine()
         {
@@ -58,7 +56,7 @@ namespace AuctionGame_Admin
             _dataControl.Text(txbDescriptionRoutine, _routine.DescriptionRoutine);
             UpdateFamilies();
             UpdateProducts();
-            UpdateVirtualBidders();
+            UpdatevirtualPlayers();
         }
         private bool Question(string question, string caption)
         {
@@ -89,6 +87,7 @@ namespace AuctionGame_Admin
             {
                 dgvFamilies.Rows.Add(family.IdFamily, family.NameFamily, family.Points, family.Products.Count());
             }
+            _father?.UpdateRoutines(null);
         }
         public void UpdateProducts()
         { 
@@ -96,19 +95,21 @@ namespace AuctionGame_Admin
             foreach (var product in _routine.AllProducts)
             {
                 dgvProducts.Rows.Add(product.IdProduct,
-                    product.Name, product.Price,
+                    product.Name, product.StartingPrice,
                     product.Points,
                     _routine.SingleProducts.Contains(product),
                     _routine.ProductsByFamily.Contains(product));
             }
+            _father?.UpdateRoutines(null);
         }
-        public void UpdateVirtualBidders()
+        public void UpdatevirtualPlayers()
         {
-            dgvVirtualBidders.Rows.Clear();
-            foreach (var virtualBidder in _routine.VirtualBidders)
+            dgvvirtualPlayers.Rows.Clear();
+            foreach (var virtualPlayer in _routine.virtualPlayers)
             {
-                dgvVirtualBidders.Rows.Add(virtualBidder.IdVirtualBidder, virtualBidder.NameBidder, virtualBidder.Wallet, virtualBidder.Role.NameRole);
+                dgvvirtualPlayers.Rows.Add(virtualPlayer.IdvirtualPlayer, virtualPlayer.NameVirtualPlayer, virtualPlayer.Wallet, virtualPlayer.Role.NameRole);
             }
+            _father?.UpdateRoutines(null);
         }
 
         private void pboxEditProductsPerRoutine_Click(object sender, EventArgs e)
@@ -122,9 +123,9 @@ namespace AuctionGame_Admin
             var form = new FrmFamiliesForRoutine(_routine, this);
             form.Show();
         }
-        private void pboxEditVirtualBiddersPerRoutine_Click(object sender, EventArgs e)
+        private void pboxEditvirtualPlayersPerRoutine_Click(object sender, EventArgs e)
         {
-            var form = new FrmVurtualBiddersForRoutine(_routine, this);
+            var form = new FrmVirtualPlayersForRoutine(_routine, this);
             form.Show();
         }
         private void btnExit_Click(object sender, EventArgs e)

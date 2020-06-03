@@ -105,7 +105,7 @@
             this.txbIdProduct.Location = new System.Drawing.Point(109, 67);
             this.txbIdProduct.Name = "txbIdProduct";
             this.txbIdProduct.Size = new System.Drawing.Size(182, 29);
-            this.txbIdProduct.TabIndex = 4;
+            this.txbIdProduct.TabIndex = 2;
             this.txbIdProduct.Tag = "Código,numeroEntero";
             this.txbIdProduct.Text = "Código";
             this.txbIdProduct.Enter += new System.EventHandler(this.Txb_Enter);
@@ -122,7 +122,7 @@
             this.txbNameProduct.Location = new System.Drawing.Point(109, 130);
             this.txbNameProduct.Name = "txbNameProduct";
             this.txbNameProduct.Size = new System.Drawing.Size(182, 29);
-            this.txbNameProduct.TabIndex = 5;
+            this.txbNameProduct.TabIndex = 3;
             this.txbNameProduct.Tag = "Nombre,alfanumerico";
             this.txbNameProduct.Text = "Nombre";
             this.txbNameProduct.Enter += new System.EventHandler(this.Txb_Enter);
@@ -139,7 +139,7 @@
             this.txbInitialPrice.Location = new System.Drawing.Point(109, 193);
             this.txbInitialPrice.Name = "txbInitialPrice";
             this.txbInitialPrice.Size = new System.Drawing.Size(182, 29);
-            this.txbInitialPrice.TabIndex = 6;
+            this.txbInitialPrice.TabIndex = 4;
             this.txbInitialPrice.Tag = "Precio Inicial,moneda";
             this.txbInitialPrice.Text = "Precio Inicial";
             this.txbInitialPrice.Enter += new System.EventHandler(this.Txb_Enter);
@@ -156,7 +156,7 @@
             this.txbPointsValue.Location = new System.Drawing.Point(109, 256);
             this.txbPointsValue.Name = "txbPointsValue";
             this.txbPointsValue.Size = new System.Drawing.Size(182, 29);
-            this.txbPointsValue.TabIndex = 7;
+            this.txbPointsValue.TabIndex = 5;
             this.txbPointsValue.Tag = "Puntos,numeroEntero";
             this.txbPointsValue.Text = "Puntos";
             this.txbPointsValue.Enter += new System.EventHandler(this.Txb_Enter);
@@ -183,7 +183,7 @@
             this.btnPatchImaage.Location = new System.Drawing.Point(307, 255);
             this.btnPatchImaage.Name = "btnPatchImaage";
             this.btnPatchImaage.Size = new System.Drawing.Size(130, 30);
-            this.btnPatchImaage.TabIndex = 9;
+            this.btnPatchImaage.TabIndex = 6;
             this.btnPatchImaage.Text = "...";
             this.btnPatchImaage.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnPatchImaage.UseVisualStyleBackColor = true;
@@ -198,7 +198,7 @@
             this.btnSave.Location = new System.Drawing.Point(287, 321);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(150, 30);
-            this.btnSave.TabIndex = 10;
+            this.btnSave.TabIndex = 7;
             this.btnSave.Text = "Guardar";
             this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -212,7 +212,7 @@
             this.btnCancelar.Location = new System.Drawing.Point(131, 321);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(150, 30);
-            this.btnCancelar.TabIndex = 11;
+            this.btnCancelar.TabIndex = 1;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = false;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);

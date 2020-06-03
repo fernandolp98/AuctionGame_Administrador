@@ -1,20 +1,33 @@
 ﻿using System.Collections.Generic;
 using System.Data;
+using System.Windows.Forms;
 
 namespace AuctionGame_Admin
 {
     public class Role
     {
-        public int IdRole { get; }
+        public int IdRole { get; set; }
         public string NameRole { get; }
         public string DescriptionRole { get; }
         public TimesValues TimeToBid { get; }//tiempo para la primer oferta
-        public BetwenValues Rounds { get; }//numero de rondas en las que puede participar en cada subasta
         public BetwenValues OffertsForRound { get; }//numero de apuestas que puede hacer en cada ronda
+        public BetwenValues Rounds { get; }//numero de rondas en las que puede participar en cada subasta
         public BetwenValues BidIncrease { get; }//valor que puede incrementar en su oferta
+
+        public Role(string nameRole, string descriptionRole, TimesValues timeToBid, BetwenValues offertsForRound, BetwenValues rounds, BetwenValues bidIncrease)
+        {
+            IdRole = -1;
+            NameRole = nameRole;
+            DescriptionRole = descriptionRole;
+            TimeToBid = timeToBid;
+            OffertsForRound = offertsForRound;
+            Rounds = rounds;
+            BidIncrease = bidIncrease;
+
+        }
         public Role(int roleId)
         {
-            var values = DbConnection.consultar_datos($"SELECT * FROM role WHERE idRole = {roleId}");
+            var values = DbConnection.consultar_datos($"SELECT * FROM role WHERE id_role = {roleId}");
             if (values != null)
             {
                 this.IdRole = roleId;
@@ -46,7 +59,7 @@ namespace AuctionGame_Admin
         public static List<Role> GetAllRoles()
         {
             var roles = new List<Role>();
-            var query = "SELECT idRole FROM role";
+            var query = "SELECT id_role FROM role";
             var consult = DbConnection.consultar_datos(query);
             if (consult == null) return roles;
             foreach (DataRow row in consult.Rows)
@@ -57,6 +70,42 @@ namespace AuctionGame_Admin
                 roles.Add(role);
             }
             return roles;
+        }
+
+        public bool Insertar()
+        {
+            var query = $"SELECT function_insert_role(" +
+                        $"'{NameRole}'," +
+                        $"'{DescriptionRole}'," +
+                        $"{TimeToBid.TimeDownSeconds}," +
+                        $"{TimeToBid.TimeTopSeconds}, " +
+                        $"{OffertsForRound.DownValue}, " +
+                        $"{OffertsForRound.TopValue}, " +
+                        $"{Rounds.DownValue}, " +
+                        $"{Rounds.TopValue}, " +
+                        $"{BidIncrease.DownValue}, " +
+                        $"{BidIncrease.TopValue})";
+            var roleIdDt = DbConnection.consultar_datos(query);
+            if (roleIdDt == null) return false;
+            IdRole = int.Parse(roleIdDt.Rows[0][0].ToString());
+            return true;
+        }
+
+        public bool Update()
+        {
+            var query = $"CALL procedure_update_role(" +
+                        $"{IdRole} ," +
+                        $"'{NameRole}'," +
+                        $"'{DescriptionRole}'," +
+                        $"{TimeToBid.TimeDownSeconds}," +
+                        $"{TimeToBid.TimeTopSeconds}, " +
+                        $"{OffertsForRound.DownValue}, " +
+                        $"{OffertsForRound.TopValue}, " +
+                        $"{Rounds.DownValue}, " +
+                        $"{Rounds.TopValue}, " +
+                        $"{BidIncrease.DownValue}, " +
+                        $"{BidIncrease.TopValue})";
+            return DbConnection.ejecutar(query);
         }
     }
 }

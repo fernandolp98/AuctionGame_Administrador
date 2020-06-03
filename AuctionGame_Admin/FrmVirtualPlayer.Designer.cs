@@ -1,6 +1,6 @@
 ﻿namespace AuctionGame_Admin
 {
-    partial class FrmVirtualBidder
+    partial class FrmVirtualPlayer
     {
         /// <summary>
         /// Required designer variable.
@@ -29,11 +29,9 @@
         private void InitializeComponent()
         {
             this.txbDescriptionVirtuaBidder = new System.Windows.Forms.TextBox();
-            this.txbNameVirtualBidder = new System.Windows.Forms.TextBox();
+            this.txbNamevirtualPlayer = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.txbWalletVirtualBidder = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.cboRole = new System.Windows.Forms.ComboBox();
             this.btnCancelar = new System.Windows.Forms.Button();
@@ -47,7 +45,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txbDescriptionVirtuaBidder.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txbDescriptionVirtuaBidder.ForeColor = System.Drawing.Color.Silver;
-            this.txbDescriptionVirtuaBidder.Location = new System.Drawing.Point(119, 135);
+            this.txbDescriptionVirtuaBidder.Location = new System.Drawing.Point(119, 163);
             this.txbDescriptionVirtuaBidder.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.txbDescriptionVirtuaBidder.Multiline = true;
             this.txbDescriptionVirtuaBidder.Name = "txbDescriptionVirtuaBidder";
@@ -59,23 +57,23 @@
             this.txbDescriptionVirtuaBidder.Leave += new System.EventHandler(this.Txb_Leave);
             this.txbDescriptionVirtuaBidder.Validated += new System.EventHandler(this.Txb_Validated);
             // 
-            // txbNameVirtualBidder
+            // txbNamevirtualPlayer
             // 
-            this.txbNameVirtualBidder.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.txbNamevirtualPlayer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txbNameVirtualBidder.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txbNameVirtualBidder.ForeColor = System.Drawing.Color.Silver;
-            this.txbNameVirtualBidder.Location = new System.Drawing.Point(119, 76);
-            this.txbNameVirtualBidder.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.txbNameVirtualBidder.Name = "txbNameVirtualBidder";
-            this.txbNameVirtualBidder.Size = new System.Drawing.Size(297, 29);
-            this.txbNameVirtualBidder.TabIndex = 42;
-            this.txbNameVirtualBidder.Tag = "Nombre,alfanumerico";
-            this.txbNameVirtualBidder.Text = "Nombre";
-            this.txbNameVirtualBidder.Enter += new System.EventHandler(this.Txb_Enter);
-            this.txbNameVirtualBidder.Leave += new System.EventHandler(this.Txb_Leave);
-            this.txbNameVirtualBidder.Validated += new System.EventHandler(this.Txb_Validated);
+            this.txbNamevirtualPlayer.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txbNamevirtualPlayer.ForeColor = System.Drawing.Color.Silver;
+            this.txbNamevirtualPlayer.Location = new System.Drawing.Point(119, 76);
+            this.txbNamevirtualPlayer.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txbNamevirtualPlayer.Name = "txbNamevirtualPlayer";
+            this.txbNamevirtualPlayer.Size = new System.Drawing.Size(297, 29);
+            this.txbNamevirtualPlayer.TabIndex = 42;
+            this.txbNamevirtualPlayer.Tag = "Nombre,alfanumerico";
+            this.txbNamevirtualPlayer.Text = "Nombre";
+            this.txbNamevirtualPlayer.Enter += new System.EventHandler(this.Txb_Enter);
+            this.txbNamevirtualPlayer.Leave += new System.EventHandler(this.Txb_Leave);
+            this.txbNamevirtualPlayer.Validated += new System.EventHandler(this.Txb_Validated);
             // 
             // label3
             // 
@@ -85,7 +83,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(82)))), ((int)(((byte)(118)))));
-            this.label3.Location = new System.Drawing.Point(7, 156);
+            this.label3.Location = new System.Drawing.Point(7, 186);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(104, 21);
@@ -107,35 +105,6 @@
             this.label2.TabIndex = 45;
             this.label2.Text = "Nombre:";
             // 
-            // txbWalletVirtualBidder
-            // 
-            this.txbWalletVirtualBidder.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic);
-            this.txbWalletVirtualBidder.ForeColor = System.Drawing.Color.Silver;
-            this.txbWalletVirtualBidder.Location = new System.Drawing.Point(119, 230);
-            this.txbWalletVirtualBidder.Name = "txbWalletVirtualBidder";
-            this.txbWalletVirtualBidder.Size = new System.Drawing.Size(120, 29);
-            this.txbWalletVirtualBidder.TabIndex = 44;
-            this.txbWalletVirtualBidder.Tag = "Cartera,moneda";
-            this.txbWalletVirtualBidder.Text = "Cartera";
-            this.txbWalletVirtualBidder.Enter += new System.EventHandler(this.Txb_Enter);
-            this.txbWalletVirtualBidder.Leave += new System.EventHandler(this.Txb_Leave);
-            this.txbWalletVirtualBidder.Validated += new System.EventHandler(this.Txb_Validated);
-            // 
-            // label9
-            // 
-            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(82)))), ((int)(((byte)(118)))));
-            this.label9.Location = new System.Drawing.Point(40, 233);
-            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(69, 21);
-            this.label9.TabIndex = 47;
-            this.label9.Text = "Cartera:";
-            // 
             // label1
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -144,7 +113,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(26)))), ((int)(((byte)(82)))), ((int)(((byte)(118)))));
-            this.label1.Location = new System.Drawing.Point(72, 310);
+            this.label1.Location = new System.Drawing.Point(73, 293);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(39, 21);
@@ -154,7 +123,7 @@
             // cboRole
             // 
             this.cboRole.FormattingEnabled = true;
-            this.cboRole.Location = new System.Drawing.Point(118, 307);
+            this.cboRole.Location = new System.Drawing.Point(119, 290);
             this.cboRole.Name = "cboRole";
             this.cboRole.Size = new System.Drawing.Size(121, 29);
             this.cboRole.TabIndex = 49;
@@ -187,7 +156,7 @@
             this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // FrmVirtualBidder
+            // FrmVirtualPlayer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -198,18 +167,16 @@
             this.Controls.Add(this.cboRole);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txbDescriptionVirtuaBidder);
-            this.Controls.Add(this.txbNameVirtualBidder);
+            this.Controls.Add(this.txbNamevirtualPlayer);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.txbWalletVirtualBidder);
-            this.Controls.Add(this.label9);
             this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.Name = "FrmVirtualBidder";
+            this.Name = "FrmVirtualPlayer";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Jugador Virtual";
-            this.Load += new System.EventHandler(this.FrmVirtualBidderr_Load);
+            this.Load += new System.EventHandler(this.FrmvirtualPlayerr_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -218,11 +185,9 @@
         #endregion
 
         private System.Windows.Forms.TextBox txbDescriptionVirtuaBidder;
-        private System.Windows.Forms.TextBox txbNameVirtualBidder;
+        private System.Windows.Forms.TextBox txbNamevirtualPlayer;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox txbWalletVirtualBidder;
-        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cboRole;
         private System.Windows.Forms.Button btnCancelar;

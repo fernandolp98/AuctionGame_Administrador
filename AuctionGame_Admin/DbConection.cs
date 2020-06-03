@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Windows.Forms;
 using MySql.Data.MySqlClient;
 namespace AuctionGame_Admin
 {
@@ -83,17 +84,26 @@ namespace AuctionGame_Admin
                 {
                     MySqlCommand command = new MySqlCommand(cSql, connection);
                     command.ExecuteScalar();
-                    desconectar();
                     return true;
                 }
+
                 return false;
             }
             catch (MySqlException exc)
             {
 
-                Console.WriteLine($"Error: {exc.Message} en la consulta '{cSql}'");
-
+                Console.WriteLine($"Error {exc.Number}: {exc.Message} en la consulta '{cSql}'");
+                switch (exc.Number)
+                {
+                    case 1062:
+                        Console.WriteLine("Código duplicado");
+                        break;
+                }
                 return false;
+            }
+            finally
+            {
+                desconectar();
             }
 
         }

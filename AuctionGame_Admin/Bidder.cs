@@ -6,7 +6,6 @@ namespace AuctionGame_Admin
     public class Bidder
     {
         public int IdBidder { get; set; }
-        public string NameBidder { get; set; }
         public decimal Wallet { get; set; }
         public decimal Offert { get; set; }
         public int ParticipationsRound { get; set; }
@@ -21,9 +20,9 @@ namespace AuctionGame_Admin
         public void UpdateParticipation()
         {
             ParticipationsRound++;
-            if (ParticipationsRound == 1)
+            if (ParticipationsRound == 1)//Si es l primera participacion en el round
             {
-                Rounds++;
+                Rounds++;//Incrementa el contador de los rounds participados
             }
         }
     }

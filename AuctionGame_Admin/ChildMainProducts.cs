@@ -12,24 +12,16 @@ namespace AuctionGame_Admin
 {
     public partial class ChildMainProducts : Form
     {
-        private static readonly Font FontPlaceHolder = new Font("Comic Sans MS", 14.25F, FontStyle.Italic, GraphicsUnit.Point, 0);
-        private static readonly Font FontRegular = new Font("Comic Sans MS", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-        private readonly DataControl _dataControl = new DataControl(FontPlaceHolder, FontRegular, Color.Silver, Color.Black, Color.Red);
+        private readonly DataControl _dataControl = new DataControl(Fonts.FontPlaceHolder, Fonts.FontRegular, Color.Silver, Color.Black, Color.Red);
         public ChildMainProducts()
         {
             InitializeComponent();
         }
 
-        private void childMenuProductos_Load(object sender, EventArgs e)
-        {
-            UpdateProducts("");
-
-        }
-
         public void UpdateProducts(string query)
         {
             if (string.IsNullOrEmpty(query))
-                query = "SELECT product.idProduct, product.nameProduct, product.startinPrice, product.points, CONVERT(pathImage USING UTF8) FROM product";
+                query = "SELECT * FROM products_view";
             var products = DbConnection.consultar_datos(query); //Obtiene una consulta de los productos de la base de datos
             dgvProducts.Rows.Clear();//Limpia las filas de la tabla producto
             if (products == null) return;
@@ -61,7 +53,7 @@ namespace AuctionGame_Admin
 
             if (!Question($@"¿Está seguro de eliminar el producto {currentNameProduct} ({currentIdproduct})?",
                 @"Estás a punto de eliminar un producto")) return;
-            var query = $"DELETE FROM product WHERE idProduct = {currentIdproduct}"; //Query  para eliminar producto seleccionado
+            var query = $"CALL procedure_delete_product{currentIdproduct}"; //Query  para eliminar producto seleccionado
             if (DbConnection.ejecutar(query))//Ejecuta el query en la base de datos
             {
                 MessageBox.Show(@"Se eliminó correctamente");
@@ -96,7 +88,7 @@ namespace AuctionGame_Admin
             {
                 IdProduct = idProduct,
                 Name = nameProduct,
-                Price = initialPrice,
+                StartingPrice = initialPrice,
                 Points = pointsValue,
                 ImageProduct = image
             };
@@ -108,20 +100,20 @@ namespace AuctionGame_Admin
         private void btnSearchProducts_Click(object sender, EventArgs e)
         {
             var option = cboSearchProducts.SelectedIndex;
-            var query = "SELECT product.idProduct, product.nameProduct, product.startinPrice, product.points, CONVERT(pathImage USING UTF8) FROM product";
+            var query = "SELECT * FROM products_view";
             switch (option)
             {
                 case 1:
-                    query += $" WHERE product.idProduct = {txbSearchProducts.Text}";
+                    query += $" WHERE products_view.id_product = {txbSearchProducts.Text}";
                     break;
                 case 2:
-                    query += $" WHERE product.nameProduct LIKE '{txbSearchProducts.Text}%'";
+                    query += $" WHERE products_view.name_product LIKE '{txbSearchProducts.Text}%'";
                     break;
                 case 3:
-                    query += $" WHERE product.startinPrice = {txbSearchProducts.Text}";
+                    query += $" WHERE products_view.starting_price = {txbSearchProducts.Text}";
                     break;
                 case 4:
-                    query += $" WHERE product.points = {txbSearchProducts.Text}";
+                    query += $" WHERE products_view.points_product = {txbSearchProducts.Text}";
                     break;
             }
 

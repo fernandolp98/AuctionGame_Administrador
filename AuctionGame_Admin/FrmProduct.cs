@@ -13,11 +13,10 @@ namespace AuctionGame_Admin
 {
     public partial class FrmProduct : Form
     {
-        private static readonly Font FontPlaceHolder = new Font("Comic Sans MS", 14.25F, FontStyle.Italic, GraphicsUnit.Point, 0);
-        private static readonly Font FontRegular = new Font("Comic Sans MS", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-        private readonly DataControl _dataControl = new DataControl(FontPlaceHolder, FontRegular, Color.Silver, Color.Black, Color.Red);
 
-        private readonly Product _product;
+        private readonly DataControl _dataControl = new DataControl(Fonts.FontPlaceHolder, Fonts.FontRegular, Color.Silver, Color.Black, Color.Red);
+
+        private Product _product;
         private readonly bool _edit;
         private readonly ChildMainProducts _father;
         public FrmProduct(ChildMainProducts father)
@@ -52,7 +51,7 @@ namespace AuctionGame_Admin
         {
             _dataControl.Text(txbIdProduct, _product.IdProduct.ToString());
             _dataControl.Text(txbNameProduct, _product.Name);
-            _dataControl.Text(txbInitialPrice, _product.Price.ToString(CultureInfo.InvariantCulture));
+            _dataControl.Text(txbInitialPrice, _product.StartingPrice.ToString(CultureInfo.InvariantCulture));
             _dataControl.Text(txbPointsValue, _product.Points.ToString(CultureInfo.InvariantCulture));
             pboxProducto.Image = _product.ImageProduct;
         }
@@ -96,28 +95,23 @@ namespace AuctionGame_Admin
         {
             if (ValidData()) //Valida Datos
             {
-                var newIdProduct = txbIdProduct.Text;
+                var newIdProduct = int.Parse(txbIdProduct.Text);
                 var newNameProduct = txbNameProduct.Text;
-                var newInitialPrice = txbInitialPrice.Text;
-                var newPointsValue = txbPointsValue.Text;
-                var newImageB64 = _dataControl.ImageToBase64String(pboxProducto.Image);
+                var newStartingPrice = decimal.Parse(txbInitialPrice.Text);
+                var newPointsValue = int.Parse(txbPointsValue.Text);
+                var newImageB64 = pboxProducto.Image;
+
+                var newProduct = new Product(newIdProduct, newNameProduct, newStartingPrice, newPointsValue, newImageB64);
 
                 if (!_edit) //Si no va a editar un producto ya existente
                 {
-                    if (DbConnection.existencia($@"SELECT * FROM product WHERE idProduct = {newIdProduct} LIMIT 1", 1))
+                    if (Product.GetProductById(newIdProduct) != null)
                     {
                         MessageBox.Show(@"El código introducido ya existe.");
                         return;
                     }
-                    var query =
-                        $"INSERT INTO product (idProduct, nameProduct, startinPrice, points, pathImage) " +
-                        $"VALUES (" +
-                        $"{newIdProduct}," +
-                        $"'{newNameProduct}'," +
-                        $"{newInitialPrice}, " +
-                        $"{newPointsValue}, " +
-                        $"'{newImageB64}')";
-                    if (DbConnection.ejecutar(query)) //Si se ejecuta la consulta en la base de datos correctamente
+
+                    if (newProduct.Insert()) //Si se ejecuta la consulta en la base de datos correctamente
                     {
                         _father?.UpdateProducts("");
                         if (MessageBox.Show(@"¡Se ha registrado el producto exitosamente! ¿Desea agregar otro?",
@@ -125,10 +119,10 @@ namespace AuctionGame_Admin
                             DialogResult.Yes)
                         {
 
-                            txbIdProduct.Clear();
-                            txbNameProduct.Clear();
-                            txbInitialPrice.Clear();
-                            txbPointsValue.Clear();
+                            _dataControl.Clear(txbIdProduct);
+                            _dataControl.Clear(txbNameProduct);
+                            _dataControl.Clear(txbInitialPrice);
+                            _dataControl.Clear(txbPointsValue);
                             pboxProducto.Image = Image.FromFile("../../Resources/no-foto.png");
                         }
                         else
@@ -144,21 +138,9 @@ namespace AuctionGame_Admin
                 }
                 else if (_edit) //Si va a editar un producto ya existente
                 {
-                    if (DbConnection.existencia($@"SELECT * FROM product WHERE idProduct = {newIdProduct} LIMIT 2", 2))
+                    if (newProduct.Update()) //Si se ejecuta la consulta en la base de datos correctamente
                     {
-                        MessageBox.Show(@"El código introducido ya existe.");
-                        return;
-                    }
-                    var query =
-                        $"UPDATE product set " +
-                        $"idProduct = {newIdProduct}, " +
-                        $"nameProduct = '{newNameProduct}', " +
-                        $"startinPrice = {newInitialPrice}, " +
-                        $"points = {newPointsValue}, " +
-                        $"pathImage = '{newImageB64}' " +
-                        $"WHERE idProduct = {_product.IdProduct}";
-                    if (DbConnection.ejecutar(query)) //Si se ejecuta la consulta en la base de datos correctamente
-                    {
+                        _product = newProduct;
                         _father?.UpdateProducts("");
                         if (!Question(@"¡Se ha modificado el producto exitosamente! ¿Desea Salir?",
                             @"Producto Modificado")) return;

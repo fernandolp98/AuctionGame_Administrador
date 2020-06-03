@@ -583,7 +583,6 @@ namespace AuctionGame_Admin
             this.Name = "FrmMainMenu";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Auction Game (Administrador)";
-            this.Load += new System.EventHandler(this.FrmMainMenu_Load);
             this.pnlSidebar.ResumeLayout(false);
             this.pnlSubMenuItem7.ResumeLayout(false);
             this.pnlSubMenuItem6.ResumeLayout(false);

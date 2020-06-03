@@ -12,11 +12,11 @@ namespace AuctionGame_Admin
 {
     public partial class FrmMainMenu : Form
     {
-        ChildMainProducts _formProducts;
-        ChildMainFamily _formFamily;
-        ChildMainRole _formRole;
-        ChildMainVirtualBidder _formVirtualBidder;
-        ChildMainRoutines _formRoutine;
+        readonly ChildMainProducts _formProducts;
+        readonly ChildMainFamily _formFamily;
+        readonly ChildMainRole _formRole;
+        readonly ChildMainVirtualPlayer _formvirtualPlayer;
+        readonly ChildMainRoutines _formRoutine;
 
         public FrmMainMenu()
         {
@@ -24,7 +24,7 @@ namespace AuctionGame_Admin
             _formProducts = new ChildMainProducts();
             _formFamily = new ChildMainFamily();
             _formRole = new ChildMainRole();
-            _formVirtualBidder = new ChildMainVirtualBidder();
+            _formvirtualPlayer = new ChildMainVirtualPlayer();
             _formRoutine = new ChildMainRoutines();
         }
         private void HideSubMenus()
@@ -113,6 +113,7 @@ namespace AuctionGame_Admin
         private void btnProducts_Click(object sender, EventArgs e)
         {
             OpenChildForm(_formProducts);
+            _formProducts.UpdateProducts(null);
         }
 
         private void btnAddProduct_Click(object sender, EventArgs e)
@@ -128,11 +129,13 @@ namespace AuctionGame_Admin
                 else
                 {
                     childProducts = (ChildMainProducts)pnlDashboard.Controls[0];
+
                 }
             }
             else
             {
                 OpenChildForm(childProducts);
+                childProducts.UpdateProducts(null);
             }
             var form = new FrmProduct(childProducts);
             form.Show();
@@ -142,6 +145,7 @@ namespace AuctionGame_Admin
         private void btnFamilies_Click(object sender, EventArgs e)
         {
             OpenChildForm(_formFamily);
+            _formFamily.UpdateFamilies(null);
         }
 
         private void btnAddFamily_Click(object sender, EventArgs e)
@@ -162,6 +166,7 @@ namespace AuctionGame_Admin
             else
             {
                 OpenChildForm(childFamilies);
+                childFamilies.UpdateFamilies(null);
             }
             var form = new FrmFamily(childFamilies);
             form.Show();
@@ -170,6 +175,7 @@ namespace AuctionGame_Admin
         private void btnRoles_Click(object sender, EventArgs e)
         {
             OpenChildForm(_formRole);
+            _formRole.UpdateRoles(null);
 
         }
 
@@ -191,36 +197,39 @@ namespace AuctionGame_Admin
             else
             {
                 OpenChildForm(childRoles);
+                childRoles.UpdateRoles(null);
             }
             var form = new FrmRole(childRoles);
             form.Show();
         }
         private void btnVirtualPlayers_Click(object sender, EventArgs e)
         {
-            OpenChildForm(_formVirtualBidder);
+            OpenChildForm(_formvirtualPlayer);
+            _formvirtualPlayer.UpdatevirtualPlayers(null);
 
         }
 
         private void btnAddVirtualPlayer_Click(object sender, EventArgs e)
         {
-            var childVirtualPlayers = _formVirtualBidder;
+            var childVirtualPlayers = _formvirtualPlayer;
             if (pnlDashboard.Controls.Count > 0)//Si el panel principal contiene un Formulario hijo
             {
 
-                if (pnlDashboard.Controls[0].GetType() != typeof(ChildMainVirtualBidder))//Si el tipo de formulario es diferente a ChildMenuProducts
+                if (pnlDashboard.Controls[0].GetType() != typeof(ChildMainVirtualPlayer))//Si el tipo de formulario es diferente a ChildMenuProducts
                 {
                     OpenChildForm(childVirtualPlayers);//Agrega un nuevo formulario de childMenuProducts
                 }
                 else
                 {
-                    childVirtualPlayers = (ChildMainVirtualBidder)pnlDashboard.Controls[0];
+                    childVirtualPlayers = (ChildMainVirtualPlayer)pnlDashboard.Controls[0];
                 }
             }
             else
             {
                 OpenChildForm(childVirtualPlayers);
+                childVirtualPlayers.UpdatevirtualPlayers(null);
             }
-            var form = new FrmVirtualBidder(childVirtualPlayers);
+            var form = new FrmVirtualPlayer(childVirtualPlayers);
             form.Show();
         }
 
@@ -260,10 +269,6 @@ namespace AuctionGame_Admin
         private void btnUsersStatistics_Click(object sender, EventArgs e)
         {
             OpenChildForm(new FrmStatistics());
-
-        }
-        private void FrmMainMenu_Load(object sender, EventArgs e)
-        {
 
         }
 

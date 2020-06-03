@@ -126,9 +126,9 @@ namespace AuctionGame_Admin
         {
             return GetSeconds() / 60;
         }
-        public double GetSeconds()
+        public int GetSeconds()
         {
-            double seconds = Seconds;
+            var seconds = Seconds;
             seconds += Minutes * 60;
             seconds += Hours * 60 * 60;
             return seconds;

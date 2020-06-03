@@ -40,7 +40,7 @@
             this.clmDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmFamilies = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmProducts = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmVirtualBidders = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmvirtualPlayers = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRoutines)).BeginInit();
             this.SuspendLayout();
             // 
@@ -70,6 +70,7 @@
             this.btnSearchRoutines.TabIndex = 28;
             this.btnSearchRoutines.Text = "Buscar";
             this.btnSearchRoutines.UseVisualStyleBackColor = false;
+            this.btnSearchRoutines.Click += new System.EventHandler(this.btnSearchRoutines_Click);
             // 
             // cboSearchRoutines
             // 
@@ -126,7 +127,7 @@
             this.clmDescription,
             this.clmFamilies,
             this.clmProducts,
-            this.clmVirtualBidders});
+            this.clmvirtualPlayers});
             this.dgvRoutines.EnableHeadersVisualStyles = false;
             this.dgvRoutines.Location = new System.Drawing.Point(13, 116);
             this.dgvRoutines.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -178,11 +179,11 @@
             this.clmProducts.Name = "clmProducts";
             this.clmProducts.ReadOnly = true;
             // 
-            // clmVirtualBidders
+            // clmvirtualPlayers
             // 
-            this.clmVirtualBidders.HeaderText = "Jugadores Virtuales";
-            this.clmVirtualBidders.Name = "clmVirtualBidders";
-            this.clmVirtualBidders.ReadOnly = true;
+            this.clmvirtualPlayers.HeaderText = "Jugadores Virtuales";
+            this.clmvirtualPlayers.Name = "clmvirtualPlayers";
+            this.clmvirtualPlayers.ReadOnly = true;
             // 
             // ChildMainRoutines
             // 
@@ -219,6 +220,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmDescription;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmFamilies;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmProducts;
-        private System.Windows.Forms.DataGridViewTextBoxColumn clmVirtualBidders;
+        private System.Windows.Forms.DataGridViewTextBoxColumn clmvirtualPlayers;
     }
 }

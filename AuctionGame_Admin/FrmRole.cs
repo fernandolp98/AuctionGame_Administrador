@@ -7,9 +7,8 @@ namespace AuctionGame_Admin
     public partial class FrmRole : Form
     {
 
-        private static readonly Font FontPlaceHolder = new Font("Comic Sans MS", 14.25F, FontStyle.Italic, GraphicsUnit.Point, 0);
-        private static readonly Font FontRegular = new Font("Comic Sans MS", 14.25F, FontStyle.Regular, GraphicsUnit.Point, 0);
-        private readonly DataControl _dataControl = new DataControl(FontPlaceHolder, FontRegular, Color.Silver, Color.Black, Color.Red);
+
+        private readonly DataControl _dataControl = new DataControl(Fonts.FontPlaceHolder, Fonts.FontRegular, Color.Silver, Color.Black, Color.Red);
 
         private bool _edit;
         private readonly ChildMainRole _father;
@@ -88,80 +87,71 @@ namespace AuctionGame_Admin
         }
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (ValidData())
+            if (!ValidData()) return;
+            var timeToBidDown = new Time(mtxbTimeToBidDown.Text, "mm:ss");
+            var timeToBidTop = new Time(mtxbTimeToBidTop.Text, "mm:ss");
+
+            var nameRole = txbNameRole.Text;
+            var descriptionRole = txbDescriptionRole.Text;
+
+            var timeToBidDownSeconds = timeToBidDown.GetSeconds();
+            var timeToBidTopSeconds = timeToBidTop.GetSeconds();
+            var timeToBid = new TimesValues(timeToBidDownSeconds, timeToBidTopSeconds);
+            var offersForRoundDown = int.Parse(txbOfersForRoundDown.Text);
+            var offersForRoundTop = int.Parse(txbOffersForRoundTop.Text);
+            var offersForRound = new BetwenValues(offersForRoundDown, offersForRoundTop);
+            var roundsDown = int.Parse(txbRoundsDown.Text);
+            var roundsTop = int.Parse(txbRoundsTop.Text);
+            var rounds = new BetwenValues(roundsDown, roundsTop);
+            var increaseBidDown = int.Parse(txbBidIncreaseDown.Text);
+            var increaseBidTop = int.Parse(txbBidIncreaseBidTop.Text);
+            var increaseBid = new BetwenValues(increaseBidDown, increaseBidTop);
+
+
+            var role = new Role(nameRole, descriptionRole, timeToBid, offersForRound, rounds, increaseBid);
+            if (!_edit)
             {
 
-                var timeToBidDown = new Time(mtxbTimeToBidDown.Text, "mm:ss");
-                var timeToBidTop = new Time(mtxbTimeToBidTop.Text, "mm:ss");
-
-                var nameRole = txbNameRole.Text;
-                var descriptionRole = txbDescriptionRole.Text;
-                var timeToBidDownSeconds = timeToBidDown.GetSeconds();
-                var timeToBidTopSeconds = timeToBidTop.GetSeconds();
-                var offersForRoundDown = txbOfersForRoundDown.Text;
-                var offersForRoundTop = txbOffersForRoundTop.Text;
-                var roundsDown = txbRoundsDown.Text;
-                var roundsTop = txbRoundsTop.Text;
-                var increaseBidDown = txbBidIncreaseDown.Text;
-                var increaseBidTop = txbBidIncreaseBidTop.Text;
-                if (!_edit)
+                if (!role.Insertar())
                 {
-                    var query = $"SELECT insert_role " +
-                                   $"('{nameRole}', " +
-                                   $"'{descriptionRole}', " +
-                                   $"{timeToBidDownSeconds}, " +
-                                   $"{timeToBidTopSeconds}, " +
-                                   $"{offersForRoundDown}, " +
-                                   $"{offersForRoundTop}, " +
-                                   $"{roundsDown}, " +
-                                   $"{roundsTop}, " +
-                                   $"{increaseBidDown}, " +
-                                   $"{increaseBidTop})";
-                    var rolId = DbConnection.consultar_datos(query);
-                    if (rolId != null)
-                    {
-                        _role = new Role(int.Parse(rolId.Rows[0][0].ToString()));
-                        _father?.UpdateRoles("");
-                        if (Question(@"¡Se ha registrado el rol exitosamente! ¿Desea agregar otro?", @"Rol agregado"))
-                        {
-                            txbNameRole.Clear();
-                            txbDescriptionRole.Clear();
-                            txbOfersForRoundDown.Clear();
-                            txbOffersForRoundTop.Clear();
-                            txbRoundsDown.Clear();
-                            txbRoundsTop.Clear();
-                            txbBidIncreaseDown.Clear();
-                            txbBidIncreaseBidTop.Clear();
-                            mtxbTimeToBidDown.Clear();
-                            mtxbTimeToBidTop.Clear();
-                        }
-                        else
-                        {
-                            _edit = true;
-                        }
-                    }
+                    MessageBox.Show(@"Ocurrió un problema al registrar el rol");
+                    return;
                 }
-                else if (_edit)
+                _father?.UpdateRoles("");
+                if (Question(@"¡Se ha registrado el rol exitosamente! ¿Desea agregar otro?", @"Rol agregado"))
                 {
-                    var query = $"UPDATE  `role` SET " +
-                                   $"`nameRole` = '{nameRole}', " +
-                                   $"`descriptionRole` = '{descriptionRole}', " +
-                                   $"`timeToBid_Down` = {timeToBidDownSeconds}, " +
-                                   $"`timeToBid_Top` = {timeToBidTopSeconds}, " +
-                                   $"`offersForRound_Down` = {offersForRoundDown}, " +
-                                   $"`offersForRound_Top` = {offersForRoundTop}, " +
-                                   $"`rounds_Down` = {roundsDown}, " +
-                                   $"`rounds_Top` = {roundsTop}, " +
-                                   $"`bidIncrease_Down` = {increaseBidDown}, " +
-                                   $"`bidIncrease_Top` =  {increaseBidTop} " +
-                                   $"WHERE idRole = {_role.IdRole}";
-                    if (DbConnection.ejecutar(query))
-                    {
-                        _father?.UpdateRoles("");
-                        if (!Question($"¡Se ha modificado el rol exitosamente! ¿Desea Salir?",
-                            @"Rol Guardado")) return;
-                        this.Close();
-                    }
+                    _dataControl.Clear(txbNameRole);
+                    _dataControl.Clear(txbOfersForRoundDown);
+                    _dataControl.Clear(txbDescriptionRole);
+                    _dataControl.Clear(txbOfersForRoundDown);
+                    _dataControl.Clear(txbOffersForRoundTop);
+                    _dataControl.Clear(txbRoundsDown);
+                    _dataControl.Clear(txbRoundsTop);
+                    _dataControl.Clear(txbBidIncreaseDown);
+                    _dataControl.Clear(txbBidIncreaseBidTop);
+                    mtxbTimeToBidTop.Clear();
+                    mtxbTimeToBidDown.Clear();
+                }
+                else
+                {
+                    _edit = true;
+                }
+            }
+            else if (_edit)
+            {
+                role.IdRole = _role.IdRole;
+
+                if (role.Update())
+                {
+                    _role = role;
+                    _father?.UpdateRoles("");
+                    if (!Question($"¡Se ha modificado el rol exitosamente! ¿Desea Salir?",
+                        @"Rol Guardado")) return;
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show(@"Ocurrió un error al actualizar el rol");
                 }
             }
         }
